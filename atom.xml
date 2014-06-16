@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[马加油DE博客]]></title>
+  <subtitle><![CDATA[贪玩就像落叶，看似飞翔，却在堕落！]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://mjiayou.com//"/>
+  <updated>2014-06-16T10:13:52.914Z</updated>
+  <id>http://mjiayou.com//</id>
+  
+  <author>
+    <name><![CDATA[马加油]]></name>
+    <email><![CDATA[ma.tengfei2008@163.com]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hexo-mac下搭建hexo博客全过程]]></title>
+    <link href="http://mjiayou.com/2014/06/16/mac-hexo-log/"/>
+    <id>http://mjiayou.com/2014/06/16/mac-hexo-log/</id>
+    <published>2014-06-16T08:57:15.000Z</published>
+    <updated>2014-06-16T10:09:17.000Z</updated>
+    <content type="html"><![CDATA[<p>个人博客做了小有三年了，从刚开始的emlog到后来的wordpress，后来朋友介绍hexo才开始接触这种轻量级的博客系统，于是在windows下用了几个月感觉良好。最近开发需要，入手mac，但是hexo不能停，又于是琢磨mac下的hexo搭建，相对于windows来说mac平台的一些资料还是不足，或者就是鱼龙混杂需要自己判断使用。诺在这里把自己搭建的过程和方法记录一下，如果不足或者错误的地方，恳请指正，共同进步才是目的，谢谢。 </p>
+<p>先屡一下思路<br>1.首先hexo是基于nodejs的，所以必须安装nodejs<br>2.安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它<a id="more"></a><br>3.安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定<br>4.hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定<br>5.OK整理一下安装顺序（homebrew-nodejs-hexo-git）</p>
+<p>思路屡清楚了，下面安装方法整理一下<br>1.安装brewhome，一句话搞定</p>
+<figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)</span>”</span>
+</pre></td></tr></table></figure>
+
+<p>2.0 安装nodejs<br>2.1 第一种方式，brewhome安装，一句话搞定<br>brew install node<br>2.2 第二种方式，前提是已经安装好Xcode和git，安装git方法在下面介绍</p>
+<figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>git clone git:<span class="comment">//github.com/joyent/node.git</span>
+cd node
+./configure
+<span class="built_in">make</span>
+sudo <span class="built_in">make</span> install
+</pre></td></tr></table></figure><br>2.3 第三种方式，下载<a href="http://nodejs.org/download/" target="_blank" rel="external">源码</a>，编译执行同上<br><br>3.0 安装hexo<br>3.1 第一种方式，用nodejs自带npm安装<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>npm <span class="keyword">install</span> -g hexo
+hexo init
+npm <span class="keyword">install</span>
+</pre></td></tr></table></figure><br>3.2 第二种方式，下载<a href="http://www.nodejs.org/download/" target="_blank" rel="external">源码</a>，编译执行<br><br>4.0 安装git<br>4.1 第一种方式，homebrew安装，一句话搞定<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">sudo</span> brew install git
+</pre></td></tr></table></figure><br>4.2 第二种方式，前提是已经安装好Xcode<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>curl -O http://kernel<span class="preprocessor">.org</span>/pub/software/scm/git/git-<span class="number">1.7</span><span class="number">.5</span><span class="preprocessor">.tar</span><span class="preprocessor">.bz</span>2
+tar xjvf git-<span class="number">1.7</span><span class="number">.4</span><span class="number">.1</span><span class="preprocessor">.tar</span><span class="preprocessor">.bz</span>2
+cd git-<span class="number">1.7</span><span class="number">.4</span><span class="number">.1</span>
+./configure --prefix=/usr/local
+make
+sudo make install
+which git
+</pre></td></tr></table></figure><br>4.3 第三种方式，下载<a href="https://www.kernel.org/pub/software/scm/git/" target="_blank" rel="external">源码</a>，编译执行同上<br>4.4 第四种方式：图形界面安装<a href="https://code.google.com/p/git-osx-installer" target="_blank" rel="external">OpenInGitGui</a>，但是天朝被墙<br>4.5 配置<br>4.5.1 检查SSH key<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">cd</span> ~/.ssh
+</pre></td></tr></table></figure><br>4.5.2 备份已有的key，（如果有的话）<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="keyword">mkdir</span> key_backup
+mv id_rsa* key_backup
+</pre></td></tr></table></figure><br>4.5.3 生成SSH key<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ssh<span class="attribute">-keygen</span> <span class="attribute">-t</span> rsa <span class="attribute">-C</span> <span class="string">"xxxx@xxxx.com”</span>
+</pre></td></tr></table></figure><br>4.5.4 将SSH key添加到Github<br>登录到GitHub页面，Account Settings-&gt;SSH Public Keys-&gt;Add another key将生成的key(id_rsa.pub文件）内容copy到输入框中，save。<br>4.5.5 测试连接<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ssh git<span class="variable">@github</span>.com
+</pre></td></tr></table></figure><br>4.5.6 设置个人信息<br><figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>git config --<span class="keyword">global</span> user.name <span class="string">"xxxx"</span>
+git config --<span class="keyword">global</span> user.email xxxx<span class="decorator">@xxxx.com</span>
+</pre></td></tr></table></figure>
+
+<p>5 修改hexo根目录下_config.yml文件（xxxx为你的github账户名称）</p>
+<figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="label">deploy:</span>
+  type: github
+  repo: git@github<span class="preprocessor">.com</span>:xxxx/xxxx<span class="preprocessor">.github</span><span class="preprocessor">.io</span><span class="preprocessor">.git</span>
+  branch: master
+</pre></td></tr></table></figure>
+
+<p>6 注册github账号，新建名为xxxx.github.io的repository</p>
+<p>7 到这，Hexo博客搭建已经完成了，并且可以git提交到github上，通过访问xxxx.github.io就可以访问本博客，关于hexo的一些操作以后有时间再整理吧</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>个人博客做了小有三年了，从刚开始的emlog到后来的wordpress，后来朋友介绍hexo才开始接触这种轻量级的博客系统，于是在windows下用了几个月感觉良好。最近开发需要，入手mac，但是hexo不能停，又于是琢磨mac下的hexo搭建，相对于windows来说mac平台的一些资料还是不足，或者就是鱼龙混杂需要自己判断使用。诺在这里把自己搭建的过程和方法记录一下，如果不足或者错误的地方，恳请指正，共同进步才是目的，谢谢。 </p>
+<p>先屡一下思路<br>1.首先hexo是基于nodejs的，所以必须安装nodejs<br>2.安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它]]></summary>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/tags/Hexo/"/>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/categories/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.06.06_一览无遗]]></title>
+    <link href="http://mjiayou.com/2014/06/06/see-the-whole/"/>
+    <id>http://mjiayou.com/2014/06/06/see-the-whole/</id>
+    <published>2014-06-06T02:21:33.000Z</published>
+    <updated>2014-06-12T12:28:13.000Z</updated>
+    <content type="html"><![CDATA[<p>如题。</p>
+<p>正前方的清华大学附属小学，操场上小学生们在上体育课的样子，想起小时候各种理理由不想去上体育课，体育老师威武雄壮的汉子总是一副凶神恶煞的样子，但是，在前两年回家再次遇到他，也隐约看到白发，也隐约看到蹒跚，恍然大悟原来他不是坏人，见我不相识，猛然想起小学已经十多年。再见小学生，一脸天真，挺好，人之初性本善，没有什么是邪恶的，如果有的话，那就是时间。</p>
+<a id="more"></a>
+
+<h2 id="图片">图片</h2>
+<img src="/images/20140606-1.jpg" width="400" height="600"><br><img src="/images/20140606-2.jpg" width="400" height="600">
+
+<p>身处潘石屹的成名作之中，白色楼群的确几分壮观，但仔细看的话，历经10年的风吹雨打，白已泛黄，也曾辉煌过，终究抵不过时间的推敲，所以没有什么是永恒的，如果有的话，那就是变化。</p>
+<p>楼群后面是标志性的央视大裤衩建筑，只有远观才能看出其雄伟气势，如果身处其中，也只是一栋楼，无他，不过这的的确确就是一栋楼而已，却被威武雄壮诠释着，没有什么是真实的，如果有的话，那就是其本身。</p>
+<p>国贸地铁站昨天的事件略有耳闻，如果我在场估计我也会跑，丢了鞋我也会跑，这个社会，这个世界，只有生命才是自己的，再没有别的了。</p>
+<p>呵呵雾霾，或者是阴天，天气预报下午暴风雨，压抑了太久是该释放一下了，心情也是如此，让暴风雨来的更猛烈一些吧。</p>
+<p>恩心情略好。回去继续敲代码，虽苦逼，却充实。</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>如题。</p>
+<p>正前方的清华大学附属小学，操场上小学生们在上体育课的样子，想起小时候各种理理由不想去上体育课，体育老师威武雄壮的汉子总是一副凶神恶煞的样子，但是，在前两年回家再次遇到他，也隐约看到白发，也隐约看到蹒跚，恍然大悟原来他不是坏人，见我不相识，猛然想起小学已经十多年。再见小学生，一脸天真，挺好，人之初性本善，没有什么是邪恶的，如果有的话，那就是时间。</p>
+]]></summary>
+    
+      <category term="一览无遗" scheme="http://mjiayou.com/tags/%E4%B8%80%E8%A7%88%E6%97%A0%E9%81%97/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[WP-使用BingMaps地图服务]]></title>
+    <link href="http://mjiayou.com/2014/05/30/wp-bingmaps-service/"/>
+    <id>http://mjiayou.com/2014/05/30/wp-bingmaps-service/</id>
+    <published>2014-05-30T03:01:41.000Z</published>
+    <updated>2014-06-16T09:17:24.000Z</updated>
+    <content type="html"><![CDATA[<p>最近做一个WP8的项目，需要用到地图功能，由于百度对WP平台不提供SDK，并且项目需要也很简单，只是定位展示即可。</p>
+<p>首先需要用到3个服务<br><a id="more"></a></p>
+<p>1、GeoCode服务-转换地址到地理的经纬度<br>WebServices地址：<a href="http://dev.virtualearth.net/webservices/v1/geocodeservice/geocodeservice.svc" target="_blank" rel="external">http://dev.virtualearth.net/webservices/v1/geocodeservice/geocodeservice.svc</a></p>
+<p>2、Route服务-分局选定的地点(locations或者waypoints)生成路径(2个或2个以上点)<br>WebServices地址：<a href="http://dev.virtualearth.net/webservices/v1/routeservice/routeservice.svc" target="_blank" rel="external">http://dev.virtualearth.net/webservices/v1/routeservice/routeservice.svc</a></p>
+<p>3、Search服务-根据地点返回搜索结果<br>WebServices地址：<a href="http://dev.virtualearth.net/webservices/v1/searchservice/searchservice.svc" target="_blank" rel="external">http://dev.virtualearth.net/webservices/v1/searchservice/searchservice.svc</a></p>
+<p>推荐学习的文章地址：<a href="http://msdn.microsoft.com/en-us/library/ee681887.aspx" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/ee681887.aspx</a></p>
+]]></content>
+    <summary type="html"><![CDATA[<p>最近做一个WP8的项目，需要用到地图功能，由于百度对WP平台不提供SDK，并且项目需要也很简单，只是定位展示即可。</p>
+<p>首先需要用到3个服务<br>]]></summary>
+    
+      <category term="BingMaps" scheme="http://mjiayou.com/tags/BingMaps/"/>
+    
+      <category term="WP" scheme="http://mjiayou.com/categories/WP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.05.30_开发日志创刊号]]></title>
+    <link href="http://mjiayou.com/2014/05/30/dev-diary-start/"/>
+    <id>http://mjiayou.com/2014/05/30/dev-diary-start/</id>
+    <published>2014-05-30T02:41:56.000Z</published>
+    <updated>2014-05-30T04:51:56.000Z</updated>
+    <content type="html"><![CDATA[<p>好吧，一直都是拿来主义，这样不好。</p>
+<p>算上学生时代的话，算上小打小闹的话，做开发也有小三年时间了，2011年在大学参加山东省软件大赛做的一个Android项目是开发之路一个起航，后来又一个偶然机会以及C#语言基础的原因，做了WP的一个项目，从此立志走上了开发这条不归路。话说回来，前段时间又翻出三年前当时项目的源码，简直就像堆积木似地搭起了一座“小低层”，远没钢筋混凝土来的稳固，容不得推敲，只可远观不可亵玩。好，这不是重点，扯多了。</p>
+<a id="more"></a>
+
+<p>回归主题，我是想说，三年了，没有点积累是不对的。一直以来遇到问题首先想到的是百度谷歌，然后拿来主义，这样是对的，这样才能借助网络资源解决问题、达到目的、学到东西。但是一味的拿来主义就不是那么回事儿了，三年期间也曾无数次想过要整理开发日志，遇到问题百度谷歌解决问题，然后把这个过程整理下来，毕竟很多问题不是百度一下就可以解决的，网络资源鱼龙混杂，需要搜索、择优、判断、尝试，最后才得到答案；也曾在解决问题的过程中看到过无数大神的开发日志，那种思想的积累很是羡慕。但是，总是被没有时间整理为理由所打发，这样不好。</p>
+<p>于是，有了如下截图，把遇到的问题解决方案收藏到印象笔记，挺好，但是，即便是复制到电脑的word中，别人的思想还是别人的东西，不是自己的，这样也不好。</p>
+<img src="/images/20140530-dev-evernote.png" width="400" height="600"> 
+
+<p>于是，出现这种恶性循环：遇到问题，网络资源解决问题，过段时间再次遇到同样的问题，竟然忘记了当时是如何解决的，于是再次网络搜索解决问题。对于分分钟搞定的小问题还好，对于那种一整就是半天的问题来说，这才是真正的浪费时间，所以有必要把问题整理归档。这是一种态度，既然立志从事这个行业，理该如此。</p>
+<p>好的，论证论据陈述完毕，就是想发文为证，生怕自己坚持不下来。这样有文在此就得付诸实践了，就像那句话：吹过的牛X也得负责。</p>
+<p>OK，干吧，少年。（其实一把年纪了）</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>好吧，一直都是拿来主义，这样不好。</p>
+<p>算上学生时代的话，算上小打小闹的话，做开发也有小三年时间了，2011年在大学参加山东省软件大赛做的一个Android项目是开发之路一个起航，后来又一个偶然机会以及C#语言基础的原因，做了WP的一个项目，从此立志走上了开发这条不归路。话说回来，前段时间又翻出三年前当时项目的源码，简直就像堆积木似地搭起了一座“小低层”，远没钢筋混凝土来的稳固，容不得推敲，只可远观不可亵玩。好，这不是重点，扯多了。</p>
+]]></summary>
+    
+      <category term="开发" scheme="http://mjiayou.com/tags/%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.05.19_济南一夜]]></title>
+    <link href="http://mjiayou.com/2014/05/19/one-night-in-jinan/"/>
+    <id>http://mjiayou.com/2014/05/19/one-night-in-jinan/</id>
+    <published>2014-05-19T10:40:39.000Z</published>
+    <updated>2014-05-30T03:29:20.000Z</updated>
+    <content type="html"><![CDATA[<p>靠，火车晚点一个半小时。靠。</p>
+<p>济南火车站广场，小风还算袭人，蚊子略不懂事。警车来来回回巡逻，人来人往有接站有送别，有谈笑有拥抱，有情侣装有孤身一人。一周圈霓虹灯闪耀，大广告牌循环播着广告，待这一会儿听得最多的声音是：住宾馆不。抬头不见繁星，低头不见月光，闭上双眼就是床。好吧承认这是在打发时间。靠。</p>
+<a id="more"></a>
+
+<p>难得来一趟济南就这么，等一个半小时事儿小，原本计划的回家之后两个小时睡觉时间算是泡汤了，放下东西接着就该上班，希望能坚持那么一天，那也是一天。靠。</p>
+<p>济南萌棍的接待工作做的不错，就是太破费，也罢。这下宿舍六个就都见过了，火包、骚峰，杜小狗、萌棍、璞菊，两年了，不长不短的两年。靠。</p>
+<p>这次回校来也匆匆去也匆匆，理解万岁吧。革命尚未成功，同志还需努力。靠。</p>
+<p>一个老爷爷背着旅行包，带着帽子，拄着拐杖，走到面前：帮我一块钱吧。我摇了摇头，他寻找下一位。这就是社会，真真假假的社会。靠。</p>
+<p>蚊子开始盛行，转移候车大厅吧。</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>靠，火车晚点一个半小时。靠。</p>
+<p>济南火车站广场，小风还算袭人，蚊子略不懂事。警车来来回回巡逻，人来人往有接站有送别，有谈笑有拥抱，有情侣装有孤身一人。一周圈霓虹灯闪耀，大广告牌循环播着广告，待这一会儿听得最多的声音是：住宾馆不。抬头不见繁星，低头不见月光，闭上双眼就是床。好吧承认这是在打发时间。靠。</p>
+]]></summary>
+    
+      <category term="济南" scheme="http://mjiayou.com/tags/%E6%B5%8E%E5%8D%97/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.05.06_忙中有闲的北漂生活]]></title>
+    <link href="http://mjiayou.com/2014/05/06/beijing-life/"/>
+    <id>http://mjiayou.com/2014/05/06/beijing-life/</id>
+    <published>2014-05-06T10:47:44.000Z</published>
+    <updated>2014-05-30T03:29:13.000Z</updated>
+    <content type="html"><![CDATA[<p>终于知道当年为什么这么能写了，原来是闲的。没错，下班回来闲的我把07年到最近的一百多篇日志又读了一遍，结果只是验证了一句话：生活就是一个不断发现自己以前是傻x的过程。</p>
+<p>其实不闲，公司的项目催着，学校的论文紧迫。但是当一些琐事影响心情的时候，全然不顾这些，回到家完全可以俨然一副哥不伺候了心态。所谓琐事，比如正在做的WP项目开发文档，各种小错误，虽然无伤大雅，但足以让我在一个字段名的拼写与实际服务器返回字段不一致的问题上重复debug到吐，且不说这是在浪费时间；再就是有段时间没用visual studio了，很多令人摸不清头脑的报错的解决方案是rebuild让我还不太习惯，不过想想eclipse的clean也就理解万岁了；再就是整天在公司闷头敲代码，偶尔的抬头插上一两句话，连笑都变的很尴尬，着实开始担心所谓的抑郁症，说起来越是觉得这几天抑郁的不行，让我猛然有种烟台大一那年好好学习天天向上的感觉：每天默默的行走在教室、自习室和宿舍之间，很少说话，好吧还不都是过来了，希望不要郁郁而终就行；再就是这几天北京的天气好像微微作痛，降温、大风、闪电配小雨，就不能正常点，也许这才是晚春的完全体，只是已经安于稳定，遇到些许不安定就咋咋呼呼，说好听点这是强迫症，不好听了就是贱，人呐。</p>
+<a id="more"></a>
+
+<p>说到工作，一个月多了，学到不少东西，比如放下一年多了的WP在大神的指导下重新拾起，一直以为跨平台跨语言是合格程序员的必备技能，珍惜机会。说“不伺候”只是嘴硬的表现，该学习的时候还得好好学，学习是永无止境的，那天站在天安门毛爷爷头像下的时候，第一想起的就是“好好学习天天向上”，这句话不只适用在学校，而适用于任何场合，工作技能需要学习，为人处事需要学习，正所谓“好好学习”，在学习的过程中要做到每一天都是在进步，正所谓“天天向上”；该干活的时候还得认真的干，既然干了就干好它，要么就选择不干，这是原则。生活还要继续，革命尚未成功，同志还需努力。。。</p>
+<p>说到生活，20岁的时候看18岁，会发现那时的自己“简直”了；22岁看20岁的时候，会发现那时候的自己略显成熟，但是“简直”依旧；24岁再看22岁的时候，将不予置评，因为这才是人生。一直赞成什么年纪就做什么年纪该做的事情，这是大自然的规律，违背了是需要付出代价的。所以18岁的傻x，20岁的疯狂，22岁的伪入世，和24岁的不语，都是该奖励大红花的。现在也是，很多时候如果我表现的哑口无言了，也许我只是懒得去解释罢了，不如做更有意义的事情，比如吃、睡，谁人能不吃不睡。</p>
+<p>说到吃住，一个人住这个地方有点浪费了，无非是个睡觉的工具而已，只要隔壁不打呼噜其实隔断也无所谓，反正早出晚归的。</p>
+<p>说到浪费，有天午饭同事闲聊，说也许明天，也许摊上意外就不幸了，况且是在这么艰难的中国，况且是在这么不适合人类居住的帝都。所以在中国活着一天就是赚的一天，活着有条件就得享受。自己好才是真的好，善待自己，对一切反对势力说NO，人生已经如此的艰难，何必勉强自己，且活且珍惜。这样就谈不上浪费了。</p>
+<p>于是，昨晚在“抑郁症”的威慑下，在无聊氛围的诱导下，在不良心情的唆使下，十分钟完成了ukulele决定入手到选购到下单的过程，简直一气呵成，其实一直想入手只是没有合适理由而已。优柔寡断的我很少有这魄力，挺好。暂且不去想房东的两张欠条了，暂且不去想毕业季的各种开销，那是不可能的，无所谓，只是紧张这两个月而已，人生还有好多个两个月等着呢。</p>
+<p>坐等ukulele，这样下班回来就不用一杯红酒配电影了，不喜欢音乐的程序员不是好程序员。下次再抑郁症+无聊氛围+不良心情的情况下可能会入手音响一枚，这房间太静。</p>
+<p>说到音乐，最近喜欢听李克勤和谭咏麟的歌，一直感觉粤语很有味，并且是越听越有味，学习中。</p>
+<p>外面小雨一阵一阵的下着，贵如油。衣服洗完晾上了，垃圾明天记得扔掉，买的存粮一会儿收拾一下，这才是真真实实的生活。冲个澡就可以准备睡觉了，虽然还早，其实不早了，晚安。</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>终于知道当年为什么这么能写了，原来是闲的。没错，下班回来闲的我把07年到最近的一百多篇日志又读了一遍，结果只是验证了一句话：生活就是一个不断发现自己以前是傻x的过程。</p>
+<p>其实不闲，公司的项目催着，学校的论文紧迫。但是当一些琐事影响心情的时候，全然不顾这些，回到家完全可以俨然一副哥不伺候了心态。所谓琐事，比如正在做的WP项目开发文档，各种小错误，虽然无伤大雅，但足以让我在一个字段名的拼写与实际服务器返回字段不一致的问题上重复debug到吐，且不说这是在浪费时间；再就是有段时间没用visual studio了，很多令人摸不清头脑的报错的解决方案是rebuild让我还不太习惯，不过想想eclipse的clean也就理解万岁了；再就是整天在公司闷头敲代码，偶尔的抬头插上一两句话，连笑都变的很尴尬，着实开始担心所谓的抑郁症，说起来越是觉得这几天抑郁的不行，让我猛然有种烟台大一那年好好学习天天向上的感觉：每天默默的行走在教室、自习室和宿舍之间，很少说话，好吧还不都是过来了，希望不要郁郁而终就行；再就是这几天北京的天气好像微微作痛，降温、大风、闪电配小雨，就不能正常点，也许这才是晚春的完全体，只是已经安于稳定，遇到些许不安定就咋咋呼呼，说好听点这是强迫症，不好听了就是贱，人呐。</p>
+]]></summary>
+    
+      <category term="北京" scheme="http://mjiayou.com/tags/%E5%8C%97%E4%BA%AC/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.04.24_唉，北京]]></title>
+    <link href="http://mjiayou.com/2014/04/24/beijing/"/>
+    <id>http://mjiayou.com/2014/04/24/beijing/</id>
+    <published>2014-04-24T10:47:58.000Z</published>
+    <updated>2014-05-30T03:29:07.000Z</updated>
+    <content type="html"><![CDATA[<p>这几天找房子找回了两个月前找工作的感觉——累，都是在找寻。唉，北京。公司项目又赶的紧，每天没睡醒洗把脸就得出发公司，晚上下班看完房子回来就得十点十一点，昨天配个WP8开发环境整到两点。鞋子坏了网购的时间都没有，衣服换了还没来得及洗，就这么苦逼，不过这样不好，太邋遢不好。</p>
+<p>在地铁上，这个周外派客户公司，从北京东头站到西头，足够的时间写点东西，遗憾怎么没早点发现这宝贵的时间段。好久没写点东西了，不是我的风格。</p>
+<a id="more"></a>
+
+<p>哈哈换乘站捡了个座，实在难得，我得保持低头状态，才不会被大妈级的人物用眼神逼我让座，OK。</p>
+<p>先说工作，工作快一个月了，不多说，短期目标是刚开始能学到东西能养活自己足矣，只是希望这个“刚开始”的概念不会太长。暂定毕业之后就尽快摆脱这个状态，毕竟来北京不只是为养活自己的，这个目标的话在哪都可以实现。学习是永无止境的，最近又拾起了放下近两年的WP开发，感觉良好，我明白会多种平台多种语言是优秀开发人员的必备技能，感谢同事能耐心指导我， 所以得把握好这个机会，辛苦就辛苦点吧，谁还没有过一段光辉岁月，回头想想总是美好的。</p>
+<p>两年前在烟台的时候，我的目标是组建自己的开发团队，像草帽海贼团那样，每个人有着自己的小梦想，作为团队的存在，又都有着共同的远大梦想。队长虽然有时二到不行，但是团队对队长的忠诚是毋庸置疑的，他们配合默契，为了梦想他们可以倾尽所有，即使再凶残的海域也要勇往直前，没错喜欢海贼王我就是看到了这种团队协作勇往直前的精神。扯的有点远。不过两年内作为队长参加过一次比赛，发现自己的领导能力尚欠缺，所以现在的目标是加入一个优秀的开发团队，最期望的还是草帽海贼团那样的团队，有自己的小梦想，有团队的远大梦想，如果要对号入座的话，我愿意做索隆那样的人物，少说多做，能作为团队的主力之一存在，能虚心拜鹰眼为师。。。好吧不YY了。希望如愿。</p>
+<p>再说学校，各位就别再问我什么时候回学校了。什么难得毕业回来聚聚之类的话，我只想说哥已经毕业有两年了，好像谁没大学毕业过似的。不多说。</p>
+<p>这个周末去参加大学同学婚礼，应该少不了各种HIGH，所以就再坚持两天的苦逼生活吧。</p>
+<p>好吧这一路也就说了这么几句，到站了，还有想到没组织出来的，待续吧。</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>这几天找房子找回了两个月前找工作的感觉——累，都是在找寻。唉，北京。公司项目又赶的紧，每天没睡醒洗把脸就得出发公司，晚上下班看完房子回来就得十点十一点，昨天配个WP8开发环境整到两点。鞋子坏了网购的时间都没有，衣服换了还没来得及洗，就这么苦逼，不过这样不好，太邋遢不好。</p>
+<p>在地铁上，这个周外派客户公司，从北京东头站到西头，足够的时间写点东西，遗憾怎么没早点发现这宝贵的时间段。好久没写点东西了，不是我的风格。</p>
+]]></summary>
+    
+      <category term="北京" scheme="http://mjiayou.com/tags/%E5%8C%97%E4%BA%AC/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.04.18_梦想起航]]></title>
+    <link href="http://mjiayou.com/2014/04/18/dream-cnblogs-begin/"/>
+    <id>http://mjiayou.com/2014/04/18/dream-cnblogs-begin/</id>
+    <published>2014-04-18T04:53:54.000Z</published>
+    <updated>2014-06-16T09:22:54.000Z</updated>
+    <content type="html"><![CDATA[<p>其实博客园两年前就注册了，随着程序员的梦想一起来到此处。只是一直在学校没有时间或者说是懒得去打理，面临毕业，已经在公司实习了一个多月，渐的发现整理技术文档的重要性，有些东西我以为能记住，其实不然，毕竟人的记忆力是遵循遗忘规律的。好吧，今天我的博客园重新开张，只为成为一名合格的程序员开始，为梦想起航！</p>
+<a id="more"></a>
+
+<p>一直以来很喜欢cnblogs的简约风格，每次遇到技术问题通过搜索引擎找到的结果总会优先选择cnblogs的网站，不多说了，耽误上班时间员工的不是好员工。。。</p>
+<p>附上很喜欢第一句话：贪玩就像落叶，看似飞翔，却在堕落。</p>
+<p>附上座右铭：好好学习，天天向上！（无论何时何地，学习是永无止境的。）</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>其实博客园两年前就注册了，随着程序员的梦想一起来到此处。只是一直在学校没有时间或者说是懒得去打理，面临毕业，已经在公司实习了一个多月，渐的发现整理技术文档的重要性，有些东西我以为能记住，其实不然，毕竟人的记忆力是遵循遗忘规律的。好吧，今天我的博客园重新开张，只为成为一名合格的程序员开始，为梦想起航！</p>
+]]></summary>
+    
+      <category term="梦想" scheme="http://mjiayou.com/tags/%E6%A2%A6%E6%83%B3/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.03.09_加油]]></title>
+    <link href="http://mjiayou.com/2014/03/09/up-up/"/>
+    <id>http://mjiayou.com/2014/03/09/up-up/</id>
+    <published>2014-03-09T10:48:10.000Z</published>
+    <updated>2014-05-30T03:28:57.000Z</updated>
+    <content type="html"><![CDATA[<p>首先，愿马航客机能创造奇迹！刚刚又查看了最新报道，对失去联系的飞机仍无确切消息。在生命面前，每个人都是弱者，而我们应该帮助弱者，看到微博的一句话：“这一刻没有地域，没有国界，没有肤色，愿飞机上的每一个人都能平安与家人相聚！”同祝。几年前还是愤青的时候曾坚信有一种力量能够像我们随随便便可以碾死蚂蚁一样轻松的操纵着我们的生命，现在我明白了，那种力量严格意义上是不存在的，如果有的话，它叫信仰。</p>
+<p>其次，已经过了零点，祝妈妈昨天节日快乐。</p>
+<a id="more"></a>
+
+<p>不知不觉在北京半个多月了，工作整一个星期过去了，虽然是工作是暂时的，但是我相信通过这一个月的努力能为自己的下一步增加几分筹码。感谢华东电脑的袁总提供这个机会，因为没有几个公司愿意花钱招你去学习的，大多公司都是要利益，他们甚至愿意多花几千块钱请个水平高点的，而不愿意低价请个来到需要学习的。</p>
+<p>上个月底最低落的那几天甚至怀疑自己来北京的决定是错误的盲目的，特别是米时科技面试遭拒之后，希望越大失望就越大，那天在未名湖畔临走的时候手机收到拒绝通知，庆幸没直接跳下去。在回去的地铁上想过参加培训或者找个便宜的房子苦学一个月，因为自己的水平真的还不够一般公司的标准，也想过找个装系统修电脑之类的工作一边工作一边学习，但是从没放弃做个牛x程序员的梦想，因为路是自己选的，跪着也要走下去。现在回头想想，呵呵还不是过来了，开始觉得来北京的决定是最明智的，否则永远不会经历这半个月，得不到成长；虽然北京各种不适合人类居住，但是喜欢这种快节奏的状态，感觉很适合我。这半个月也让我明白了即使情况再艰难，总会有咸鱼翻身的一天，永远不要放弃的道理，虽然难过虽然累却学到好多东西，也算值得。</p>
+<p>现在的工作是个很好的机会机会，坦白说很喜欢现在的状态，每天做着喜欢的事情-敲代码，还能丰富自己的专业知识，还能赚点为数不多的生活费。袁总引用雷军的一句话：站在风口上，猪也能飞起来。</p>
+<p>好吧，可能到月底又要找工作了，所以我要利用现在的机会努力充实自己，立志走这条路就要拿出点样子来。越学习，就越发现不懂的很多；学习就像吹气球，吹的越大，气球与空气接触的面积就越大。这几天就学到了不少东西，接下来的20天，要加倍的努力才能活在这个压力的城市，争取下次面试的时候可以拿出点自己的东西从容面对。如果现在告诉你，假如你现在每天多努力两个小时，一个月之后就会更容易得到一份工作，你愿不愿意？我的回答是YES。其实很多时候这种假如都是真实存在的，面对假如，谁人都不太容易接受，那倒不如把假如去掉。到毕业大概还有三个月，现在每天多努力两个小时，毕业之后就是我选公司而不会公司选我，一定是这样的。所以，加油！希望三个月时间完成学生程序员到正式程序员的完美的蜕变。加油！</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>首先，愿马航客机能创造奇迹！刚刚又查看了最新报道，对失去联系的飞机仍无确切消息。在生命面前，每个人都是弱者，而我们应该帮助弱者，看到微博的一句话：“这一刻没有地域，没有国界，没有肤色，愿飞机上的每一个人都能平安与家人相聚！”同祝。几年前还是愤青的时候曾坚信有一种力量能够像我们随随便便可以碾死蚂蚁一样轻松的操纵着我们的生命，现在我明白了，那种力量严格意义上是不存在的，如果有的话，它叫信仰。</p>
+<p>其次，已经过了零点，祝妈妈昨天节日快乐。</p>
+]]></summary>
+    
+      <category term="加油" scheme="http://mjiayou.com/tags/%E5%8A%A0%E6%B2%B9/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.02.28_未名湖畔，北京第十天]]></title>
+    <link href="http://mjiayou.com/2014/02/28/ten-days-in-beijing/"/>
+    <id>http://mjiayou.com/2014/02/28/ten-days-in-beijing/</id>
+    <published>2014-02-28T10:48:20.000Z</published>
+    <updated>2014-05-30T03:28:49.000Z</updated>
+    <content type="html"><![CDATA[<p>如果再给我一次机会重新选择，我还会选择来北京。没错这里充满了压力与各种不适合生活的因素，但是我更看好这里的机遇与挑战，即便来北京第十天了还没有找到工作，每天都是在路上。</p>
+<p>昨天看到一个帖子，140平的房子被隔板隔成8个单间，住着14个来自各地胸怀梦想的年轻人，去掉卫生间、厨房、阳台，平均每人住在不到10平的房间，有的房间根本看不到阳光。然后网友跟帖说道：放弃与家人团聚的机会来到这个充满“危机”的城市，什么梦想值得去这样，而几百万的年轻人去争抢这种“梦想”，你又得到了多少呢？我想提他们回答：如果梦想可以用付出来衡量的话，那就不是梦想了。说到这，足够。</p>
+<a id="more"></a>
+
+<p>只身未名湖畔的长椅上，看着身边的北大学子来来往往，有三五成群熙熙攘攘，有成双成对微声细语，也有像我这样的独坐长椅亦或驻足远眺，不同的是他们正在冠以北大学子的称呼被我描述着。同样的物种为什么会有不同的命运，诺，如此世界才会缤纷。</p>
+<p>非常感谢上午面试我的HR，和之前遇到的HR完全不同，他从头到尾没问到关于技术的问题，而畅谈了一个小时的人生，我想这更能看透一个人，无论技术、生活、为人处世还是梦想，再次感谢这次交谈的机会，无论offer与否。据了解这是一个创业公司，现在大概30员工的规模却从与HR的交流中感受到了他宏伟的目标。HR是与马云、李彦宏同一个时代毕业的人，但是前者选择了艰巨的创业，而HR选择去了高薪稳定的国企，干过MOTO、索爱，国外名企也呆过，却错过了一个互联网的时代，现在和合作伙伴一起回国创业。他告诉我现在是移动互联网的时代，虽然晚了两年但是对于应届生来说是个很好的机会。他说他对员工的要求有两个：一是愿意学习，二是可以吃苦。I DO。</p>
+<p>第十天了，从前几天的激情满满热血沸腾，到中间几天的浮躁不安几近放弃，再到这几天的平平静静谦卑求知，好似经历了整个人生一样，累，却受益匪浅。找不到工作怪不得别人，谁让在学校这么宝贵的时间没有好好珍惜，导致现在水平一瓶子不满半瓶子晃荡，还达不到公司要求的60分。现在最期望的就是等待HR满意的答复，如果能如愿的话，我会开始奋斗，即便HR所说的早9点晚9点也无惧意，反而正如所愿；如果不能如愿，我会继续奋斗。</p>
+<p>朋友说毕业生应该先找个压力相对小点的城市积累经验，待时机成熟再去大城市打天下，当时近乎崩溃的我默许了这种思想。现在看来，我保持中立，这是大多数人的做法，而我可以选择不做大多数人，多吃一些苦对年轻人来说有益无害，只要不死。现在经历了最苦，那么以后再遇到的苦就可以一笑而过。借用一句歌词：“不管怎样，怎样都会受伤，伤了又怎样，至少我很坚强我很坦荡。”既来之则安之，第十天找不到工作不代表第十一天找不到，现在月薪2000不代表三个月后还是2000。今天很残酷，明天更残酷，后天很美好，不能死在明天晚上。</p>
+<p>这十天是BEYOND一直伴我耳边给我力量，不知道还有几个十天待我去走在路上，但是只要走在路上我就能听到BEYOND的声音：“寻梦像扑火，谁共我疯狂，长夜渐觉冰冻，但我只有尽量去躲”；“只有顽强，前方路纵更彷徨，疲倦惯了再没感觉，别再可惜计较什么”；“总有挫折打碎我的心，紧抱过去抑压了的手，我与你也彼此一起艰巨过，写上每句冰冷冷的诗，不会放弃高唱这首歌，我与你也彼此真的相识过”；“问句天几高心中志比天更高，自信打不死的心态活到老”。。。</p>
+<p>在北京要是没有朋友的关照，估计我已经撑不到今天了。比如凌晨到北京的时候超开车去接我，让我在北京的第一夜有个睡觉的地方；比如从来北京第二天就吃住骚峰这，已经有小半个月，只要出去吃饭没掏过腰包；再比如开口借800结果第二天给我打了2000的广大哥。其实再说就略显矫情，谁对我的好我都记着了，只是不善于表达谢意，有时候也确实是没有必要。大恩不言谢，我只是想说，对我的好只会升值，只要待我牛x时！</p>
+<p>未名湖畔坐了两个小时，二郎腿换了一次又一次，手指微微凉，天色微微暗。到这吧。</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>如果再给我一次机会重新选择，我还会选择来北京。没错这里充满了压力与各种不适合生活的因素，但是我更看好这里的机遇与挑战，即便来北京第十天了还没有找到工作，每天都是在路上。</p>
+<p>昨天看到一个帖子，140平的房子被隔板隔成8个单间，住着14个来自各地胸怀梦想的年轻人，去掉卫生间、厨房、阳台，平均每人住在不到10平的房间，有的房间根本看不到阳光。然后网友跟帖说道：放弃与家人团聚的机会来到这个充满“危机”的城市，什么梦想值得去这样，而几百万的年轻人去争抢这种“梦想”，你又得到了多少呢？我想提他们回答：如果梦想可以用付出来衡量的话，那就不是梦想了。说到这，足够。</p>
+]]></summary>
+    
+      <category term="北京" scheme="http://mjiayou.com/tags/%E5%8C%97%E4%BA%AC/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.02.11_梦想加油]]></title>
+    <link href="http://mjiayou.com/2014/02/11/dream-high/"/>
+    <id>http://mjiayou.com/2014/02/11/dream-high/</id>
+    <published>2014-02-11T10:48:31.000Z</published>
+    <updated>2014-05-30T03:28:39.000Z</updated>
+    <content type="html"><![CDATA[<p>据说有一种鸟只需要嘴里衔着一个小木棍就能飞过太平洋，累了就把木棍放在海面上站上去休息，困了就睡在上面，渴了就站在木棍上喝点水。无论真假，又何妨。</p>
+<p>追寻梦想的道路上没有对与错，有的只是不同的偏执。了不起的人即便偏执也是可取的，如果24岁还算青春的话，想借用五月天的歌词以此自勉：“青春是手牵手坐上了永不回头的火车，总有一天我们都老了，不会遗憾就OK了；青春是人生的实验课，错也错的很值得，就算某天唱起这首歌，眼眶会有一点湿热”。不想而立之年再想老男孩那样感慨：“当初的愿望实现了吗？事到如今只好祭奠吗？任岁月风干理想再也找不回真的我！”不想像Light The Dream介绍所说的：“我们都曾有过梦想。但随着时间推移，梦想遗忘，激情磨灭，沉于世事，甘于平庸。。。”因为，有梦想谁都了不起！</p>
+<a id="more"></a>
+
+<p>梦想加油站是两年前在烟台创办的一个论坛式网站，最后各种原因被扼杀在了摇篮之中。个人博客也因为免费主机商停止服务又买不起空间而被暂停了，重点是数据都在。正如：“留的青山在”。</p>
+<p>如果说BEYOND给我带来的是梦想，那么海贼王就是给我带来了勇气和力量。帝都的“凶神恶煞”也略有耳闻，但愿一切顺利，最坏的打算有钱的捧个钱场，没钱的捧个关系场，只求不死。正如：“不怕没柴烧”。</p>
+<p>昨晚确定行程之后失眠到很晚，依旧是优柔寡断的老毛病让我胡思乱想，眼前的形势也不容乐观，不过回头想想，睡得再晚还不是一觉睡到了大天亮，诺想起五月天：“有多少错误重蹈覆辙，有多少苦痛还不是都过来了，想起来甚至还会笑呢。”所以，淡定。</p>
+<p>这趟临时起意的帝都之行决定的突然又坚定，其实也不然，两年前文经毕业那年就定下了这个目标，只是当突然意识到“IT IS TIME TO DO”的时候显得有些突兀，又快到一个毕业季，相比较两年前多了一份从容。那年确定了我的梦想是拥有一支自己满意的开发团队，无论是公司还是工作室，只要队员每个人的心中都有着自己向往的藏有“ONE PIECE”的那篇海域并为之愿意付出十分的努力，每个人都有能透世间大善大恶能高呼“AMANI NAKUPENDA”，每个人都能被别人嘲笑梦想时不屑于一顾，每个人都能唱出“自信打不死的心态活到老”，这就是满意的团队。</p>
+<p>最后，梦想加油！</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>据说有一种鸟只需要嘴里衔着一个小木棍就能飞过太平洋，累了就把木棍放在海面上站上去休息，困了就睡在上面，渴了就站在木棍上喝点水。无论真假，又何妨。</p>
+<p>追寻梦想的道路上没有对与错，有的只是不同的偏执。了不起的人即便偏执也是可取的，如果24岁还算青春的话，想借用五月天的歌词以此自勉：“青春是手牵手坐上了永不回头的火车，总有一天我们都老了，不会遗憾就OK了；青春是人生的实验课，错也错的很值得，就算某天唱起这首歌，眼眶会有一点湿热”。不想而立之年再想老男孩那样感慨：“当初的愿望实现了吗？事到如今只好祭奠吗？任岁月风干理想再也找不回真的我！”不想像Light The Dream介绍所说的：“我们都曾有过梦想。但随着时间推移，梦想遗忘，激情磨灭，沉于世事，甘于平庸。。。”因为，有梦想谁都了不起！</p>
+]]></summary>
+    
+      <category term="梦想" scheme="http://mjiayou.com/tags/%E6%A2%A6%E6%83%B3/"/>
+    
+      <category term="加油" scheme="http://mjiayou.com/tags/%E5%8A%A0%E6%B2%B9/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.01.29_每一个有抱负的人都有好的最后]]></title>
+    <link href="http://mjiayou.com/2014/01/29/good-end/"/>
+    <id>http://mjiayou.com/2014/01/29/good-end/</id>
+    <published>2014-01-29T10:48:42.000Z</published>
+    <updated>2014-06-06T02:37:17.000Z</updated>
+    <content type="html"><![CDATA[<p>新年快乐！</p>
+<p>身边的朋友有的结婚生子，买车买房开始新的家庭生活。</p>
+<a id="more"></a>
+
+<p>身边的朋友有的继续考研深造，甚至向着考博的目标前进，假期在家闲着等待着继续的大学生活。</p>
+<p>过年了，可以想象到老同学聚会时的情景，尽管现在很难再聚到一起。</p>
+<p>结婚的朋友A说：还是上学好，不用愁钱，家里给生活费；一个月两千多点的工资减去房贷就剩生活费了，如果这个月再有个人情来往，就得勒勒腰带了，唉！没上大学，啥也不会，家里给托关系找个工作都得本科文凭，整天埋怨当时不好好学习，唉！现在成家了，也没有那份外出闯荡的心了，现在追求的是稳定，也只能为了孩子而牺牲梦想，唉！</p>
+<p>考研的朋友B说：还是上班好，自己挣钱自力更生，不用给家里添负担；外地上学一年才回家两次，外地再好也不如自己的狗窝，这种感觉不经历的不会懂，唉！从97年香港回归开始上学，不算今年年也上了16年的学了，要是问问这16年学会了什么，只能说连以后步入社会最基本的怎么做人都没学会，学的专业课也是模棱两可，好点的只会理论不会实践，这样的毕业就是失业，毕业之后还得花钱培训才能上岗，感情16年的学费白交了，唉！从小爸爸妈妈教育我好好学习天天向上，教育我要听话，于是，你们看电影的时候我在学习，你们KTV的时候我在学习，你们开房的时候我在学习，你们结婚的时候我还在学习，终于，我如愿考上了硕士，可是家里又埋怨怎么也不谈对象，谁谁家的谁谁和你一样大，都结婚了，谁谁家的谁谁还没你大，两个孩子都会跑了，唉！ 从小爷爷教育我要老实听话，我也做到了，做人规规矩矩，为人处世从不大风大浪，长大了，爷爷又说了：老实吧，好，不过没本事，不敢做不敢为，不敢放手去闯，一辈子只能平平淡淡，唉！我听话也有错么？</p>
+<p>结婚的朋友和考研的朋友越聊越矛盾，越矛盾越争论，论着论着不知道哪一点竟然开始投机，再越聊越high，于是矛头指向即没结婚又没考上研究生的C：没结婚，人情来往少没有压力；没成家，可以大胆去闯没有顾虑，可以学点手艺再立业成家；没考研，可以参加工作自力更生，可以自由恋爱有的是时间。C说：新年快乐！</p>
+<p>对事不对人，理解万岁，对于种种人生，不予置评。最后借用闫掌柜的评论，正是想说却没组织出来的，一语道破：</p>
+<p>其实，都各有各的好，各有各的烦恼啊。每个阶段都必然有一些不如意，成长的烦恼嘛，不过烦恼着，成长着。最近特别喜欢那句话“任何事情到最后都是好的，如果不好，就说明没到最后。”真心希望每一个有抱负的人都有好的最后….</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>新年快乐！</p>
+<p>身边的朋友有的结婚生子，买车买房开始新的家庭生活。</p>
+]]></summary>
+    
+      <category term="最后" scheme="http://mjiayou.com/tags/%E6%9C%80%E5%90%8E/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2013.08.13_二十三岁]]></title>
+    <link href="http://mjiayou.com/2013/08/13/twenty-three-years-old/"/>
+    <id>http://mjiayou.com/2013/08/13/twenty-three-years-old/</id>
+    <published>2013-08-13T04:04:17.000Z</published>
+    <updated>2014-06-06T02:38:38.000Z</updated>
+    <content type="html"><![CDATA[<p>补上。</p>
+<p>时值七夕，注定是难忘的生日！果然。</p>
+<a id="more"></a>
+
+<p>……</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>补上。</p>
+<p>时值七夕，注定是难忘的生日！果然。</p>
+]]></summary>
+    
+      <category term="生日" scheme="http://mjiayou.com/tags/%E7%94%9F%E6%97%A5/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2013.05.13_浮躁亦或压抑]]></title>
+    <link href="http://mjiayou.com/2013/05/13/agitated-or-depressed/"/>
+    <id>http://mjiayou.com/2013/05/13/agitated-or-depressed/</id>
+    <published>2013-05-13T04:04:35.000Z</published>
+    <updated>2014-05-30T03:28:15.000Z</updated>
+    <content type="html"><![CDATA[<p>浮躁，不应该，发生了，就此反思。</p>
+<p>明明各种作业需要完成，明明各种笔记需要整理，却不去做，这状态不像是懒，不像是累，就是浮躁，导致心慌不知该做什么。说好的理想呢，说好的赚钱养家呢，说好的好好学习天天向上呢？反思。</p>
+<a id="more"></a>
+
+<p>或者不是浮躁，那就是太压抑了。趁着课下十分钟去连廊站了站，呼吸着外面的空气，看着远一点的漆黑一片，果然会舒畅些。可是这会儿又回到教室，心口压抑着，沉闷，出汗，和天气有关？希望不是，又希望是。</p>
+<p>或者不是压抑，那就是浮躁。管它。</p>
+<p>作为程序员的心里，如果必须需要一个解决方案来解释的话，那就是又到了情绪波动的周期时期了，尽管太牵强，奈何？</p>
+<p>理解万岁。决定出去呼吸新鲜空气，走着。</p>
+<p>最后，祝我！ </p>
+]]></content>
+    <summary type="html"><![CDATA[<p>浮躁，不应该，发生了，就此反思。</p>
+<p>明明各种作业需要完成，明明各种笔记需要整理，却不去做，这状态不像是懒，不像是累，就是浮躁，导致心慌不知该做什么。说好的理想呢，说好的赚钱养家呢，说好的好好学习天天向上呢？反思。</p>
+]]></summary>
+    
+      <category term="烦躁" scheme="http://mjiayou.com/tags/%E7%83%A6%E8%BA%81/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2013.04.30_顺其自然]]></title>
+    <link href="http://mjiayou.com/2013/04/30/let-it-be/"/>
+    <id>http://mjiayou.com/2013/04/30/let-it-be/</id>
+    <published>2013-04-30T04:04:55.000Z</published>
+    <updated>2014-05-30T03:28:10.000Z</updated>
+    <content type="html"><![CDATA[<p>我试着让生活变得简单<br>对幸福或寂寞顺其自然<br>偶尔傻傻孤单偶尔傻傻浪漫<br>不怕大喜大悲那麽难负担</p>
+<a id="more"></a>
+
+<p>不想再背负太多期盼<br>对好奇或关心顺其自然<br>只是那点不安只是那点心酸<br>总会忽然扩散让心又累又茫然</p>
+<p>希望有人陪伴<br>希望有人陪伴</p>
+<p>节选自黄小琥《顺其自然》<br>希望有人陪伴<br>顺其自然</p>
+<p>为了梦想！</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>我试着让生活变得简单<br>对幸福或寂寞顺其自然<br>偶尔傻傻孤单偶尔傻傻浪漫<br>不怕大喜大悲那麽难负担</p>
+]]></summary>
+    
+      <category term="顺其自然" scheme="http://mjiayou.com/tags/%E9%A1%BA%E5%85%B6%E8%87%AA%E7%84%B6/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2013.04.11_阳光下，运动场上]]></title>
+    <link href="http://mjiayou.com/2013/04/11/sun-and-playground/"/>
+    <id>http://mjiayou.com/2013/04/11/sun-and-playground/</id>
+    <published>2013-04-11T04:05:02.000Z</published>
+    <updated>2014-05-30T03:28:06.000Z</updated>
+    <content type="html"><![CDATA[<p>阳光下，万里无云；运动场上，满是各类活动的青年，其乐也融融。似剪刀的春风想剪了这份融洽，其实不然，自以为是而已。</p>
+<p>来枣院半年多了，第一次来运动场，不曾想过会是这么一番热闹：踢足球的、拉拉队舞蹈练习的、放风筝的、练体操的、散步的、练跆拳道的、练百米冲刺的、练三级跳的、练长跑的、还有现代交谊舞的，各种项目，很是阳光，很是晴朗。</p>
+<a id="more"></a>
+
+<p>如果不是肯德基的同事来踢球叫我，这番景象难以想象。坐在角落看他们踢球， 也是一种享受。也许是因为月底的运动会，只是也许。</p>
+<p>看着风筝在头顶飞，看似自由自在遨游于天空，随风而飞，却始终拜托不掉那根线，于是又似乎很是被拘束着，尽管线的另一头它的主人是不舍得它真的随风而去，极力挽留。好吧，我就想劝它：顺其自然。</p>
+<p>最近喜欢疯狂的单曲循环黄小琥的《顺其自然》，喜欢那句：得之坦然，失之淡然，顺其自然，争其必然。</p>
+<p>还有一句来自里昂黑帮的一句台词：男人应具备的条件：正派、寡言、不为非作歹。</p>
+<p>还有一句我的原创：男人，尽量做有把握的事情。为什么是尽量？因为趁着年轻去闯一闯也是应该的。</p>
+<p>没什么好说的，就是看到这么热闹的足球场想写点东西，写着写着就词穷了。就像本计划着很好的事情，每每发生时就不然了，就是这么奇妙。</p>
+<p>阳光这么明媚，心情也差不哪去，只是有些被动，而不喜欢的就是这种被动，诺，自我矛盾。</p>
+<p>踢完球了，准备带他们去吃饭，到这吧。</p>
+<p>最后，祝我成功！ </p>
+]]></content>
+    <summary type="html"><![CDATA[<p>阳光下，万里无云；运动场上，满是各类活动的青年，其乐也融融。似剪刀的春风想剪了这份融洽，其实不然，自以为是而已。</p>
+<p>来枣院半年多了，第一次来运动场，不曾想过会是这么一番热闹：踢足球的、拉拉队舞蹈练习的、放风筝的、练体操的、散步的、练跆拳道的、练百米冲刺的、练三级跳的、练长跑的、还有现代交谊舞的，各种项目，很是阳光，很是晴朗。</p>
+]]></summary>
+    
+      <category term="运动场" scheme="http://mjiayou.com/tags/%E8%BF%90%E5%8A%A8%E5%9C%BA/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2013.03.31_晴朗与不晴朗]]></title>
+    <link href="http://mjiayou.com/2013/03/31/sunny-or-cloudy/"/>
+    <id>http://mjiayou.com/2013/03/31/sunny-or-cloudy/</id>
+    <published>2013-03-31T04:05:07.000Z</published>
+    <updated>2014-05-30T03:28:02.000Z</updated>
+    <content type="html"><![CDATA[<p>晴朗的天与不晴朗的心情。</p>
+<p>吃罢早午饭，来到教室，空有两三人，放眼窗外天晴的这么漂亮，心情却不买单，莫名其妙。</p>
+<a id="more"></a>
+
+<p>想象中的今天不应该是这样的：四级网工昨天上午考完了，过不过再说；IC大赛也于昨天晚上完美提交了作品， CSDN的校区选拔赛中也算小有名次，没留有什么遗憾，至于能不能进全国半决赛直到俄罗斯的总决赛，通过昨天看到其它队伍的作品之后，心里也有底了，北航、川大、大连理工、电子科大，清一色的985院校，不是不自信，而是有自知之明，光是硬件环境就是我们比不了的，我们连个wp7手机都拿不出来，怎么比，从年前的初赛到第二轮，再到昨天的校区选拔赛，这一路走来值了，学到很多，不仅是开发技术方面，还有比如队伍合作，比如进度安排，比如开发流程，等等等等，足矣。放下了这两个大包袱可以说是一身轻松了，回想前些天加班加点的状态，想想也挺有意思的，于是今天早上睡到难得的自然醒，以至于浩哥6点半叫我上自习的电话完全没听到。多么轻松的一天，心情却莫名其妙的不晴朗了。</p>
+<p>莫名其妙？其实不然。作为准程序员的思维，不相信任何事情会是莫名其妙的，就像当系统出现bug时，调试一下总会找出原因，即便一时半会没找到，也绝对不能说没有。始终相信两句话：1.凡事发生，必有其因，必有其果；2.出来混总是要还的；那些为非作歹或以为神不知鬼不觉的人们，会有那么一天的。 回头仔细想想过去，不是么？（一如既往的跑题，改不了了）</p>
+<p>给自己一个忠告：永远不要过度的最求完美，因为它不存在。一上午都在宿舍整手机，一个不小心把相册给shift+delete了，然后先恢复工具找到了一些，然后通过以前的备份又找到一些，可是总感觉还是少了些东西，如果时间可以备份镜像，我最想还原到按delete之前的那一会儿，可惜木有如果。</p>
+<p>阳光还是那么开心，心情还是那么不晴朗。似乎是预感到了一些不愉快将要发生，又似乎是正在发生而我全然不知，妹的，翻滚吧小牛仔。</p>
+<p>本计划下午来教室各种抄作业的，可惜作业却不在，回家，作业什么的play egg去吧，哥不伺候了。嗯，可能心情回家了呢，去找找吧，找到了就回来了，找不到就不来了。</p>
+<p>等车ing，顶着开心的太阳，听着我的治愈系苏打绿的歌曲，吃着她的治愈系草莓味棒棒糖，想着家里又要跟我我屁股后追的小她，于是我觉得心情一定在家！</p>
+<p>最后，祝我成功！</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>晴朗的天与不晴朗的心情。</p>
+<p>吃罢早午饭，来到教室，空有两三人，放眼窗外天晴的这么漂亮，心情却不买单，莫名其妙。</p>
+]]></summary>
+    
+      <category term="晴朗" scheme="http://mjiayou.com/tags/%E6%99%B4%E6%9C%97/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2013.03.22_北二随笔]]></title>
+    <link href="http://mjiayou.com/2013/03/22/north-two-note/"/>
+    <id>http://mjiayou.com/2013/03/22/north-two-note/</id>
+    <published>2013-03-22T04:05:14.000Z</published>
+    <updated>2014-05-30T03:27:47.000Z</updated>
+    <content type="html"><![CDATA[<p>好久没写点东西了，如果不是心慌到难以思考的话。</p>
+<p>问题来源于明天的IC作品在线演示，却还有个问题尚未解决导致程序无法正常运行，一个多小时没找到解决方案，于是开始慌了，虽说还一个星期才提交作品，虽说面对国际赛事刚开始就是抱着重在参与的心态，再虽说明天不演示也没什么大不了的，诺，心慌是必然事件，没考虑那么多虽然，兴许和性格有关，不想被失望，于是有点着急了；也兴许是心里素质还有待提高。再接再厉。</p>
+<a id="more"></a>
+
+<p>也兴许和状态有关，这三天的天津之旅还没缓过神来，还得准备着月底的四级网工，人的经历毕竟是有限的，只盼望赶紧过去乱七八糟的三月，最好是漂亮的度过，就像回头想想嘴角会带着一丝笑意那么漂亮。</p>
+<p>祝我好运！</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>好久没写点东西了，如果不是心慌到难以思考的话。</p>
+<p>问题来源于明天的IC作品在线演示，却还有个问题尚未解决导致程序无法正常运行，一个多小时没找到解决方案，于是开始慌了，虽说还一个星期才提交作品，虽说面对国际赛事刚开始就是抱着重在参与的心态，再虽说明天不演示也没什么大不了的，诺，心慌是必然事件，没考虑那么多虽然，兴许和性格有关，不想被失望，于是有点着急了；也兴许是心里素质还有待提高。再接再厉。</p>
+]]></summary>
+    
+      <category term="随笔" scheme="http://mjiayou.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[新的开始]]></title>
+    <link href="http://mjiayou.com/2000/05/13/new-begin/"/>
+    <id>http://mjiayou.com/2000/05/13/new-begin/</id>
+    <published>2000-05-13T05:10:38.000Z</published>
+    <updated>2014-06-06T02:38:05.000Z</updated>
+    <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
+<p>通过下面的命令，就可以创建新文章</p>
+<figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>D:<span class="command">\workspace</span><span class="command">\javascript</span><span class="command">\nodejs</span>-hexo&gt;hexo new 新的开始
+<span class="special">[</span>info<span class="special">]</span> File created at D:<span class="command">\workspace</span><span class="command">\javascript</span><span class="command">\nodejs</span>-hexo<span class="command">\source</span><span class="command">\_</span>posts<span class="command">\新</span>的开始.md
+</pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>感觉非常好。</p>
+<h2 id="引用">引用</h2>
+<blockquote>
+
+<p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
+
+
+<h2 id="代码块">代码块</h2>
+<figure class="highlight"><figcaption><span>.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="keyword">false</span>, <span class="number">2</span>, ‘’, <span class="number">3</span>]);
+=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+</pre></td></tr></table></figure>
+
+<h2 id="链接">链接</h2>
+<a href="http://mjiayou.com" title="粉丝日志" target="_blank">粉丝日志</a>
+
+<h2 id="图片">图片</h2>
+<img src="/images/20000513-L.jpg" width="400" height="600" title="这是一张图片">]]></content>
+    <summary type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
+<p>通过下面的命令，就可以创建新文章</p>
+<figure class="highlight {bash}"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>D:<span class="command">\workspace</span><span class="command">\javascript</span><span class="command">\nodejs</span>-hexo&gt;hexo new 新的开始
+<span class="special">[</span>info<span class="special">]</span> File created at D:<span class="command">\workspace</span><span class="command">\javascript</span><span class="command">\nodejs</span>-hexo<span class="command">\source</span><span class="command">\_</span>posts<span class="command">\新</span>的开始.md
+</pre></td></tr></table></figure>
+
+]]></summary>
+    
+      <category term="开始" scheme="http://mjiayou.com/tags/%E5%BC%80%E5%A7%8B/"/>
+    
+      <category term="测试" scheme="http://mjiayou.com/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://mjiayou.com/2000/05/13/hello-world/"/>
+    <id>http://mjiayou.com/2000/05/13/hello-world/</id>
+    <published>2000-05-13T04:53:54.000Z</published>
+    <updated>2014-06-12T11:36:51.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/tommy351/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick_Start">Quick Start</h2>
+<h3 id="Create_a_new_post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo new <span class="string">"My New Post"</span>
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo server
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo generate
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo deploy
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/tommy351/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+]]></summary>
+    
+      <category term="测试" scheme="http://mjiayou.com/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+</feed>
