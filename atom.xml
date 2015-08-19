@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[青春不再 | 马加油DE博客]]></title>
+  <subtitle><![CDATA[贪玩就像落叶，看似飞翔，却在堕落！]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://mjiayou.com/"/>
+  <updated>2015-08-15T12:40:27.000Z</updated>
+  <id>http://mjiayou.com/</id>
+  
+  <author>
+    <name><![CDATA[马加油]]></name>
+    <email><![CDATA[ma.tengfei2008@163.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Android-Android Studio打包APK生成mapping文件位置]]></title>
+    <link href="http://mjiayou.com/2015/08/06/android-studio-mapping/"/>
+    <id>http://mjiayou.com/2015/08/06/android-studio-mapping/</id>
+    <published>2015-08-06T12:29:41.000Z</published>
+    <updated>2015-08-15T12:40:27.000Z</updated>
+    <content type="html"><![CDATA[<p>项目在打包APK完成之后，会在项目app文件夹下自动生成mapping.txt、seeds.txt等文件，这没什么疑意，可是作为轻度强迫症患者看到每次生成文件在app文件夹下，略显不整齐，于是决定追究一下mapping等文件的生成路径问题。</p>
+<a id="more"></a>
+<p>其实默认情况下Android Studio生成mapping.txt等文件的路径是build/outputs/mapping/release/mapping.txt，之所以会出现在app文件夹下，是因为是混淆文件proguard-rules.pro中重新配置了生成路径，如下：</p>
+<pre><code>-<span class="ruby">printseeds seeds.txt
+</span>-<span class="ruby">printusage unused.txt
+</span>-<span class="ruby">printmapping mapping.txt</span>
+</code></pre><p>只要把这么几行注掉就哦了，备忘记录一下。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>项目在打包APK完成之后，会在项目app文件夹下自动生成mapping.txt、seeds.txt等文件，这没什么疑意，可是作为轻度强迫症患者看到每次生成文件在app文件夹下，略显不整齐，于是决定追究一下mapping等文件的生成路径问题。</p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mjiayou.com/tags/Android/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]通过Spannable对象设置textview的样式]]></title>
+    <link href="http://mjiayou.com/2015/08/04/android-textview-spannable/"/>
+    <id>http://mjiayou.com/2015/08/04/android-textview-spannable/</id>
+    <published>2015-08-04T11:05:00.000Z</published>
+    <updated>2015-08-15T13:59:59.000Z</updated>
+    <content type="html"><![CDATA[<p>转载自：<a href="http://www.cnblogs.com/tianzhijiexian/p/4222393.html" target="_blank" rel="external">http://www.cnblogs.com/tianzhijiexian/p/4222393.html</a></p>
+<p>通过Spannable对象我们可以设置textview的各种样式，其功能十分强大。通过SpannableString和它的setSpan(Object what, int start, int end, int flags)便可以对textview设置想要的效果了，这里的what就是效果名，start和end是设置这个样式针对的是textview的字符位置。</p>
+<a id="more"></a>
+<p>1 简单用法<br>创建一个spannableString，textview可以通过setText设置这个对象，效果就是textview显示了测试文字<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个 SpannableString对象，</span></span><br><span class="line"><span class="comment">// SpannableString implements GetChars,Spannable,CharSequence</span></span><br><span class="line">SpannableString msp = <span class="keyword">new</span> SpannableString(<span class="string">"测试文字"</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TextView textView = (TextView) findViewById(R.id.textView);</span><br><span class="line"><span class="comment">// void android.widget.TextView.setText(CharSequence text)</span></span><br><span class="line">textView.setText(msp);</span><br></pre></td></tr></table></figure>
+<p>然后，我们通过这个msp的setSpan方法就可以设置文字的样式了。</p>
+<p>2 设置字体样式（TypefaceSpan）<br>字体有多个类型可以设置如：default,default-bold,monospace,serif,sans-serif，下面是两个例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setSpan会将start到end这间的文本设置成创建的span格式。span可以是图片格式。</span></span><br><span class="line"><span class="comment">// 设置字体(default,default-bold,monospace,serif,sans-serif)</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> TypefaceSpan(<span class="string">"monospace"</span>), <span class="number">0</span>, <span class="number">2</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 等宽字体</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> TypefaceSpan(<span class="string">"serif"</span>), <span class="number">2</span>, <span class="number">4</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 衬线字体</span></span><br></pre></td></tr></table></figure></p>
+<p>3 设置字体的绝对大小<br>设置字体大小，单位可以选择像素或者是dp<br><img src="http://images.cnitblog.com/blog/651487/201501/131949525891402.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置字体绝对大小（绝对值,单位：像素）</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> AbsoluteSizeSpan(<span class="number">20</span>), <span class="number">4</span>, <span class="number">6</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line"><span class="comment">// 第二个参数boolean dip，如果为true，表示前面的字体大小单位为dip，否则为像素，同上。</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> AbsoluteSizeSpan(<span class="number">20</span>, <span class="keyword">true</span>), <span class="number">6</span>, <span class="number">8</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br></pre></td></tr></table></figure></p>
+<p>4 设置字体的相对大小<br>设置的是当前字体是“当前”字体大小的多少倍<br><img src="http://images.cnitblog.com/blog/651487/201501/131950481674588.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置字体相对大小（相对值,单位：像素） 参数表示为默认字体大小的多少倍</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> RelativeSizeSpan(<span class="number">0.5f</span>), <span class="number">8</span>, <span class="number">10</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 0.5f表示默认字体大小的一半</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> RelativeSizeSpan(<span class="number">2.0f</span>), <span class="number">10</span>, <span class="number">12</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 2.0f表示默认字体大小的两倍</span></span><br></pre></td></tr></table></figure></p>
+<p>5 设置前景色和背景色<br><img src="http://images.cnitblog.com/blog/651487/201501/131952354334150.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置字体前景色 ，Color.MAGENTA为紫红</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> ForegroundColorSpan(Color.MAGENTA), <span class="number">12</span>, <span class="number">15</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 设置前景色为洋红色</span></span><br><span class="line"><span class="comment">// 设置字体背景色 ，Color.CYAN为青绿色</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> BackgroundColorSpan(Color.CYAN), <span class="number">15</span>, <span class="number">18</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 设置背景色为青色</span></span><br></pre></td></tr></table></figure></p>
+<p>6 设置字体的粗体，斜体，粗斜体<br>在我测试过程中斜体无效，不知是何原因。<br><img src="http://images.cnitblog.com/blog/651487/201501/131954327922664.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置字体样式正常，粗体，斜体，粗斜体</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.NORMAL), <span class="number">18</span>, <span class="number">20</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 正常</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.BOLD), <span class="number">20</span>, <span class="number">22</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 粗体</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.ITALIC), <span class="number">22</span>, <span class="number">24</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 斜体</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.BOLD_ITALIC), <span class="number">24</span>, <span class="number">27</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 粗斜体</span></span><br></pre></td></tr></table></figure></p>
+<p>7 设置下划线和删除线<br>在我测试过程中斜体无效，不知是何原因。<br><img src="http://images.cnitblog.com/blog/651487/201501/131956080111009.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置下划线</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> UnderlineSpan(), <span class="number">27</span>, <span class="number">30</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line"><span class="comment">// 设置删除线</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> StrikethroughSpan(), <span class="number">30</span>, <span class="number">33</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br></pre></td></tr></table></figure></p>
+<p>8 设置下标和上标<br>这里用1，和2来做上下标的测试<br><img src="http://images.cnitblog.com/blog/651487/201501/131957495261060.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置上下标</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> SubscriptSpan(), <span class="number">34</span>, <span class="number">35</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 下标</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> SuperscriptSpan(), <span class="number">36</span>, <span class="number">37</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 上标</span></span><br></pre></td></tr></table></figure></p>
+<p>9 设置超链接<br>可以连接网页、地图、电话、邮件等<br><img src="http://images.cnitblog.com/blog/651487/201501/131959161511896.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 超级链接（需要添加setMovementMethod方法附加响应）</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"tel:4155551212"</span>), <span class="number">37</span>, <span class="number">39</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 电话</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"mailto:webmaster@google.com"</span>), <span class="number">39</span>, <span class="number">41</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 邮件</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"http://www.baidu.com"</span>), <span class="number">41</span>, <span class="number">43</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 网络</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"sms:4155551212"</span>), <span class="number">43</span>, <span class="number">45</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 短信，使用sms:或者smsto:</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"mms:4155551212"</span>), <span class="number">45</span>, <span class="number">47</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 彩信，使用mms:或者mmsto:</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"geo:38.899533,-77.036476"</span>), <span class="number">47</span>, <span class="number">49</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 地图</span></span><br></pre></td></tr></table></figure></p>
+<p>10 拉伸字体<br>可以设置拉伸比，是横向拉伸<br><img src="http://images.cnitblog.com/blog/651487/201501/132002417293257.jpg" alt="图片"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置字体大小（相对值,单位：像素） 参数表示为默认字体宽度的多少倍</span></span><br><span class="line">msp.setSpan(<span class="keyword">new</span> ScaleXSpan(<span class="number">2.0f</span>), <span class="number">49</span>, <span class="number">51</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 2.0f表示默认字体宽度的两倍，即X轴方向放大为默认字体的两倍，而高度不变</span></span><br></pre></td></tr></table></figure></p>
+<p>11 全部代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">RelativeLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">xmlns:tools</span>=<span class="value">"http://schemas.android.com/tools"</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">tools:context</span>=<span class="value">"$&#123;relativePackage&#125;.$&#123;activityClass&#125;"</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">TextView</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/textView"</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></span><br><span class="line">        <span class="attribute">android:layout_centerHorizontal</span>=<span class="value">"true"</span></span><br><span class="line">        <span class="attribute">android:layout_centerVertical</span>=<span class="value">"true"</span></span><br><span class="line">        <span class="attribute">android:text</span>=<span class="value">"@string/hello_world"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kale.spannabletest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.graphics.Color;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.text.SpannableString;</span><br><span class="line"><span class="keyword">import</span> android.text.Spanned;</span><br><span class="line"><span class="keyword">import</span> android.text.method.LinkMovementMethod;</span><br><span class="line"><span class="keyword">import</span> android.text.style.AbsoluteSizeSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.BackgroundColorSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.BulletSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.ForegroundColorSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.RelativeSizeSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.ScaleXSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.StrikethroughSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.StyleSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.SubscriptSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.SuperscriptSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.TypefaceSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.URLSpan;</span><br><span class="line"><span class="keyword">import</span> android.text.style.UnderlineSpan;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * <span class="doctag">@author</span>:Jack Tony</span><br><span class="line"> * <span class="doctag">@tips</span> :参考：http://blog.csdn.net/xiangzilv1987/article/details/8212064#comments</span><br><span class="line"> * <span class="doctag">@date</span> :2015年1月13日</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个 SpannableString对象，</span></span><br><span class="line">        <span class="comment">// SpannableString implements GetChars,Spannable,CharSequence</span></span><br><span class="line">        SpannableString msp = <span class="keyword">new</span> SpannableString(<span class="string">"测试文字字体大小一半两倍前景色背景色正常粗体斜体粗斜体下划线删除线x1x2电话邮件网站短信彩信地图X轴综合"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// setSpan会将start到end这间的文本设置成创建的span格式。span可以是图片格式。</span></span><br><span class="line">        <span class="comment">// 设置字体(default,default-bold,monospace,serif,sans-serif)</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> TypefaceSpan(<span class="string">"monospace"</span>), <span class="number">0</span>, <span class="number">2</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 等宽字体</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> TypefaceSpan(<span class="string">"serif"</span>), <span class="number">2</span>, <span class="number">4</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 衬线字体</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置字体绝对大小（绝对值,单位：像素）</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> AbsoluteSizeSpan(<span class="number">20</span>), <span class="number">4</span>, <span class="number">6</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line">        <span class="comment">// 第二个参数boolean dip，如果为true，表示前面的字体大小单位为dip，否则为像素，同上。</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> AbsoluteSizeSpan(<span class="number">20</span>, <span class="keyword">true</span>), <span class="number">6</span>, <span class="number">8</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置字体相对大小（相对值,单位：像素） 参数表示为默认字体大小的多少倍</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> RelativeSizeSpan(<span class="number">0.5f</span>), <span class="number">8</span>, <span class="number">10</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 0.5f表示默认字体大小的一半</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> RelativeSizeSpan(<span class="number">2.0f</span>), <span class="number">10</span>, <span class="number">12</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 2.0f表示默认字体大小的两倍</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置字体前景色 ，Color.MAGENTA为紫红</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> ForegroundColorSpan(Color.MAGENTA), <span class="number">12</span>, <span class="number">15</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 设置前景色为洋红色</span></span><br><span class="line">        <span class="comment">// 设置字体背景色 ，Color.CYAN为青绿色</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> BackgroundColorSpan(Color.CYAN), <span class="number">15</span>, <span class="number">18</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 设置背景色为青色</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置字体样式正常，粗体，斜体，粗斜体</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.NORMAL), <span class="number">18</span>, <span class="number">20</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 正常</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.BOLD), <span class="number">20</span>, <span class="number">22</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 粗体</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.ITALIC), <span class="number">22</span>, <span class="number">24</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 斜体</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> StyleSpan(android.graphics.Typeface.BOLD_ITALIC), <span class="number">24</span>, <span class="number">27</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 粗斜体</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置下划线</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> UnderlineSpan(), <span class="number">27</span>, <span class="number">30</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line">        <span class="comment">// 设置删除线</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> StrikethroughSpan(), <span class="number">30</span>, <span class="number">33</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置上下标</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> SubscriptSpan(), <span class="number">34</span>, <span class="number">35</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 下标</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> SuperscriptSpan(), <span class="number">36</span>, <span class="number">37</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 上标</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 超级链接（需要添加setMovementMethod方法附加响应）</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"tel:4155551212"</span>), <span class="number">37</span>, <span class="number">39</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 电话</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"mailto:webmaster@google.com"</span>), <span class="number">39</span>, <span class="number">41</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 邮件</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"http://www.baidu.com"</span>), <span class="number">41</span>, <span class="number">43</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 网络</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"sms:4155551212"</span>), <span class="number">43</span>, <span class="number">45</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 短信，使用sms:或者smsto:</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"mms:4155551212"</span>), <span class="number">45</span>, <span class="number">47</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 彩信，使用mms:或者mmsto:</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> URLSpan(<span class="string">"geo:38.899533,-77.036476"</span>), <span class="number">47</span>, <span class="number">49</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 地图</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置字体大小（相对值,单位：像素） 参数表示为默认字体宽度的多少倍</span></span><br><span class="line">        msp.setSpan(<span class="keyword">new</span> ScaleXSpan(<span class="number">2.0f</span>), <span class="number">49</span>, <span class="number">51</span>, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); <span class="comment">// 2.0f表示默认字体宽度的两倍，即X轴方向放大为默认字体的两倍，而高度不变</span></span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        TextView textView = (TextView) findViewById(R.id.textView);</span><br><span class="line">        <span class="comment">//textView.setMovementMethod(LinkMovementMethod.getInstance());</span></span><br><span class="line">        <span class="comment">// void android.widget.TextView.setText(CharSequence text)</span></span><br><span class="line">        textView.setText(msp);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>转载自：<a href="http://www.cnblogs.com/tianzhijiexian/p/4222393.html">http://www.cnblogs.com/tianzhijiexian/p/4222393.html</a></p>
+<p>通过Spannable对象我们可以设置textview的各种样式，其功能十分强大。通过SpannableString和它的setSpan(Object what, int start, int end, int flags)便可以对textview设置想要的效果了，这里的what就是效果名，start和end是设置这个样式针对的是textview的字符位置。</p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mjiayou.com/tags/Android/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-子控件获得父控件的点击事件]]></title>
+    <link href="http://mjiayou.com/2015/08/03/android-child-view-get-focusable/"/>
+    <id>http://mjiayou.com/2015/08/03/android-child-view-get-focusable/</id>
+    <published>2015-08-03T13:05:00.000Z</published>
+    <updated>2015-08-15T12:42:10.000Z</updated>
+    <content type="html"><![CDATA[<p>在父控件中添加<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">android:</span>clickable=“<span class="literal">true</span>” </span><br><span class="line"><span class="string">android:</span>focusable=“<span class="literal">true</span>”</span><br></pre></td></tr></table></figure></p>
+<p>在子控件中添加<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">android:</span>duplicateParentState=“<span class="literal">true</span>”</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>完整使用如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">LinearLayout</span>  </span><br><span class="line">    <span class="attribute">android:clickable</span>=<span class="value">"true"</span>  </span><br><span class="line">    <span class="attribute">android:focusable</span>=<span class="value">"true"</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">TextView</span>  </span><br><span class="line">        <span class="attribute">android:duplicateParentState</span>=<span class="value">"true"</span>/&gt;</span>  </span><br><span class="line">        android:textColor="@drawable/selector_temp"</span><br><span class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样子控件就能获得父控件的点击事件</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在父控件中添加<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">android:</span>clickable=“<span class="literal">true</span>” </span><br><span class="line"><span class="string">android:</span>focusable=“<span class="literal">true</span>”</span><br></pre></td></tr></table></figure></p>
+<p>在子控件中添加<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">android:</span>duplicateParentState=“<span class="literal">true</span>”</span><br></pre></td></tr></table></figure></p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mjiayou.com/tags/Android/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]渗透理解Animation时间插值Interpolator类]]></title>
+    <link href="http://mjiayou.com/2015/07/30/android-animation-interpolator/"/>
+    <id>http://mjiayou.com/2015/07/30/android-animation-interpolator/</id>
+    <published>2015-07-30T15:05:00.000Z</published>
+    <updated>2015-08-15T13:12:03.000Z</updated>
+    <content type="html"><![CDATA[<p>转载自：<a href="http://blog.csdn.net/qiujuer/article/details/42430269" target="_blank" rel="external">http://blog.csdn.net/qiujuer/article/details/42430269</a></p>
+<p>##序<br>一个好的动画一定是用心做出来的，何为用心？其中一点我认为定义适当的 Interpolator 就是一种用心的表现；这点在 google material design 中尤为明显。<br>一个好的动画一定要符合实际，一句老的话就是：石头下落一定要受重力才优雅，不然一颗石头像羽毛一样在风中还飘啊飘的那就不行了。</p>
+<a id="more"></a>
+<p>##介绍</p>
+<h4 id="Interpolator_是个什么东西？">Interpolator 是个什么东西？</h4><p>说到 Interpolator 啊，这个要从3年前说起，话说当年谷歌、诺基亚、Qiujuer 三分天下…. 哈哈，开个玩笑~<br>Interpolator 这个时间插值类，其主要使用在动画中，其作用主要是控制目标变量的变化值进行对应的变化。<br>你可以这么理解，现在小明去买酱油，规定时间是1个小时到达，里程是1公里；现在小明心里唯恐无法达到，所以先跑起来了，但因为体力消耗所以逐渐的慢下来了；然后成功到达。这样的一个过程中把小明逐渐慢下来的这个过程抽象出来也就是 Interpolator  的工作；当然 Interpolator 也可以控制小明先慢慢热身然后越跑越快最后达到。<br>这些都是 Interpolator 能完成的工作，同样 Interpolator 还能控制一个弹球掉在地上弹起来逐渐降低的过程，这些都是可以控制的。</p>
+<h4 id="Interpolator_的原理？">Interpolator 的原理？</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Interpolator</span> <span class="keyword">extends</span> <span class="title">TimeInterpolator</span> </span>&#123;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看见这个类其是是一个空的类，那么其操作在哪里？<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * A <span class="property">time</span> interpolator defines <span class="keyword">the</span> rate <span class="keyword">of</span> change <span class="keyword">of</span> an animation. This allows animations</span><br><span class="line"> * <span class="keyword">to</span> have non-linear motion, such <span class="keyword">as</span> acceleration <span class="keyword">and</span> deceleration.</span><br><span class="line"> */</span><br><span class="line">public interface TimeInterpolator &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Maps a value representing <span class="keyword">the</span> elapsed fraction <span class="keyword">of</span> an animation <span class="keyword">to</span> a value <span class="keyword">that</span> represents</span><br><span class="line">     * <span class="keyword">the</span> interpolated fraction. This interpolated value <span class="keyword">is</span> <span class="keyword">then</span> multiplied <span class="keyword">by</span> <span class="keyword">the</span> change <span class="keyword">in</span></span><br><span class="line">     * value <span class="keyword">of</span> an animation <span class="keyword">to</span> derive <span class="keyword">the</span> animated value <span class="keyword">at</span> <span class="keyword">the</span> current elapsed animation <span class="property">time</span>.</span><br><span class="line">     *</span><br><span class="line">     * @param input A value <span class="keyword">between</span> <span class="number">0</span> <span class="keyword">and</span> <span class="number">1.0</span> indicating our current point</span><br><span class="line">     *        <span class="keyword">in</span> <span class="keyword">the</span> animation <span class="keyword">where</span> <span class="number">0</span> represents <span class="keyword">the</span> start <span class="keyword">and</span> <span class="number">1.0</span> represents</span><br><span class="line">     *        <span class="keyword">the</span> <span class="keyword">end</span></span><br><span class="line">     * @<span class="constant">return</span> The interpolation value. This value can be more than <span class="number">1.0</span> <span class="keyword">for</span></span><br><span class="line">     *         interpolators which overshoot their targets, <span class="keyword">or</span> <span class="keyword">less than</span> <span class="number">0</span> <span class="keyword">for</span></span><br><span class="line">     *         interpolators <span class="keyword">that</span> undershoot their targets.</span><br><span class="line">     */</span><br><span class="line">    float getInterpolation(float input);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其操作在所继承的接口中，在所继承的接口中有一个方法 float getInterpolation(float input);<br>在这个方法中，传入的值是一个0.0~1.0的值，返回值可以小于0.0也可以大于1.0。<br>你可以这么理解：在Animation中时间是正常的走的，你设置了200ms，现在走到了100ms了，那么按照线性来说现在应该是走了一半的路程也就是0.5；现在就把这0.5传递给Interpolator 让 Interpolator 告诉我走到一半时间的时候此时小明在哪里；这也就是 Interpolator 的原理。</p>
+<p>##常用类<br>哎呀我的天天啊，访问不了谷歌就是麻烦，只能从源码截图了：<br><img src="http://img.blog.csdn.net/20150105213338119?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcWl1anVlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图片"><br>Android 官方提供的就是这么十种，是9种还是10种啊，没有数错吧。分别是：<br>AccelerateDecelerateInterpolator 在动画开始与结束的地方速率改变比较慢，在中间的时候加速<br>AccelerateInterpolator  在动画开始的地方速率改变比较慢，然后开始加速<br>AnticipateInterpolator 开始的时候向后然后向前甩<br>AnticipateOvershootInterpolator 开始的时候向后然后向前甩一定值后返回最后的值<br>BounceInterpolator   动画结束的时候弹起<br>CycleInterpolator 动画循环播放特定的次数，速率改变沿着正弦曲线<br>DecelerateInterpolator 在动画开始的地方快然后慢<br>LinearInterpolator   以常量速率改变<br>OvershootInterpolator    向前甩一定值后再回到原来位置<br>PathInterpolator 这个是新增的我说原来怎么记得是9个，这个顾名思义就是可以定义路径坐标，然后可以按照路径坐标来跑动；注意其坐标并不是 XY，而是单方向，也就是我可以从0~1，然后弹回0.5 然后又弹到0.7 有到0.3，直到最后时间结束。（这个后面单独说说）</p>
+<p>##源码<br>这里说几个简单的源码<br>LinearInterpolator<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@HasNativeInterpolator</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinearInterpolator</span> <span class="keyword">implements</span> <span class="title">Interpolator</span>, <span class="title">NativeInterpolatorFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LinearInterpolator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LinearInterpolator</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">float</span> <span class="title">getInterpolation</span><span class="params">(<span class="keyword">float</span> input)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> input;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** <span class="doctag">@hide</span> */</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">long</span> <span class="title">createNativeInterpolator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">return</span> NativeInterpolatorFactoryHelper.<span class="title">createLinearInterpolator</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最简单的一个由于是线性，所以直接返回。<br>DecelerateInterpolator<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="type">DecelerateInterpolator</span> implements <span class="type">Interpolator</span>, <span class="type">NativeInterpolatorFactory</span> &#123;</span><br><span class="line">    public <span class="type">DecelerateInterpolator</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * <span class="type">Constructor</span></span><br><span class="line">     *</span><br><span class="line">     * @param factor <span class="type">Degree</span> to which the animation should be eased. <span class="type">Setting</span> factor to <span class="number">1</span>.<span class="number">0</span>f produces</span><br><span class="line">     *        an upside-down y=x^<span class="number">2</span> parabola. <span class="type">Increasing</span> factor above <span class="number">1</span>.<span class="number">0</span>f makes exaggerates the</span><br><span class="line">     *        ease-<span class="keyword">out</span> effect (i.e., it starts even faster <span class="keyword">and</span> ends evens slower)</span><br><span class="line">     */</span><br><span class="line">    public <span class="type">DecelerateInterpolator</span>(<span class="type">float</span> factor) &#123;</span><br><span class="line">        mFactor = factor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="type">DecelerateInterpolator</span>(<span class="type">Context</span> context, <span class="type">AttributeSet</span> attrs) &#123;</span><br><span class="line">        this(context.getResources(), context.getTheme(), attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** @hide */</span><br><span class="line">    public <span class="type">DecelerateInterpolator</span>(<span class="type">Resources</span> res, <span class="type">Theme</span> theme, <span class="type">AttributeSet</span> attrs) &#123;</span><br><span class="line">        <span class="type">TypedArray</span> a;</span><br><span class="line">        <span class="keyword">if</span> (theme != null) &#123;</span><br><span class="line">            a = theme.obtainStyledAttributes(attrs, R.styleable.<span class="type">DecelerateInterpolator</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            a = res.obtainAttributes(attrs, R.styleable.<span class="type">DecelerateInterpolator</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mFactor = a.getFloat(R.styleable.<span class="type">DecelerateInterpolator_factor</span>, <span class="number">1</span>.<span class="number">0</span>f);</span><br><span class="line"></span><br><span class="line">        a.recycle();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="type">float</span> getInterpolation(<span class="type">float</span> input) &#123;</span><br><span class="line">        <span class="type">float</span> <span class="literal">result</span>;</span><br><span class="line">        <span class="keyword">if</span> (mFactor == <span class="number">1</span>.<span class="number">0</span>f) &#123;</span><br><span class="line">            <span class="literal">result</span> = (<span class="type">float</span>)(<span class="number">1</span>.<span class="number">0</span>f - (<span class="number">1</span>.<span class="number">0</span>f - input) * (<span class="number">1</span>.<span class="number">0</span>f - input));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="literal">result</span> = (<span class="type">float</span>)(<span class="number">1</span>.<span class="number">0</span>f - <span class="type">Math</span>.pow((<span class="number">1</span>.<span class="number">0</span>f - input), <span class="number">2</span> * mFactor));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private <span class="type">float</span> mFactor = <span class="number">1</span>.<span class="number">0</span>f;</span><br><span class="line"></span><br><span class="line">    /** @hide */</span><br><span class="line">    @<span class="type">Override</span></span><br><span class="line">    public long createNativeInterpolator() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">NativeInterpolatorFactoryHelper</span>.createDecelerateInterpolator(mFactor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从其中可以看出，其并不是一个简单的类，其是是可以通过 XML 进行设置的类，通过 XML 可以设置其中的 mFactor 变量，其值默认是1.0；值越大其变化越快；得到的结果就是，开始的时候更加的快，其结果就是更加的慢，好比一个人开始跑的很快，但是换来的就是后面的路程将会花更多时间慢慢走。</p>
+<p>在方法<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public <span class="type">float</span> getInterpolation(<span class="type">float</span> input) &#123;</span><br><span class="line">    <span class="type">float</span> <span class="literal">result</span>;</span><br><span class="line">    <span class="keyword">if</span> (mFactor == <span class="number">1</span>.<span class="number">0</span>f) &#123;</span><br><span class="line">        <span class="literal">result</span> = (<span class="type">float</span>)(<span class="number">1</span>.<span class="number">0</span>f - (<span class="number">1</span>.<span class="number">0</span>f - input) * (<span class="number">1</span>.<span class="number">0</span>f - input));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="literal">result</span> = (<span class="type">float</span>)(<span class="number">1</span>.<span class="number">0</span>f - <span class="type">Math</span>.pow((<span class="number">1</span>.<span class="number">0</span>f - input), <span class="number">2</span> * mFactor));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其描述的是一个初中学的抛物方程（话说是初中吧），y = x^2 我擦不知道怎么弄上去，就这样吧；意思懂就OK。<br>由于篇幅就说这么两个；下面说说其他东西。</p>
+<h2 id="动画表">动画表</h2><p><img src="http://img.blog.csdn.net/20150105215217967?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcWl1anVlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图片"><br>这个图片相信前段时间看的不少吧？前段时间 material design 刚刚出来的时候好多人说这个啊，但是好像都是说图，但是没有说说其如何实现吧。</p>
+<h2 id="实现">实现</h2><p>这里送上福利，其是最开始我发现的是 C++ 的版本：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> Elastic::easeIn (<span class="keyword">float</span> t,<span class="keyword">float</span> b , <span class="keyword">float</span> c, <span class="keyword">float</span> d) &#123;</span><br><span class="line"> <span class="keyword">if</span> (t==<span class="number">0</span>) <span class="keyword">return</span> b;  <span class="keyword">if</span> ((t/=d)==<span class="number">1</span>) <span class="keyword">return</span> b+c;  </span><br><span class="line"> <span class="keyword">float</span> p=d*<span class="number">.3</span>f;</span><br><span class="line"> <span class="keyword">float</span> a=c; </span><br><span class="line"> <span class="keyword">float</span> s=p/<span class="number">4</span>;</span><br><span class="line"> <span class="keyword">float</span> postFix =<span class="function">a*<span class="title">pow</span><span class="params">(<span class="number">2</span>,<span class="number">10</span>*(t-=<span class="number">1</span>)</span>)</span>; <span class="comment">// this is a fix, again, with post-increment operators</span></span><br><span class="line"> <span class="keyword">return</span> -(<span class="function">postFix * <span class="title">sin</span><span class="params">((t*d-s)</span>*<span class="params">(<span class="number">2</span>*PI)</span>/p )) + b</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">float</span> Elastic::easeOut(<span class="keyword">float</span> t,<span class="keyword">float</span> b , <span class="keyword">float</span> c, <span class="keyword">float</span> d) &#123;</span><br><span class="line"> <span class="keyword">if</span> (t==<span class="number">0</span>) <span class="keyword">return</span> b;  <span class="keyword">if</span> ((t/=d)==<span class="number">1</span>) <span class="keyword">return</span> b+c;  </span><br><span class="line"> <span class="keyword">float</span> p=d*<span class="number">.3</span>f;</span><br><span class="line"> <span class="keyword">float</span> a=c; </span><br><span class="line"> <span class="keyword">float</span> s=p/<span class="number">4</span>;</span><br><span class="line"> <span class="keyword">return</span> (<span class="function">a*<span class="title">pow</span><span class="params">(<span class="number">2</span>,-<span class="number">10</span>*t)</span> * <span class="title">sin</span><span class="params">( (t*d-s)</span>*<span class="params">(<span class="number">2</span>*PI)</span>/p ) + c + b)</span>; </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">float</span> Elastic::easeInOut(<span class="keyword">float</span> t,<span class="keyword">float</span> b , <span class="keyword">float</span> c, <span class="keyword">float</span> d) &#123;</span><br><span class="line"> <span class="keyword">if</span> (t==<span class="number">0</span>) <span class="keyword">return</span> b;  <span class="keyword">if</span> ((t/=d/<span class="number">2</span>)==<span class="number">2</span>) <span class="keyword">return</span> b+c; </span><br><span class="line"> <span class="keyword">float</span> p=d*(<span class="number">.3</span>f*<span class="number">1.5f</span>);</span><br><span class="line"> <span class="keyword">float</span> a=c; </span><br><span class="line"> <span class="keyword">float</span> s=p/<span class="number">4</span>;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">if</span> (t &lt; <span class="number">1</span>) &#123;</span><br><span class="line"> <span class="keyword">float</span> postFix =<span class="function">a*<span class="title">pow</span><span class="params">(<span class="number">2</span>,<span class="number">10</span>*(t-=<span class="number">1</span>)</span>)</span>; <span class="comment">// postIncrement is evil</span></span><br><span class="line"> <span class="keyword">return</span> -<span class="number">.5</span>f*(<span class="function">postFix* <span class="title">sin</span><span class="params">( (t*d-s)</span>*<span class="params">(<span class="number">2</span>*PI)</span>/p )) + b</span>;</span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">float</span> postFix =  <span class="function">a*<span class="title">pow</span><span class="params">(<span class="number">2</span>,-<span class="number">10</span>*(t-=<span class="number">1</span>)</span>)</span>; <span class="comment">// postIncrement is evil</span></span><br><span class="line"> <span class="keyword">return</span> <span class="function">postFix * <span class="title">sin</span><span class="params">( (t*d-s)</span>*<span class="params">(<span class="number">2</span>*PI)</span>/p )*.5f + c + b</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>参数的意思：<br>t – 动画中当前的时间<br>b – 开始值<br>c – 结束值<br>d – 动画的总时间</p>
+<p>看看 Java 的 第一行前三个的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Sine &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span>  <span class="title">easeIn</span><span class="params">(<span class="keyword">float</span> t,<span class="keyword">float</span> b , <span class="keyword">float</span> c, <span class="keyword">float</span> d)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> -c * (<span class="keyword">float</span>)Math.<span class="built_in">cos</span>(t/d * (Math.PI/<span class="number">2</span>)) + c + b;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span>  <span class="title">easeOut</span><span class="params">(<span class="keyword">float</span> t,<span class="keyword">float</span> b , <span class="keyword">float</span> c, <span class="keyword">float</span> d)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> c * (<span class="keyword">float</span>)Math.<span class="built_in">sin</span>(t/d * (Math.PI/<span class="number">2</span>)) + b;	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span>  <span class="title">easeInOut</span><span class="params">(<span class="keyword">float</span> t,<span class="keyword">float</span> b , <span class="keyword">float</span> c, <span class="keyword">float</span> d)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> -c/<span class="number">2</span> * ((<span class="keyword">float</span>)Math.<span class="built_in">cos</span>(Math.PI*t/d) - <span class="number">1</span>) + b;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然 Java 的也有了，但是话说这个怎么用啊，跟上面的Interpolator如何联系起来啊？<br>一个简单的方法：首先把 d 总时间设置为固定值 1.0 ，把 b 开始值设置为 0.0 把结束值设置为1.0，然后把 t 当作上面 Interpolator 中的 float getInterpolation(float input);传入值，此时不就能用上了？对不？</p>
+<h2 id="举个Case">举个Case</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by Qiujuer on 2015/1/5.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> InSineInterpolator implements Interpolator&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span>  <span class="title">easeIn</span><span class="params">(<span class="keyword">float</span> t,<span class="keyword">float</span> b , <span class="keyword">float</span> c, <span class="keyword">float</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> -c * (<span class="keyword">float</span>)Math.<span class="built_in">cos</span>(t/d * (Math.PI/<span class="number">2</span>)) + c + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="function">Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getInterpolation</span><span class="params">(<span class="keyword">float</span> input)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> easeIn(input, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用">使用</h2><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AnimatorSet</span></span><br><span class="line">mAnimatorSet = new AnimatorSet<span class="params">()</span>;</span><br><span class="line">mAnimatorSet.playTogether<span class="params">(aPaintX, aPaintY, aRadius, aBackground)</span>;</span><br><span class="line">mAnimatorSet.setInterpolator<span class="params">(new InSineInterpolator<span class="params">()</span>)</span>;</span><br><span class="line">mAnimatorSet.start<span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<p>可以看出使用与上面 Android 自带的完全一样，当然这个只是一个 Case ，具体使用中你可以随意封装，前提是别改动了主要部分。</p>
+<p>好了，完成了，擦又是三个小时过去了，我的 LOL 又没法打了。<br>最后送上福利，全部的实现类：<br><img src="http://img.blog.csdn.net/20150105221616352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcWl1anVlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h2 id="下载地址">下载地址</h2><p><a href="http://download.csdn.net/detail/qiujuer/8330259" target="_blank" rel="external">Animation Interpolator.zip</a></p>
+<p>——学之开源，用于开源；初学者的心态，与君共勉！</p>
+<pre><code>========================================================
+作者：qiujuer
+博客：blog.csdn.net/qiujuer
+网站：www.qiujuer.net
+开源库：Genius-Android
+转载请注明出处：http://blog.csdn.net/qiujuer/article/details/42430269
+========================================================
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>转载自：<a href="http://blog.csdn.net/qiujuer/article/details/42430269">http://blog.csdn.net/qiujuer/article/details/42430269</a></p>
+<p>##序<br>一个好的动画一定是用心做出来的，何为用心？其中一点我认为定义适当的 Interpolator 就是一种用心的表现；这点在 google material design 中尤为明显。<br>一个好的动画一定要符合实际，一句老的话就是：石头下落一定要受重力才优雅，不然一颗石头像羽毛一样在风中还飘啊飘的那就不行了。</p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mjiayou.com/tags/Android/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]TypedValue.applyDimension中dp和sp之间转化的真相]]></title>
+    <link href="http://mjiayou.com/2015/07/30/android-typed-value-apply-dimension-dp-sp/"/>
+    <id>http://mjiayou.com/2015/07/30/android-typed-value-apply-dimension-dp-sp/</id>
+    <published>2015-07-30T14:05:00.000Z</published>
+    <updated>2015-08-15T12:52:59.000Z</updated>
+    <content type="html"><![CDATA[<p>转载自：<a href="http://www.cnblogs.com/xilinch/p/4444833.html" target="_blank" rel="external">http://www.cnblogs.com/xilinch/p/4444833.html</a></p>
+<p>最近在看了许多关于dp-px，px-dp，sp-px,px-sp之间转化的博文，过去我比较常用的方式是：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转换dip为px </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertDipOrPx</span><span class="params">(Context context, <span class="keyword">int</span> dip)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(dip*scale + <span class="number">0.5f</span>*(dip&gt;=<span class="number">0</span>?<span class="number">1</span>:-<span class="number">1</span>)); </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="comment">//转换px为dip </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertPxOrDip</span><span class="params">(Context context, <span class="keyword">int</span> px)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(px/scale + <span class="number">0.5f</span>*(px&gt;=<span class="number">0</span>?<span class="number">1</span>:-<span class="number">1</span>)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>然后看到了一种新的转化方式，代码如下<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static int dp2sp<span class="params">(float dpVal)</span>&#123;</span><br><span class="line">    return <span class="params">(int)</span><span class="params">(TypedValue.applyDimension<span class="params">(TypedValue.COMPLEX_UNIT_DIP, dpVal, MyAppliction.getInstance<span class="params">()</span>.getApplicationContext<span class="params">()</span>.getResources<span class="params">()</span>.getDisplayMetrics<span class="params">()</span>)</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static int sp2dp<span class="params">(float spVal)</span>&#123;</span><br><span class="line">    return <span class="params">(int)</span> TypedValue.applyDimension<span class="params">(TypedValue.COMPLEX_UNIT_SP, spVal, MyAppliction.getInstance<span class="params">()</span>.getApplicationContext<span class="params">()</span>.getResources<span class="params">()</span>.getDisplayMetrics<span class="params">()</span>)</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>码农对TypedValue充满好奇,通过查询官网了解该类</p>
+<p>TypedValue<br>  —android.util.TypedValue<br> Container for a dynamically typed data value. Primarily used with Resources for holding resource values.</p>
+<p> 翻译过来就是：这个类是工具类,作为一个动态容器，它存放一些数据值，这些值主要是resource中的值。</p>
+<p>我们来理解一下:resource中到底有哪些值？layout、drawable、string、style、anim、dimens、menu、colors、ids这些值一些和屏幕适配有直接的关系。</p>
+<p>有一些方法必然是可以读取这些资源文件信息的，比如：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getDimension</span><span class="params">(DisplayMetrics metrics)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>再看具体的方法：</p>
+<p>applyDimension(int unit, float value,DisplayMetrics metrics)<br>第一个参数是单位,第二个参数是对应值,第三个你懂的，封装了显示区域的各种属性值。</p>
+<p>对于applyDimension(int unit, float value,DisplayMetrics metrics)中的代码我们来看下<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> <span class="title">applyDimension</span>(<span class="params"><span class="keyword">int</span> unit, <span class="keyword">float</span> <span class="keyword">value</span>, DisplayMetrics metrics</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (unit) &#123;</span><br><span class="line">    <span class="keyword">case</span> COMPLEX_UNIT_PX:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">value</span>;</span><br><span class="line">    <span class="keyword">case</span> COMPLEX_UNIT_DIP:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">value</span> * metrics.density;</span><br><span class="line">    <span class="keyword">case</span> COMPLEX_UNIT_SP:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">value</span> * metrics.scaledDensity;</span><br><span class="line">    <span class="keyword">case</span> COMPLEX_UNIT_PT:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">value</span> * metrics.xdpi * (<span class="number">1.0</span>f/<span class="number">72</span>);</span><br><span class="line">    <span class="keyword">case</span> COMPLEX_UNIT_IN:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">value</span> * metrics.xdpi;</span><br><span class="line">    <span class="keyword">case</span> COMPLEX_UNIT_MM:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">value</span> * metrics.xdpi * (<span class="number">1.0</span>f/<span class="number">25.4</span>f);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中单位为dip的，将其转化为密度*值，也就是像素值，而单位sp的也将其转化为px值，因此该方法可以能进行<br>dip–&gt;px<br>sp– &gt;px<br>因此上面<br>TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, value ,DisplayMetrics );<br>这个方法肯定不能将sp转化为dp，我们判断<br>dp2sp(50) = 150<br>sp2dp(50) = 150<br>convertDipOrPx(50) = 150<br>convertPxOrDip(50) = 17<br>将代码运行实际结果与判断结果一致。</p>
+<p>接下来我们继续分析<br>TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, value ,DisplayMetrics );<br>该方法系统本意是用来做什么的？<br>查看官方说明:<br>Converts an unpacked complex data value holding a dimension to its final floating point value.</p>
+<p>这里就把对应的值转化为实际屏幕上的点值，也就是像素值。<br>如果是TypedValue.COMPLEX_UNIT_DIP，则乘以显示密度density。<br>而如果是TypedValue.COMPLEX_UNIT_SP，则乘以像素密度scaledDensity。</p>
+<p>我们继续刨根追底<br>density和scaledDensity的区别在于<br>density：The logical density of the display.显示密度density = dpi/160<br>scaledDensity：A scaling factor for fonts displayed on the display.显示字体的缩放因子 = density</p>
+<p>实际上两者的值一样，为了验证这个结论我们随便找两台机器小米2S和华为p7，取出density和scaledDensity是一致的,P7为3.0，小米2S = 2.0</p>
+<p>因此本文结论转化dp-px，px-dp，sp-px,px-sp</p>
+<p>使用下面方法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转换dip为px </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertDipOrPx</span><span class="params">(Context context, <span class="keyword">int</span> dip)</span></span>&#123; </span><br><span class="line">    <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(dip*scale + <span class="number">0.5f</span>*(dip&gt;=<span class="number">0</span>?<span class="number">1</span>:-<span class="number">1</span>)); </span><br><span class="line">&#125; </span><br><span class="line">   </span><br><span class="line"><span class="comment">//转换px为dip </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertPxOrDip</span><span class="params">(Context context, <span class="keyword">int</span> px)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(px/scale + <span class="number">0.5f</span>*(px&gt;=<span class="number">0</span>?<span class="number">1</span>:-<span class="number">1</span>)); </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sp2px</span><span class="params">(Context context, <span class="keyword">float</span> spValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">float</span> fontScale = context.getResources().getDisplayMetrics().scaledDensity;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>) (spValue * fontScale + <span class="number">0.5f</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2sp</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">float</span> fontScale = context.getResources().getDisplayMetrics().scaledDensity;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>) (pxValue / fontScale + <span class="number">0.5f</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>转载自：<a href="http://www.cnblogs.com/xilinch/p/4444833.html">http://www.cnblogs.com/xilinch/p/4444833.html</a></p>
+<p>最近在看了许多关于dp-px，px-dp，sp-px,px-sp之间转化的博文，过去我比较常用的方式是：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转换dip为px </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertDipOrPx</span><span class="params">(Context context, <span class="keyword">int</span> dip)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(dip*scale + <span class="number">0.5f</span>*(dip&gt;=<span class="number">0</span>?<span class="number">1</span>:-<span class="number">1</span>)); </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="comment">//转换px为dip </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertPxOrDip</span><span class="params">(Context context, <span class="keyword">int</span> px)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(px/scale + <span class="number">0.5f</span>*(px&gt;=<span class="number">0</span>?<span class="number">1</span>:-<span class="number">1</span>)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mjiayou.com/tags/Android/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]shape与selector实现圆角]]></title>
+    <link href="http://mjiayou.com/2014/08/25/android-shape-selector/"/>
+    <id>http://mjiayou.com/2014/08/25/android-shape-selector/</id>
+    <published>2014-08-25T05:29:43.000Z</published>
+    <updated>2014-08-25T05:50:57.000Z</updated>
+    <content type="html"><![CDATA[<p>shape和selector是Android UI设计中经常用到的，比如我们要自定义一个圆角Button，点击Button有些效果的变化，就要用到shape和selector。可以这样说，shape和selector在美化控件中的作用是至关重要的。<br>1.Shape<br>简介<br>作用：XML中定义的几何形状<br>位置：res/drawable/文件的名称.xml</p>
+<a id="more"></a>
+<p>使用的方法：<br>Java代码中：R.drawable.文件的名称<br>XML中：android:background=”@drawable/文件的名称”<br>属性：<br>[html] view plaincopy</p>
+<p><shape>  android:shape=[“rectangle” | “oval” | “line” | “ring”] </shape></p>
+<p>其中rectagle矩形，oval椭圆，line水平直线，ring环形 </p>
+<p><shape>中子节点的常用属性： </shape></p>
+<p><gradient>  渐变 </gradient></p>
+<p>android:startColor  起始颜色 </p>
+<p>android:endColor  结束颜色              </p>
+<p>android:angle  渐变角度，0从上到下，90表示从左到右，数值为45的整数倍默认为0； </p>
+<p>android:type  渐变的样式 liner线性渐变 radial环形渐变 sweep </p>
+<p><solid>  填充 </solid></p>
+<p>android:color  填充的颜色 </p>
+<p><stroke> 描边 </stroke></p>
+<p>android:width 描边的宽度 </p>
+<p>android:color 描边的颜色 </p>
+<p>android:dashWidth 表示’-‘横线的宽度 </p>
+<p>android:dashGap 表示’-‘横线之间的距离 </p>
+<p><corners> 圆角 </corners></p>
+<p>android:radius  圆角的半径 值越大角越圆 </p>
+<p>android:topRightRadius  右上圆角半径 </p>
+<p>android:bottomLeftRadius 右下圆角角半径 </p>
+<p>android:topLeftRadius 左上圆角半径 </p>
+<p>android:bottomRightRadius 左下圆角半径<br>[html] view plaincopy</p>
+<p><shape>  android:shape=[“rectangle” | “oval” | “line” | “ring”]  </shape></p>
+<p>其中rectagle矩形，oval椭圆，line水平直线，ring环形  </p>
+<p><shape>中子节点的常用属性：  </shape></p>
+<p><gradient>  渐变  </gradient></p>
+<p>android:startColor  起始颜色  </p>
+<p>android:endColor  结束颜色               </p>
+<p>android:angle  渐变角度，0从上到下，90表示从左到右，数值为45的整数倍默认为0；  </p>
+<p>android:type  渐变的样式 liner线性渐变 radial环形渐变 sweep  </p>
+<p><solid>  填充  </solid></p>
+<p>android:color  填充的颜色  </p>
+<p><stroke> 描边  </stroke></p>
+<p>android:width 描边的宽度  </p>
+<p>android:color 描边的颜色  </p>
+<p>android:dashWidth 表示’-‘横线的宽度  </p>
+<p>android:dashGap 表示’-‘横线之间的距离  </p>
+<p><corners> 圆角  </corners></p>
+<p>android:radius  圆角的半径 值越大角越圆  </p>
+<p>android:topRightRadius  右上圆角半径  </p>
+<p>android:bottomLeftRadius 右下圆角角半径  </p>
+<p>android:topLeftRadius 左上圆角半径  </p>
+<p>android:bottomRightRadius 左下圆角半径  </p>
+<p>2.Selector<br>简介<br>位置：res/drawable/文件的名称.xml<br>使用的方法：<br>Java代码中：R.drawable.文件的名称<br>XML中：android:background=”@drawable/文件的名称”<br>selector.xml<br>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>    <selector xmlns:android="http://schemas.android.com/apk/res/android">  </selector></p>
+<pre><code>    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:state_selected</span>=<span class="value">"true"</span>&gt;</span>  
+        <span class="tag">&lt;<span class="title">shape</span>&gt;</span>  
+            <span class="tag">&lt;<span class="title">gradient</span> <span class="attribute">android:angle</span>=<span class="value">"270"</span> <span class="attribute">android:endColor</span>=<span class="value">"#99BD4C"</span>  
+                <span class="attribute">android:startColor</span>=<span class="value">"#A5D245"</span> /&gt;</span>  
+            <span class="tag">&lt;<span class="title">size</span> <span class="attribute">android:height</span>=<span class="value">"60dp"</span> <span class="attribute">android:width</span>=<span class="value">"320dp"</span> /&gt;</span>  
+            <span class="tag">&lt;<span class="title">corners</span> <span class="attribute">android:radius</span>=<span class="value">"8dp"</span> /&gt;</span>  
+        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>  
+    <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
+    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:state_pressed</span>=<span class="value">"true"</span>&gt;</span>  
+        <span class="tag">&lt;<span class="title">shape</span>&gt;</span>  
+            <span class="tag">&lt;<span class="title">gradient</span> <span class="attribute">android:angle</span>=<span class="value">"270"</span> <span class="attribute">android:endColor</span>=<span class="value">"#99BD4C"</span>  
+                <span class="attribute">android:startColor</span>=<span class="value">"#A5D245"</span>/&gt;</span>  
+            <span class="tag">&lt;<span class="title">size</span> <span class="attribute">android:height</span>=<span class="value">"60dp"</span> <span class="attribute">android:width</span>=<span class="value">"320dp"</span> /&gt;</span>  
+            <span class="tag">&lt;<span class="title">corners</span> <span class="attribute">android:radius</span>=<span class="value">"8dp"</span> /&gt;</span>  
+        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>  
+    <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
+    <span class="tag">&lt;<span class="title">item</span>&gt;</span>  
+        <span class="tag">&lt;<span class="title">shape</span>&gt;</span>  
+            <span class="tag">&lt;<span class="title">gradient</span> <span class="attribute">android:angle</span>=<span class="value">"270"</span> <span class="attribute">android:endColor</span>=<span class="value">"#A8C3B0"</span>  
+                <span class="attribute">android:startColor</span>=<span class="value">"#C6CFCE"</span>/&gt;</span>  
+            <span class="tag">&lt;<span class="title">size</span> <span class="attribute">android:height</span>=<span class="value">"60dp"</span> <span class="attribute">android:width</span>=<span class="value">"320dp"</span> /&gt;</span>  
+            <span class="tag">&lt;<span class="title">corners</span> <span class="attribute">android:radius</span>=<span class="value">"8dp"</span> /&gt;</span>  
+        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>  
+    <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
+<span class="tag">&lt;/<span class="title">selector</span>&gt;</span> 
+</code></pre><p>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>    <selector xmlns:android="http://schemas.android.com/apk/res/android">   </selector></p>
+<pre><code>    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:state_selected</span>=<span class="value">"true"</span>&gt;</span>   
+        <span class="tag">&lt;<span class="title">shape</span>&gt;</span>   
+            <span class="tag">&lt;<span class="title">gradient</span> <span class="attribute">android:angle</span>=<span class="value">"270"</span> <span class="attribute">android:endColor</span>=<span class="value">"#99BD4C"</span>   
+                <span class="attribute">android:startColor</span>=<span class="value">"#A5D245"</span> /&gt;</span>   
+            <span class="tag">&lt;<span class="title">size</span> <span class="attribute">android:height</span>=<span class="value">"60dp"</span> <span class="attribute">android:width</span>=<span class="value">"320dp"</span> /&gt;</span>   
+            <span class="tag">&lt;<span class="title">corners</span> <span class="attribute">android:radius</span>=<span class="value">"8dp"</span> /&gt;</span>   
+        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>   
+    <span class="tag">&lt;/<span class="title">item</span>&gt;</span>   
+    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:state_pressed</span>=<span class="value">"true"</span>&gt;</span>   
+        <span class="tag">&lt;<span class="title">shape</span>&gt;</span>   
+            <span class="tag">&lt;<span class="title">gradient</span> <span class="attribute">android:angle</span>=<span class="value">"270"</span> <span class="attribute">android:endColor</span>=<span class="value">"#99BD4C"</span>   
+                <span class="attribute">android:startColor</span>=<span class="value">"#A5D245"</span>/&gt;</span>   
+            <span class="tag">&lt;<span class="title">size</span> <span class="attribute">android:height</span>=<span class="value">"60dp"</span> <span class="attribute">android:width</span>=<span class="value">"320dp"</span> /&gt;</span>   
+            <span class="tag">&lt;<span class="title">corners</span> <span class="attribute">android:radius</span>=<span class="value">"8dp"</span> /&gt;</span>   
+        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>   
+    <span class="tag">&lt;/<span class="title">item</span>&gt;</span>   
+    <span class="tag">&lt;<span class="title">item</span>&gt;</span>   
+        <span class="tag">&lt;<span class="title">shape</span>&gt;</span>   
+            <span class="tag">&lt;<span class="title">gradient</span> <span class="attribute">android:angle</span>=<span class="value">"270"</span> <span class="attribute">android:endColor</span>=<span class="value">"#A8C3B0"</span>   
+                <span class="attribute">android:startColor</span>=<span class="value">"#C6CFCE"</span>/&gt;</span>   
+            <span class="tag">&lt;<span class="title">size</span> <span class="attribute">android:height</span>=<span class="value">"60dp"</span> <span class="attribute">android:width</span>=<span class="value">"320dp"</span> /&gt;</span>   
+            <span class="tag">&lt;<span class="title">corners</span> <span class="attribute">android:radius</span>=<span class="value">"8dp"</span> /&gt;</span>   
+        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>   
+    <span class="tag">&lt;/<span class="title">item</span>&gt;</span>   
+<span class="tag">&lt;/<span class="title">selector</span>&gt;</span>  
+</code></pre><p>list_item.xml<br>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>       &lt;LinearLayout  xmlns:android=”<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“<br>        android:orientation=”horizontal”<br>        android:layout_width=”fill_parent”<br>        android:layout_height=”wrap_content”<br>        android:background=”@drawable/selector”  </p>
+<pre><code>   &gt;                      
+   <span class="tag">&lt;<span class="title">ImageView</span>    
+       <span class="attribute">android:id</span>=<span class="value">"@+id/img"</span>     
+       <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span>    
+       <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>               
+       <span class="attribute">android:layout_gravity</span>=<span class="value">"center_vertical"</span>  
+       <span class="attribute">android:layout_marginLeft</span>=<span class="value">"20dp"</span>           
+       /&gt;</span>                             
+       <span class="tag">&lt;<span class="title">TextView</span>    
+           <span class="attribute">android:text</span>=<span class="value">"data"</span>    
+           <span class="attribute">android:id</span>=<span class="value">"@+id/title"</span>  
+           <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span>    
+           <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>    
+           <span class="attribute">android:gravity</span>=<span class="value">"center_vertical"</span>     
+           <span class="attribute">android:layout_marginLeft</span>=<span class="value">"20dp"</span>    
+           <span class="attribute">android:layout_marginTop</span>=<span class="value">"20dp"</span>    
+           <span class="attribute">android:textSize</span>=<span class="value">"14sp"</span>                            
+           <span class="attribute">android:textStyle</span>=<span class="value">"bold"</span>  
+           <span class="attribute">android:textColor</span>=<span class="value">"@color/black"</span>                           
+           &gt;</span>  
+       <span class="tag">&lt;/<span class="title">TextView</span>&gt;</span>            
+<span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span> 
+</code></pre><p>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>       &lt;LinearLayout  xmlns:android=”<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“<br>        android:orientation=”horizontal”<br>        android:layout_width=”fill_parent”<br>        android:layout_height=”wrap_content”<br>        android:background=”@drawable/selector”   </p>
+<pre><code>   &gt;                       
+   <span class="tag">&lt;<span class="title">ImageView</span>     
+       <span class="attribute">android:id</span>=<span class="value">"@+id/img"</span>      
+       <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span>     
+       <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>                
+       <span class="attribute">android:layout_gravity</span>=<span class="value">"center_vertical"</span>   
+       <span class="attribute">android:layout_marginLeft</span>=<span class="value">"20dp"</span>            
+       /&gt;</span>                              
+       <span class="tag">&lt;<span class="title">TextView</span>     
+           <span class="attribute">android:text</span>=<span class="value">"data"</span>     
+           <span class="attribute">android:id</span>=<span class="value">"@+id/title"</span>   
+           <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span>     
+           <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>     
+           <span class="attribute">android:gravity</span>=<span class="value">"center_vertical"</span>      
+           <span class="attribute">android:layout_marginLeft</span>=<span class="value">"20dp"</span>     
+           <span class="attribute">android:layout_marginTop</span>=<span class="value">"20dp"</span>     
+           <span class="attribute">android:textSize</span>=<span class="value">"14sp"</span>                             
+           <span class="attribute">android:textStyle</span>=<span class="value">"bold"</span>   
+           <span class="attribute">android:textColor</span>=<span class="value">"@color/black"</span>                            
+           &gt;</span>   
+       <span class="tag">&lt;/<span class="title">TextView</span>&gt;</span>             
+<span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span>  
+</code></pre><p>main.xml<br>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>        &lt;LinearLayout xmlns:android=”<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“<br>            android:orientation=”vertical”<br>            android:layout_width=”fill_parent”<br>            android:layout_height=”wrap_content”<br>            android:background=”#253853”  </p>
+<pre><code>        &gt;                                  
+        <span class="tag">&lt;<span class="title">ListView</span>    
+          <span class="attribute">android:id</span>=<span class="value">"@+id/list"</span>    
+          <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span>    
+          <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span>  
+          <span class="attribute">android:cacheColorHint</span>=<span class="value">"#00000000"</span>  
+          <span class="attribute">android:divider</span>=<span class="value">"#2A4562"</span>  
+          <span class="attribute">android:dividerHeight</span>=<span class="value">"3px"</span>  
+          <span class="attribute">android:listSelector</span>=<span class="value">"#264365"</span>  
+          <span class="attribute">android:drawSelectorOnTop</span>=<span class="value">"false"</span>   
+          &gt;</span>  
+        <span class="tag">&lt;/<span class="title">ListView</span>&gt;</span>    
+<span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span> 
+</code></pre><p>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>        &lt;LinearLayout xmlns:android=”<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“<br>            android:orientation=”vertical”<br>            android:layout_width=”fill_parent”<br>            android:layout_height=”wrap_content”<br>            android:background=”#253853”   </p>
+<pre><code>        &gt;                                   
+        <span class="tag">&lt;<span class="title">ListView</span>     
+          <span class="attribute">android:id</span>=<span class="value">"@+id/list"</span>     
+          <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span>     
+          <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span>   
+          <span class="attribute">android:cacheColorHint</span>=<span class="value">"#00000000"</span>   
+          <span class="attribute">android:divider</span>=<span class="value">"#2A4562"</span>   
+          <span class="attribute">android:dividerHeight</span>=<span class="value">"3px"</span>   
+          <span class="attribute">android:listSelector</span>=<span class="value">"#264365"</span>   
+          <span class="attribute">android:drawSelectorOnTop</span>=<span class="value">"false"</span>    
+          &gt;</span>   
+        <span class="tag">&lt;/<span class="title">ListView</span>&gt;</span>     
+<span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span>  
+</code></pre><p>colors.xml<br>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>    <resources><br>        <color name="white">#FFFFFFFF</color><br>        <color name="transparency">#00000000</color><br>        <color name="title_bg">#1C86EE</color><br>        <color name="end_color">#A0cfef83</color><br>        <color name="black">#464646</color><br>    </resources><br>[html] view plaincopy<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>    <resources><br>        <color name="white">#FFFFFFFF</color><br>        <color name="transparency">#00000000</color><br>        <color name="title_bg">#1C86EE</color><br>        <color name="end_color">#A0cfef83</color><br>        <color name="black">#464646</color><br>    </resources>  </p>
+<p>MainActivity<br>[java] view plaincopy<br>package com.lingdududu.customlist;   </p>
+<pre><code><span class="keyword">import</span> java.util.ArrayList;   
+<span class="keyword">import</span> java.util.<span class="keyword">HashMap</span>;   
+
+<span class="keyword">import</span> xb.customlist.R;   
+
+<span class="keyword">import</span> android.R.array;   
+<span class="keyword">import</span> android.app.Activity;   
+<span class="keyword">import</span> android.os.Bundle;   
+<span class="keyword">import</span> android.widget.ArrayAdapter;   
+<span class="keyword">import</span> android.widget.ListView;   
+<span class="keyword">import</span> android.widget.SimpleAdapter;   
+
+<span class="keyword">public</span> class MainActivity extends Activity {   
+    ListView list;   
+
+    <span class="keyword">String</span> data[] = <span class="keyword">new</span> <span class="keyword">String</span>[]{   
+            <span class="string">"China"</span>,<span class="string">"UK"</span>,<span class="string">"USA"</span>,<span class="string">"Japan"</span>,<span class="string">"German"</span>,<span class="string">"Canada"</span>,<span class="string">"ET"</span>,<span class="string">"Narotu"</span>     
+    };   
+
+
+
+    @Override  
+    <span class="keyword">public</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) {   
+        <span class="keyword">super</span>.onCreate(savedInstanceState);   
+        setContentView(R.layout.main);   
+
+
+        list =(ListView) findViewById(R.id.list);           
+
+        SimpleAdapter adapter = <span class="keyword">new</span> SimpleAdapter(<span class="keyword">this</span>, getData(), R.layout.list_item,    
+                <span class="keyword">new</span> <span class="keyword">String</span>[]{<span class="string">"title"</span>,<span class="string">"img"</span>}, <span class="keyword">new</span> <span class="built_in">int</span>[]{R.id.title,R.id.img});   
+
+        list.setAdapter(adapter);           
+    }   
+
+    <span class="keyword">private</span> ArrayList&lt;<span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;&gt; getData() {         
+        ArrayList&lt;<span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;&gt; dlist = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>,<span class="keyword">Object</span>&gt;&gt;();   
+
+        <span class="keyword">for</span>(<span class="built_in">int</span> i =<span class="number">0</span>;i&lt;data.length;i++){   
+            <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;<span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;();            
+            <span class="built_in">map</span>.put(<span class="string">"title"</span>, data[i]);   
+            <span class="built_in">map</span>.put(<span class="string">"img"</span>, R.drawable.item_left2);   
+            dlist.<span class="built_in">add</span>(<span class="built_in">map</span>);    
+        }   
+        <span class="keyword">return</span> dlist;   
+    }   
+} 
+</code></pre><p>[java] view plaincopy<br>package com.lingdududu.customlist;    </p>
+<pre><code><span class="keyword">import</span> java.util.ArrayList;    
+<span class="keyword">import</span> java.util.<span class="keyword">HashMap</span>;    
+
+<span class="keyword">import</span> xb.customlist.R;    
+
+<span class="keyword">import</span> android.R.array;    
+<span class="keyword">import</span> android.app.Activity;    
+<span class="keyword">import</span> android.os.Bundle;    
+<span class="keyword">import</span> android.widget.ArrayAdapter;    
+<span class="keyword">import</span> android.widget.ListView;    
+<span class="keyword">import</span> android.widget.SimpleAdapter;    
+
+<span class="keyword">public</span> class MainActivity extends Activity {    
+    ListView list;    
+
+    <span class="keyword">String</span> data[] = <span class="keyword">new</span> <span class="keyword">String</span>[]{    
+            <span class="string">"China"</span>,<span class="string">"UK"</span>,<span class="string">"USA"</span>,<span class="string">"Japan"</span>,<span class="string">"German"</span>,<span class="string">"Canada"</span>,<span class="string">"ET"</span>,<span class="string">"Narotu"</span>      
+    };    
+
+
+
+    @Override   
+    <span class="keyword">public</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) {    
+        <span class="keyword">super</span>.onCreate(savedInstanceState);    
+        setContentView(R.layout.main);    
+
+
+        list =(ListView) findViewById(R.id.list);            
+
+        SimpleAdapter adapter = <span class="keyword">new</span> SimpleAdapter(<span class="keyword">this</span>, getData(), R.layout.list_item,     
+                <span class="keyword">new</span> <span class="keyword">String</span>[]{<span class="string">"title"</span>,<span class="string">"img"</span>}, <span class="keyword">new</span> <span class="built_in">int</span>[]{R.id.title,R.id.img});    
+
+        list.setAdapter(adapter);            
+    }    
+
+    <span class="keyword">private</span> ArrayList&lt;<span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;&gt; getData() {          
+        ArrayList&lt;<span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;&gt; dlist = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>,<span class="keyword">Object</span>&gt;&gt;();    
+
+        <span class="keyword">for</span>(<span class="built_in">int</span> i =<span class="number">0</span>;i&lt;data.length;i++){    
+            <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;<span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;();             
+            <span class="built_in">map</span>.put(<span class="string">"title"</span>, data[i]);    
+            <span class="built_in">map</span>.put(<span class="string">"img"</span>, R.drawable.item_left2);    
+            dlist.<span class="built_in">add</span>(<span class="built_in">map</span>);     
+        }    
+        <span class="keyword">return</span> dlist;    
+    }    
+}  
+</code></pre><p>原文地址：<a href="http://blog.csdn.net/wangwei_cq/article/details/9491967" target="_blank" rel="external">http://blog.csdn.net/wangwei_cq/article/details/9491967</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>shape和selector是Android UI设计中经常用到的，比如我们要自定义一个圆角Button，点击Button有些效果的变化，就要用到shape和selector。可以这样说，shape和selector在美化控件中的作用是至关重要的。<br>1.Shape<br>简介<br>作用：XML中定义的几何形状<br>位置：res/drawable/文件的名称.xml</p>]]>
+    
+    </summary>
+    
+      <category term="shape" scheme="http://mjiayou.com/tags/shape/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]解决Android程序退出后不显示在近期任务里]]></title>
+    <link href="http://mjiayou.com/2014/08/25/android-recent-list/"/>
+    <id>http://mjiayou.com/2014/08/25/android-recent-list/</id>
+    <published>2014-08-25T05:29:41.000Z</published>
+    <updated>2014-08-25T05:49:52.000Z</updated>
+    <content type="html"><![CDATA[<p>solution:<br>在AndroidManifest.xml中对应的Activity中找到“android:excludeFromRecents”，把值改为false，或直接去掉该项。<br>Develop Reference<br>android:excludeFromRecents</p>
+<a id="more"></a>
+<p>Whether or not the task initiated by this activity should be excluded from the list of recently used applications (“recent apps”). That is, when this activity is the root activity of a new task, this attribute determines whether the task should not appear in the list of recent apps. “true” if the task should beexcluded from the list; “false” if it should be included. The default value is “false”.</p>
+<p>============================</p>
+<p>相反，如果要不出现在近期任务里面，可以增加android:excludeFromRecents=”true”，但貌似要apk中所有activity都加上才有用。</p>
+<p>原文地址：<a href="http://blog.csdn.net/jdsjlzx/article/details/17711017" target="_blank" rel="external">http://blog.csdn.net/jdsjlzx/article/details/17711017</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>solution:<br>在AndroidManifest.xml中对应的Activity中找到“android:excludeFromRecents”，把值改为false，或直接去掉该项。<br>Develop Reference<br>android:excludeFromRecents</p>]]>
+    
+    </summary>
+    
+      <category term="近期任务" scheme="http://mjiayou.com/tags/%E8%BF%91%E6%9C%9F%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]mainfest文件android属性汇总]]></title>
+    <link href="http://mjiayou.com/2014/08/25/android-mainfest/"/>
+    <id>http://mjiayou.com/2014/08/25/android-mainfest/</id>
+    <published>2014-08-25T05:29:39.000Z</published>
+    <updated>2014-08-25T05:49:31.000Z</updated>
+    <content type="html"><![CDATA[<p>&lt; activity android:allowTaskReparenting=[“true” | “false”]</p>
+<p>android:alwaysRetainTaskState=[“true” | “false”]</p>
+<p>android:clearTaskOnLaunch=[“true” | “false”]</p>
+<a id="more"></a>
+<p>android:configChanges=[“mcc”, “mnc”, “locale”, “touchscreen”, “keyboard”, “keyboardHidden”, “navigation”, “orientation”, “screenLayout”, “fontScale”, “uiMode”]</p>
+<p>android:enabled=[“true” | “false”]</p>
+<p>android:excludeFromRecents=[“true” | “false”]</p>
+<p>android:exported=[“true” | “false”]</p>
+<p>android:finishOnTaskLaunch=[“true” | “false”]</p>
+<p>android:icon=”drawable resource”</p>
+<p>android:label=”string resource”</p>
+<p>android:launchMode=[“multiple” | “singleTop” | “singleTask” | “singleInstance”]</p>
+<p>android:multiprocess=[“true” | “false”]</p>
+<p>android:name=”string”</p>
+<p>android:noHistory=[“true” | “false”]</p>
+<p>android:permission=”string”</p>
+<p>android:process=”string”</p>
+<p>android:screenOrientation=[“unspecified” | “user” | “behind” | “landscape” | “portrait” | “sensor” | “nosensor”]</p>
+<p>android:stateNotNeeded=[“true” | “false”]</p>
+<p>android:taskAffinity=”string”</p>
+<p>android:theme=”resource or theme”</p>
+<p>android:windowSoftInputMode=[“stateUnspecified”, “stateUnchanged”, “stateHidden”, “stateAlwaysHidden”, “stateVisible”, “stateAlwaysVisible”, “adjustUnspecified”, “adjustResize”, “adjustPan”] &gt; . . .&lt; /activity&gt;</p>
+<p>　　亲戚为任务的一个标识,表示活动与任务的从属关系.</p>
+<p>　　android:allowTaskReparenting</p>
+<p>　　是否可以将目标activity从启动它的那个Task移动到他自己定义的而且马上要显示的那个Task.如果为false,它就会留在启动它的那个Task中.</p>
+<p>　　android:alwaysRetainTaskState</p>
+<p>　　是否让系统保留任务的最后状态. 一般情况下, 在按home键后再次启动应用,系统会去除栈内所有在根活动之上的活动; 或者某任务经过一段时间没有被访问时也会被系统清除其他活动. 本选项仅对根活动有意义,其他活动包含此标签会被忽略.</p>
+<p>　　android:clearTaskOnLaunch</p>
+<p>　　是否在从 home 界面重新启动时清空Task. 如果为 true, 每次用户启动任务, 用户都被带到根活动.不管他们最后在做什么,也不管是按BACK或HOME键最后离开的它. 如果是 false, 则不会这样.</p>
+<p>例如,假设用户从 home 启动 P , 然后从P启动 Q , 用户又点击了HOME, 然后又启动了P. 正常情况下用户将会看到Q, 因为这是用户最后在 P 中做的工作. 如果P中将此标志设置为 true ,当用户点击 home 时所有的P之上的活动都会被清除, 所以用户再次点击回来时会只能看到 P.</p>
+<p>　　如果这个属性和 allowTaskReparenting 同时为 true 时, 所有的可以被 re-parented 的活动都被移到他们共享亲戚关系的任务中, 剩下的活动都被丢弃了.</p>
+<p>　　android:finishOnTaskLaunch</p>
+<p>　　在用户从 home 界面重新启动应用时, 是否结束掉这个活动. 如果这个属性和 allowTaskReparenting 同时为 true 时, 本属性会干掉那一个属性. 本活动的亲戚也会被忽略. 这个活动将会被销毁.</p>
+<p>　　android:launchMode</p>
+<p>　　用例启动模式多实例注释</p>
+<p>　　适合大部分活动的普通模式”standard”Yes默认值.系统总是会创建一个新实例</p>
+<p>　　“singleTop”Conditionally如果一个实例已经存在在目标任务的栈顶,则复用,否则会创建新实例. 可以通过重写 onNewIntent() 来捕获</p>
+<p>　　特殊启动方法</p>
+<p>　　(不推荐用于一般应用)”singleTask”No如果目标活动不存在,则会创建它并放在目标任务栈底, 然后启动它;</p>
+<p>　　如果目标活动已存在, 则会启动它并执行它的 onNewIntent() 方法</p>
+<p>　　“singleInstance”No与 “singleTask” 相同, 但是这个活动将会独占一个任务</p>
+<p>android:allowTaskReparenting</p>
+<h2 id="是否允许activity更换从属的任务，比如从短信息任务_切换到浏览器任务。">是否允许activity更换从属的任务，比如从短信息任务 切换到浏览器任务。</h2><p>android:alwaysRetainTaskState</p>
+<h2 id="是否保留状态不变，_比如切换回home,_再从新打开，_activity处于最后的状态">是否保留状态不变， 比如切换回home, 再从新打开， activity处于最后的状态</h2><p>android:clearTaskOnLanunch</p>
+<h2 id="比如_P_是_activity,_Q_是被P_触发的_activity,_然后返回Home,_从新启动_P，_是否显示_Q">比如 P 是 activity, Q 是被P 触发的 activity, 然后返回Home, 从新启动 P， 是否显示 Q </h2><p>android:configChanges</p>
+<h2 id="当配置list发生修改时，_是否调用_onConfigurationChanged()_方法_比如_“locale|navigation|orientation”-">当配置list发生修改时， 是否调用 onConfigurationChanged() 方法  比如 “locale|navigation|orientation”. </h2><p>android:enabled</p>
+<h2 id="activity_是否可以被实例化,">activity 是否可以被实例化, </h2><p>android:excludeFromRecents</p>
+<h2 id="是否可被显示在最近打开的activity列表里">是否可被显示在最近打开的activity列表里</h2><p>android:exported</p>
+<h2 id="是否允许activity被其它程序调用">是否允许activity被其它程序调用</h2><p>android:finishOnTaskLaunch</p>
+<h2 id="是否关闭已打开的activity当用户重新启动这个任务的时候">是否关闭已打开的activity当用户重新启动这个任务的时候</h2><h2 id="android-icon">android.icon</h2><h2 id="android:label">android:label</h2><p>android:launchMode</p>
+<h2 id="activity启动方式，_“standard”_“singleTop”_“singleTask”_“singleInstance”_其中前两个为一组，_后两个为一组">activity启动方式，  “standard” “singleTop”  “singleTask” “singleInstance”  其中前两个为一组， 后两个为一组</h2><p>android:multiprocess</p>
+<h2 id="允许多进程">允许多进程</h2><p>android:name</p>
+<p>activity的类名， 必须指定</p>
+<hr>
+<p>android:onHistory</p>
+<h2 id="是否需要移除这个activity当用户切换到其他屏幕时。_这个属性是_API_level_3_中引入的">是否需要移除这个activity当用户切换到其他屏幕时。 这个属性是 API level 3 中引入的</h2><h2 id="android:permission">android:permission</h2><p>android:process</p>
+<h2 id="一个activity运行时所在的进程名，_所有程序组件运行在应用程序默认的进程中，这个进程名跟应用程序的包名一致。中的元素process属性能够为所有组件设定一个新的默认值。但是任何组件都可以覆盖这个默认值，允许你将你的程序放在多进程中运行。_如果这个属性被分配的名字以:开头，_当这个activity运行时,_一个新的专属于这个程序的进程将会被创建。_如果这个进程名以小写字母开头，_这个activity将会运行在全局的进程中，被它的许可所提供。">一个activity运行时所在的进程名， 所有程序组件运行在应用程序默认的进程中，这个进程名跟应用程序的包名一致。<application>中的元素process属性能够为所有组件设定一个新的默认值。但是任何组件都可以覆盖这个默认值，允许你将你的程序放在多进程中运行。  如果这个属性被分配的名字以:开头， 当这个activity运行时, 一个新的专属于这个程序的进程将会被创建。 如果这个进程名以小写字母开头， 这个activity将会运行在全局的进程中，被它的许可所提供。</application></h2><p>android:screenOrientation</p>
+<p>activity显示的模式,  “unspecified” 默认值  “landscape” 风景画模式，宽度比高度大一些  “portrait” 肖像模式, 高度比宽度大。  “user” 用户的设置  “behind”  “sensor” “nosensor”</p>
+<hr>
+<p>android:stateNotNeeded</p>
+<p>是否 activity被销毁和成功重启并不保存状态</p>
+<hr>
+<p>android:taskAffinity</p>
+<p>activity的亲属关系， 默认情况同一个应用程序下的activity有相同的关系</p>
+<hr>
+<p>android:theme</p>
+<h2 id="activity的样式主题,_如果没有设置，则activity的主题样式从属于应用程序，_参见元素的theme属性">activity的样式主题, 如果没有设置，则activity的主题样式从属于应用程序， 参见<application>元素的theme属性</application></h2><p>android:windowSoftInputMode</p>
+<p>activity主窗口与软键盘的交互模式, 自从API level 3 被引入</p>
+<p>原文地址：<a href="http://www.cnblogs.com/xilinch/archive/2012/07/17/2595613.html" target="_blank" rel="external">http://www.cnblogs.com/xilinch/archive/2012/07/17/2595613.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>&lt; activity android:allowTaskReparenting=[“true” | “false”]</p>
+<p>android:alwaysRetainTaskState=[“true” | “false”]</p>
+<p>android:clearTaskOnLaunch=[“true” | “false”]</p>]]>
+    
+    </summary>
+    
+      <category term="mainfest" scheme="http://mjiayou.com/tags/mainfest/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]adb shell am/pm使用]]></title>
+    <link href="http://mjiayou.com/2014/08/25/android-adb-shell/"/>
+    <id>http://mjiayou.com/2014/08/25/android-adb-shell/</id>
+    <published>2014-08-25T05:29:37.000Z</published>
+    <updated>2014-08-25T05:49:35.000Z</updated>
+    <content type="html"><![CDATA[<p>adb shell am instrument [options] <component><br>作用：启动对instrument实例的监视。<br>参数[options]：<br>-e <key> <value> // -e选项需要放在-w选项之前<br>作用：提供了以键值对形式存在的测试选项。Android中提供了多种键值对，具体参见下表。<br>举例：-e class com.android.phone.FIncomingCallTests#testRejectCall</value></key></component></p>
+<a id="more"></a>
+<p>-r<br>作用：以原始形式输出测试结果。该选项通常是在性能测试时与-e perf true一起使用。<br>参数 <component>：<br>-w <test_package_name>/<runner_class> //<test_package_name>和<runner_class>在测试工程的AndroidManifest.xml中查找<br>作用：保持adb shell打开直至测试完成<br>举例：-w com.android.phone.tests/com.android.phone.runners.FunctionalTestRunner</runner_class></test_package_name></runner_class></test_package_name></component></p>
+<p><key> <value>参考表<br>Key    Value    Description<br>package    <java_package_name>    The fully-qualified Java package name for one of the packages in the test application. Any test case class that uses this package name is executed. Notice that this is not an Android package name; a test package has a single Android package name but may have several Java packages within it.<br>class    <class_name>    The fully-qualified Java class name for one of the test case classes. Only this test case class is executed.</class_name></java_package_name></value></key></p>
+<p><class_name>#method name    A fully-qualified test case class name, and one of its methods. Only this method is executed. Note the hash mark (#) between the class name and the method name.<br>func    true    Runs all test classes that extend InstrumentationTestCase.<br>unit    true    Runs all test classes that do not extend either InstrumentationTestCase or PerformanceTestCase.<br>size    [small | medium | large]    Runs a test method annotated by size. The annotations are @SmallTest, @MediumTest, and @LargeTest.<br>perf    true    Runs all test classes that implement PerformanceTestCase. When you use this option, also specify the -r flag for am instrument, so that the output is kept in raw format and not re-formatted as test results.<br>debug    true    Runs tests in debug mode.<br>log    true    Loads and logs all specified tests, but does not run them. The test information appears in STDOUT. Use this to verify combinations of other filters and test specifications.<br>emma    true    Runs an EMMA code coverage analysis and writes the output to /data//coverage.ec on the device. To override the file location, use the coverageFile key that is described in the following entry.<br>Note: This option requires an EMMA-instrumented build of the test application, which you can generate with the coverage target.<br>coverageFile    <filename><br>Overrides the default location of the EMMA coverage file on the device. Specify this value as a path and filename in UNIX format. The default filename is described in the entry for the emma key</filename></class_name></p>
+<p>adb shell am start [options] <intent><br>作用：启动一个activity<br>举例：adb shell am start -a com.lt.test.action.SECOND<br>举例：adb shell am start -n com.lt.test/.MyActivity<br>说明：[options]与<intent>参见 <a href="http://developer.android.com/tools/help/adb.html#am" target="_blank" rel="external">http://developer.android.com/tools/help/adb.html#am</a></intent></intent></p>
+<p>adb shell am startservice [options] <intent><br>作用：启动一个service<br>举例：adb shell am startservice -a com.lt.test.action.ONESERVICE<br>举例：adb shell am startservice -n com.lt.test/.MyService</intent></p>
+<p>adb shell am force-stop <package><br>作用：强制关闭一个应用程序<br>举例：adb shell am force-stop com.lt.test</package></p>
+<p>adb shell am broadcast [options] <intent><br>作用：发送一个广播<br>举例：adb shell am broadcast -a “action_finish” （发送一个广播去关闭一个activity）<br>举例：adb shell am broadcast -a android.intent.action.MASTER_CLEAR（恢复出厂设置的方法，会清除内存所有内容）<br>举例：adb shell am broadcast -n com.lt.test/.MyBroadcast</intent></p>
+<p>adb shell pm list packages [options] <intent><br>作用：列举出所有包含<intent>的package<br>举例：adb shell pm list packages com.lt<br>说明：[options]与<intent>参见 <a href="http://developer.android.com/tools/help/adb.html#pm" target="_blank" rel="external">http://developer.android.com/tools/help/adb.html#pm</a></intent></intent></intent></p>
+<p>参考链接：<br><a href="http://developer.android.com/tools/help/adb.html" target="_blank" rel="external">http://developer.android.com/tools/help/adb.html</a></p>
+<p>原文链接：<a href="http://blog.sina.com.cn/s/blog_51335a0001017ux5.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_51335a0001017ux5.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>adb shell am instrument [options] <COMPONENT><br>作用：启动对instrument实例的监视。<br>参数[options]：<br>-e <key> <value> // -e选项需要放在-w选项之前<br>作用：提供了以键值对形式存在的测试选项。Android中提供了多种键值对，具体参见下表。<br>举例：-e class com.android.phone.FIncomingCallTests#testRejectCall</p>]]>
+    
+    </summary>
+    
+      <category term="adb" scheme="http://mjiayou.com/tags/adb/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]收藏的Android非常好用的组件或者框架]]></title>
+    <link href="http://mjiayou.com/2014/08/25/android-frame/"/>
+    <id>http://mjiayou.com/2014/08/25/android-frame/</id>
+    <published>2014-08-25T05:29:36.000Z</published>
+    <updated>2014-08-25T05:52:06.000Z</updated>
+    <content type="html"><![CDATA[<p>收藏的Android非常好用的组件或者框架。<br>android框架<br>先说两个网站： <a href="http://www.androidviews.net/" target="_blank" rel="external">http://www.androidviews.net/</a> 很好的国外开源代码站，就是访问速度有点慢啊<br><a href="http://www.23code.com" target="_blank" rel="external">http://www.23code.com</a>  挺不错的国人开源代码库，几乎每天都有更新(推荐)<br><a href="http://www.theultimateandroidlibrary.com/" target="_blank" rel="external">http://www.theultimateandroidlibrary.com/</a>  以前可以访问的，好像现在不行了</p>
+<ol>
+<li>ImageLoader   异步加载图片，缓存，生成缩略图， 基本上每个应用都会需要这个lib。</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li><p>Android-PullToRefresh    类似新浪微博，twitter，下拉刷新列表， 更牛的是还支持上拉加载更多。 不仅仅是ListView，而且GridView也支持。</p>
+</li>
+<li><p>androidannotations   一个很好的快速开发的框架， 大量使用annotation来代替hard code。AndroidAnnotations is an Open Source framework that speeds up Android development. It takes care of the plumbing, and lets you concentrate on what’s really important. By simplifying your code, it facilitates its maintenance.</p>
+</li>
+<li><p>SlidingMenu   这个可以结合ActionBarSherlock</p>
+</li>
+<li><p>actionbarsherlock    actionbar兼容到2.x</p>
+</li>
+<li><p>Left Locked Gallery    android官方的Gallery是center lock的 意思是你只能居中显示你选中的item。 当你想要实现下面的界面时   用Left Locked Gallery就很方便了。</p>
+</li>
+</ol>
+<p>7.Stickygridheaders   和  StickyListHeaders    类似qq联系人那种。</p>
+<ol>
+<li><p>android-square-progressbar 提供了在图片边框展示下载进度。</p>
+</li>
+<li><p>ActionsContentView   ActionsContentView是一个左边menu导航条，关闭状态只显示缩略图标，用户可以点击图标进行快速切换，在左侧导航栏向右滑动，将打开导航条，可以查看完整导航条（缩略图+文字），选中其中一项，切换到对应界面，并关闭导航条。<br>导航条可以很多，超出屏幕部分可通过滑动导航条查看。</p>
+</li>
+<li><p>Swipe-to-Dismiss  实现listview列表</p>
+</li>
+<li><p>gifview  有些时候项目中需要播放gif，android控件并没用提供，gifview应运而生，是比较了能找到的控件中，我个人认为最好的，推荐给大家。</p>
+</li>
+<li><p>Lockpatterngenerator 实现类似支付宝图案密码锁。前两天看到群里有人求这代码，特地寻找分享出来。 </p>
+</li>
+<li><p>GridWichterle  功能其实很简单，显示网格，该软件是为设计师开发的，可以方便的查看间距是否符合规范。</p>
+</li>
+<li><p>Twidere    是一个强大的Twitter客户端，兼容Android 1.6以上版本。<br>ps:小编没有试，没有Twitter账号，看起来挺不错的，感兴趣的可以自己试下.</p>
+</li>
+<li><p>ListViewAnimations是一个很强大的Demo示例，包含了ListViews, GridViews控件的很多动画如 滑入滑出, 飞入飞出，还包含滑动删除列表item项动画效果.效果挺不错的，推荐运行看下.</p>
+</li>
+<li><p>ShareSDK是 为iOS、Android、WindowsPhone提供社会功能的一个组件，开发者只需10分钟即可集成到自己的APP中，它不仅支持分享给QQ好友、微信好友、微信朋友圈、新浪微博、腾迅微博等以及facebook、twitter、google 等国内外主流的社交平台，还有强大的社会化分享统计分析管理后台. 不熟悉分享的朋友也可以相对比较轻松的实现社会化分享功能。</p>
+</li>
+<li><p>NewQuickAction3D 继承了popwindow实现弹出菜单选择，会根据控件的位置，选择在控件上面或下面，左对齐，居中或右对齐。<br>在项目中还是经常用到的。要符合实际项目的需求可能要稍作修改，是一个很不错的参考示例。</p>
+</li>
+</ol>
+<ol>
+<li>Jamendo是一个开源的在线音乐播放器。<br>ps:小编刚开始学习android，了解到的开源项目就是这个，刚测试了下，链接可能请求不到数据，但是这不影响大家学习呵。</li>
+</ol>
+<ol>
+<li>JazzyViewPager    实现多种页面切换方式的ViewPager，包括淡入淡出、翻页、放大缩小、旋转等等11种切换方式。</li>
+</ol>
+<ol>
+<li>No boring ActionBar   ActionBar随屏幕滚动改变布局 .</li>
+</ol>
+<ol>
+<li>ProgressView 各种进度条样式，包括圆环，扫描等</li>
+</ol>
+<p>原文链接：<a href="http://www.eoeandroid.com/blog-965723-49273.html" target="_blank" rel="external">http://www.eoeandroid.com/blog-965723-49273.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>收藏的Android非常好用的组件或者框架。<br>android框架<br>先说两个网站： <a href="http://www.androidviews.net/">http://www.androidviews.net/</a> 很好的国外开源代码站，就是访问速度有点慢啊<br><a href="http://www.23code.com">http://www.23code.com</a>  挺不错的国人开源代码库，几乎每天都有更新(推荐)<br><a href="http://www.theultimateandroidlibrary.com/">http://www.theultimateandroidlibrary.com/</a>  以前可以访问的，好像现在不行了</p>
+<ol>
+<li>ImageLoader   异步加载图片，缓存，生成缩略图， 基本上每个应用都会需要这个lib。</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="组件" scheme="http://mjiayou.com/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]shape和selector和layer-list的详细说明]]></title>
+    <link href="http://mjiayou.com/2014/08/25/android-shape-selector-layer-list/"/>
+    <id>http://mjiayou.com/2014/08/25/android-shape-selector-layer-list/</id>
+    <published>2014-08-25T05:29:21.000Z</published>
+    <updated>2014-08-25T05:49:10.000Z</updated>
+    <content type="html"><![CDATA[<p>shape和selector是Android UI设计中经常用到的，比如我们要自定义一个圆角Button，点击Button有些效果的变化，就要用到shape和selector。可以这样说，shape和selector在美化控件中的作用是至关重要的。<br>1.Shape<br>简介<br>作用：XML中定义的几何形状<br>位置：res/drawable/文件的名称.xml</p>
+<a id="more"></a>
+<p>使用的方法：<br>Java代码中：R.drawable.文件的名称<br>XML中：Android:background=”@drawable/文件的名称”<br>属性：</p>
+<p><shape>  Android:shape=[“rectangle” | “oval” | “line” | “ring”]<br>其中rectagle矩形，oval椭圆，line水平直线，ring环形</shape></p>
+<p><shape>中子节点的常用属性：</shape></p>
+<p><gradient>  渐变<br>Android:startColor  起始颜色<br>Android:endColor  结束颜色<br>Android:angle  渐变角度，0从上到下，90表示从左到右，数值为45的整数倍默认为0；<br>Android:type  渐变的样式 liner线性渐变 radial环形渐变 sweep</gradient></p>
+<p><solid>  填充<br>Android:color  填充的颜色</solid></p>
+<p><stroke> 描边<br>Android:width 描边的宽度<br>Android:color 描边的颜色<br>Android:dashWidth 表示’-‘横线的宽度<br>Android:dashGap 表示’-‘横线之间的距离</stroke></p>
+<p><corners> 圆角<br>Android:radius  圆角的半径 值越大角越圆<br>Android:topRightRadius  右上圆角半径<br>Android:bottomLeftRadius 右下圆角角半径<br>Android:topLeftRadius 左上圆角半径<br>Android:bottomRightRadius 左下圆角半径</corners></p>
+<p><padding>填充<br>android:bottom=”1.0dip” 底部填充<br>android:left=”1.0dip” 左边填充<br>android:right=”1.0dip” 右边填充<br>android:top=”0.0dip” 上面填充<br>2.Selector<br>简介<br>根据不同的选定状态来定义不同的现实效果<br>分为四大属性：<br>android:state_selected是选中<br>android:state_focused是获得焦点<br>android:state_pressed是点击<br>android:state_enabled是设置是否响应事件,指所有事件<br>android:state_window_focused默认时的背景图片<br>引用位置：res/drawable/文件的名称.xml<br>使用的方法：<br>Java代码中：R.drawable.文件的名称<br>XML中：Android:background=”@drawable/文件的名称”<br>[html] view plaincopy在CODE上查看代码片派生到我的代码片<br>&lt;?xml version=”1.0” encoding=”utf-8” ?&gt;       </padding></p>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"><br><!-- 默认时的背景图片--><br><item android:drawable="@drawable/pic1"><br><!-- 没有焦点时的背景图片 --><br><item android:state_window_focused="false" android:drawable="@drawable/pic_blue"><br><!-- 非触摸模式下获得焦点并单击时的背景图片 --><br><item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/pic_red"><br><!-- 触摸模式下单击时的背景图片--><br><item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/pic_pink"><br><!--选中时的图片背景--><br><item android:state_selected="true" android:drawable="@drawable/pic_orange"><br><!--获得焦点时的图片背景--><br><item android:state_focused="true" android:drawable="@drawable/pic_green"><br></item></item></item></item></item></item></selector>   
+
+
+<p>3.layer-list<br>简介：<br>将多个图片或上面两种效果按照顺序层叠起来<br>例子：<br>[html] view plaincopy在CODE上查看代码片派生到我的代码片<br>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br> <layer-list xmlns:android="http://schemas.android.com/apk/res/android"><br>    <!--图片1--><br>     <item android:id="@+id/user_faceback_drawable" android:drawable="@drawable/faceback"><br>    <!--图片2--><br>     <item android:id="@+id/user_face_drawable" android:drawable="@drawable/h001" android:left="10.0dip" android:top="18.0dip" android:right="25.0dip" android:bottom="35.0dip"><br> </item></item></layer-list><br><!--2个图片的叠加-->  </p>
+<p>效果图：<br>+=<br>以上三个标签可以揉合到一块儿来使用，所要实现的效果就是上面三种简介的说明，比如下面这个例子：<br>[html] view plaincopy在CODE上查看代码片派生到我的代码片</p>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"><br><br>    <item android:state_pressed="true"><layer-list><br>            <item android:bottom="8.0dip"><shape><br>                    <solid android:color="#ffaaaaaa"><br>                </solid></shape></item><br>            <item><shape><br>                    <corners android:bottomleftradius="4.0dip" android:bottomrightradius="4.0dip" android:topleftradius="1.0dip" android:toprightradius="1.0dip"><br><br>                    <solid android:color="#ffaaaaaa"><br><br>                    <padding android:bottom="1.0dip" android:left="1.0dip" android:right="1.0dip" android:top="0.0dip"><br>                </padding></solid></corners></shape></item><br>            <item><shape><br>                    <corners android:bottomleftradius="3.0dip" android:bottomrightradius="3.0dip" android:topleftradius="1.0dip" android:toprightradius="1.0dip"><br><br>                    <solid android:color="@color/setting_item_bgcolor_press"><br>                </solid></corners></shape></item><br>        </layer-list></item><br>    <item><layer-list><br>            <item android:bottom="8.0dip"><shape><br>                    <solid android:color="#ffaaaaaa"><br>                </solid></shape></item><br>            <item><shape><br>                    <corners android:bottomleftradius="4.0dip" android:bottomrightradius="4.0dip" android:topleftradius="1.0dip" android:toprightradius="1.0dip"><br><br>                    <solid android:color="#ffaaaaaa"><br><br>                    <padding android:bottom="1.0dip" android:left="1.0dip" android:right="1.0dip" android:top="0.0dip"><br>                </padding></solid></corners></shape></item><br>            <item><shape><br>                    <corners android:bottomleftradius="3.0dip" android:bottomrightradius="3.0dip" android:topleftradius="1.0dip" android:toprightradius="1.0dip"><br><br>                    <solid android:color="@color/setting_item_bgcolor"><br>                </solid></corners></shape></item><br>        </layer-list></item><br><br></selector>  
+
+<p>原文地址：<a href="http://blog.csdn.net/brokge/article/details/9713041" target="_blank" rel="external">http://blog.csdn.net/brokge/article/details/9713041</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>shape和selector是Android UI设计中经常用到的，比如我们要自定义一个圆角Button，点击Button有些效果的变化，就要用到shape和selector。可以这样说，shape和selector在美化控件中的作用是至关重要的。<br>1.Shape<br>简介<br>作用：XML中定义的几何形状<br>位置：res/drawable/文件的名称.xml</p>]]>
+    
+    </summary>
+    
+      <category term="shape" scheme="http://mjiayou.com/tags/shape/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]NDK编程入门笔记]]></title>
+    <link href="http://mjiayou.com/2014/08/25/android-ndk-begin/"/>
+    <id>http://mjiayou.com/2014/08/25/android-ndk-begin/</id>
+    <published>2014-08-25T04:23:34.000Z</published>
+    <updated>2014-08-25T05:31:25.000Z</updated>
+    <content type="html"><![CDATA[<p>为何要用到NDK?<br>概括来说主要分为以下几种情况：</p>
+<ol>
+<li>代码的保护，由于apk的java层代码很容易被反编译，而C/C++库反汇难度较大。</li>
+<li>在NDK中调用第三方C/C++库，因为大部分的开源库都是用C/C++代码编写的。</li>
+<li>便于移植，用C/C++写得库可以方便在其他的嵌入式平台上再次使用。</li>
+</ol>
+<a id="more"></a>
+<p>下面就介绍下Android NDK的入门学习过程：<br>入门的最好办法就是学习Android自带的例子， 这里就通过学习Android的NDK自带的demo程序：hello-jni来达到这个目的。<br>一、 开发环境的搭建</p>
+<ol>
+<li>android的NDK开发需要在linux下进行： 因为需要把C/C++编写的代码生成能在arm上运行的.so文件，这就需要用到交叉编译环境，而交叉编译需要在linux系统下才能完成。</li>
+<li>安装android-ndk开发包，这个开发包可以在google android 官网下载： 通过这个开发包的工具才能将android jni 的C/C++的代码编译成库</li>
+<li>android应用程序开发环境： 包括eclipse、java、 android sdk、 adt等。</li>
+</ol>
+<p>如何下载和安装android-ndk我这里就不啰嗦了，安装完之后，需要将android-ndk的路劲加到环境变量PATH中：<br>sudo gedit /etc/environment<br>在environment的PATH环境变量中添加你的android-ndk的安装路劲，然后再让这个更改的环境变量立即生效：<br> source  /etc/environment<br>经过了上述步骤，在命令行下敲：<br>ndk-bulid<br>弹出如下的错误，而不是说ndk-build not found，就说明ndk环境已经安装成功了。<br>Android NDK: Could not find application project directory !<br>Android NDK: Please define the NDK_PROJECT_PATH variable to point to it.<br>/home/braincol/workspace/android/android-ndk-r5/build/core/build-local.mk:85: <em>*</em> Android NDK: Aborting    .  Stop.</p>
+<p>二、代码的编写<br>1.首先是写java代码<br>建立一个Android应用工程HelloJni，创建HelloJni.java文件：<br>HelloJni.java :<br>/*</p>
+<ul>
+<li>Copyright (C) 2009 The Android Open Source Project<br>*</li>
+<li>Licensed under the Apache License, Version 2.0 (the “License”);</li>
+<li>you may not use this file except in compliance with the License.</li>
+<li>You may obtain a copy of the License at<br>*</li>
+<li><a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="external">http://www.apache.org/licenses/LICENSE-2.0</a><br>*</li>
+<li>Unless required by applicable law or agreed to in writing, software</li>
+<li>distributed under the License is distributed on an “AS IS” BASIS,</li>
+<li>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</li>
+<li>See the License for the specific language governing permissions and</li>
+<li>limitations under the License.<br>*/<br>package com.example.hellojni;</li>
+</ul>
+<p>import android.app.Activity;<br>import android.widget.TextView;<br>import android.os.Bundle;</p>
+<p>public class HelloJni extends Activity<br>{<br>    /<em>* Called when the activity is first created. </em>/<br>    @Override<br>    public void onCreate(Bundle savedInstanceState)<br>    {<br>        super.onCreate(savedInstanceState);</p>
+<pre><code>    /* <span class="type">Create</span> a <span class="type">TextView</span> <span class="keyword">and</span> <span class="type">set</span> its content.
+     * the text <span class="keyword">is</span> retrieved by calling a native
+     * function.
+     */
+    <span class="type">TextView</span>  tv = new <span class="type">TextView</span>(this);
+    tv.setText( stringFromJNI() );
+    setContentView(tv);
+}
+
+/* A native <span class="keyword">method</span> that <span class="keyword">is</span> implemented by the
+ * 'hello-jni' native library, which <span class="keyword">is</span> packaged
+ * <span class="keyword">with</span> this application.
+ */
+public native <span class="type">String</span>  stringFromJNI();
+
+/* <span class="type">This</span> <span class="keyword">is</span> another native <span class="keyword">method</span> declaration that <span class="keyword">is</span> *<span class="keyword">not</span>*
+ * implemented by 'hello-jni'. <span class="type">This</span> <span class="keyword">is</span> simply to show that
+ * you can declare <span class="keyword">as</span> many native methods <span class="keyword">in</span> your <span class="type">Java</span> code
+ * <span class="keyword">as</span> you want, their implementation <span class="keyword">is</span> searched <span class="keyword">in</span> the
+ * currently loaded native libraries only the first time
+ * you call them.
+ *
+ * <span class="type">Trying</span> to call this function will <span class="literal">result</span> <span class="keyword">in</span> a
+ * java.lang.<span class="type">UnsatisfiedLinkError</span> exception !
+ */
+public native <span class="type">String</span>  unimplementedStringFromJNI();
+
+/* this <span class="keyword">is</span> used to load the 'hello-jni' library on application
+ * startup. <span class="type">The</span> library has already been unpacked into
+ * /data/data/com.example.<span class="type">HelloJni</span>/lib/libhello-jni.so at
+ * installation time by the package manager.
+ */
+<span class="keyword">static</span> {
+    <span class="type">System</span>.loadLibrary(<span class="string">"hello-jni"</span>);
+}
+</code></pre><p>}<br>这段代码很简单，注释也很清晰，这里只提两点：:<br>static{<br>System.loadLibrary(“hello-jni”);<br>}<br>表明程序开始运行的时候会加载hello-jni, static区声明的代码会先于onCreate方法执行。如果你的程序中有多个类，而且如果HelloJni这个类不是你应用程序的入口，那么hello-jni（完整的名字是libhello-jni.so）这个库会在第一次使用HelloJni这个类的时候加载。<br>public native String stringFromJNI();<br>public native String unimplementedStringFromJNI();<br>可以看到这两个方法的声明中有 native 关键字， 这个关键字表示这两个方法是本地方法，也就是说这两个方法是通过本地代码（C/C++）实现的，在java代码中仅仅是声明。<br>用eclipse编译该工程，生成相应的.class文件，这步必须在下一步之前完成，因为生成.h文件需要用到相应的.class文件。</p>
+<ol>
+<li>编写相应的C/C++代码<br>刚开始学的时候，有个问题会让人很困惑，相应的C/C++代码如何编写，函数名如何定义？ 这里讲一个方法，利用javah这个工具生成相应的.h文件，然后根据这个.h文件编写相应的C/C++代码。<br>2.1 生成相应.h文件：<br>就拿我这的环境来说，首先在终端下进入刚刚建立的HelloJni工程的目录：<br>braincol@ubuntu:~$ cd workspace/android/NDK/hello-jni/ls查看工程文件<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ ls<br>AndroidManifest.xml  assets  bin  default.properties  gen  res  src </li>
+</ol>
+<p>可以看到目前仅仅有几个标准的android应用程序的文件（夹）。<br>首先我们在工程目录下建立一个jni文件夹：<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ mkdir jni<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ ls<br>AndroidManifest.xml  assets  bin  default.properties  gen  jni  res  src </p>
+<p>下面就可以生成相应的.h文件了：<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ javah -classpath bin -d jni com.example.hellojni.HelloJni </p>
+<p>-classpath bin：表示类的路劲<br>-d jni: 表示生成的头文件存放的目录<br>com.example.hellojni.HelloJni 则是完整类名<br>这一步的成功要建立在已经在 bin/com/example/hellojni/  目录下生成了 HelloJni.class的基础之上。<br>现在可以看到jni目录下多了个.h文件：<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ cd jni/<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni/jni$ ls<br>com_example_hellojni_HelloJni.h<br>我们来看看com_example_hellojni_HelloJni.h的内容：<br>com_example_hellojni_HelloJni.h :<br>/<em> DO NOT EDIT THIS FILE - it is machine generated </em>/</p>
+<p>#include <jni.h><br>/<em> Header for class com_example_hellojni_HelloJni </em>/</jni.h></p>
+<p>#ifndef _Included_com_example_hellojni_HelloJni</p>
+<p>#define _Included_com_example_hellojni_HelloJni</p>
+<p>#ifdef __cplusplus<br>extern “C” {</p>
+<p>#endif<br>/*</p>
+<ul>
+<li>Class:     com_example_hellojni_HelloJni</li>
+<li>Method:    stringFromJNI</li>
+<li>Signature: ()Ljava/lang/String;<br><em>/<br>JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_stringFromJNI<br>(JNIEnv </em>, jobject);</li>
+</ul>
+<p>/*</p>
+<ul>
+<li>Class:     com_example_hellojni_HelloJni</li>
+<li>Method:    unimplementedStringFromJNI</li>
+<li>Signature: ()Ljava/lang/String;<br><em>/<br>JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_unimplementedStringFromJNI<br>(JNIEnv </em>, jobject);</li>
+</ul>
+<p>#ifdef __cplusplus<br>}</p>
+<p>#endif</p>
+<p>#endif<br>上面代码中的JNIEXPORT 和 JNICALL 是jni的宏，在android的jni中不需要，当然写上去也不会有错。<br>从上面的源码中可以看出这个函数名那是相当的长啊。。。。 不过还是很有规律的， 完全按照：java_pacakege_class_mathod 形式来命名。<br>也就是说：</p>
+<p>Hello.java中 stringFromJNI() 方法对应于 C/C++中的 Java_com_example_hellojni_HelloJni_stringFromJNI() 方法<br>HelloJni.java中的 unimplementedStringFromJNI() 方法对应于 C/C++中的 Java_com_example_hellojni_HelloJni_unimplementedStringFromJNI() 方法 </p>
+<p>注意下其中的注释：<br>Signature: ()Ljava/lang/String; </p>
+<p>()Ljava/lang/String;<br>()表示函数的参数为空（这里为空是指除了JNIEnv <em>, jobject 这两个参数之外没有其他参数，JNIEnv</em>, jobject是所有jni函数必有的两个参数，分别表示jni环境和对应的java类（或对象）本身），<br>Ljava/lang/String; 表示函数的返回值是java的String对象。</p>
+<p>2.2 编写相应的.c文件：<br>hello-jni.c :<br>/*</p>
+<ul>
+<li>Copyright (C) 2009 The Android Open Source Project<br>*</li>
+<li>Licensed under the Apache License, Version 2.0 (the “License”);</li>
+<li>you may not use this file except in compliance with the License.</li>
+<li>You may obtain a copy of the License at<br>*</li>
+<li><a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="external">http://www.apache.org/licenses/LICENSE-2.0</a><br>*</li>
+<li>Unless required by applicable law or agreed to in writing, software</li>
+<li>distributed under the License is distributed on an “AS IS” BASIS,</li>
+<li>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</li>
+<li>See the License for the specific language governing permissions and</li>
+<li>limitations under the License.<br><em>
+</em>/<br>#include <string.h><br>#include <jni.h></jni.h></string.h></li>
+</ul>
+<p>/* This is a trivial JNI example where we use a native method</p>
+<ul>
+<li>to return a new VM String. See the corresponding Java source</li>
+<li>file located at:<br>*</li>
+<li>apps/samples/hello-jni/project/src/com/example/HelloJni/HelloJni.java<br><em>/<br>jstring<br>Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv</em> env,<pre><code><span class="title">jobject</span> thiz )
+</code></pre>{<br>return (*env)-&gt;NewStringUTF(env, “Hello from JNI !”);<br>}<br>这里只是实现了Java_com_example_hellojni_HelloJni_stringFromJNI方法，而 Java_com_example_hellojni_HelloJni_unimplementedStringFromJNI 方法并没有实现，因为在HelloJni.java中只调用了stringFromJNI()方法，所以unimplementedStringFromJNI()方法没有实现也没关系，不过建议最好还是把所有java中定义的本地方法都实现了，写个空函数也行啊。。。有总比没有好。<br>Java_com_example_hellojni_HelloJni_stringFromJNI() 函数只是简单的返回了一个内容为 “Hello from JNI !” 的jstring对象（对应于java中的String对象）。<br>hello-jni.c文件已经编写好了，现在可以把com_example_hellojni_HelloJni.h文件给删了，当然留着也行，只是我还是习惯把不需要的文件给清理干净了。</li>
+</ul>
+<ol>
+<li>编译hello-jni.c 生成相应的库<br>3.1 编写Android.mk文件<br>在jni目录下（即hello-jni.c 同级目录下）新建一个Android.mk文件，Android.mk 文件是Android 的 makefile文件，内容如下：<h1 id="Copyright_(C)_2009_The_Android_Open_Source_Project">Copyright (C) 2009 The Android Open Source Project</h1>#<h1 id="Licensed_under_the_Apache_License,_Version_2-0_(the_“License”);">Licensed under the Apache License, Version 2.0 (the “License”);</h1><h1 id="you_may_not_use_this_file_except_in_compliance_with_the_License-">you may not use this file except in compliance with the License.</h1><h1 id="You_may_obtain_a_copy_of_the_License_at">You may obtain a copy of the License at</h1>#<h1 id="http://www-apache-org/licenses/LICENSE-2-0"><a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="external">http://www.apache.org/licenses/LICENSE-2.0</a></h1>#<h1 id="Unless_required_by_applicable_law_or_agreed_to_in_writing,_software">Unless required by applicable law or agreed to in writing, software</h1><h1 id="distributed_under_the_License_is_distributed_on_an_“AS_IS”_BASIS,">distributed under the License is distributed on an “AS IS” BASIS,</h1><h1 id="WITHOUT_WARRANTIES_OR_CONDITIONS_OF_ANY_KIND,_either_express_or_implied-">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</h1><h1 id="See_the_License_for_the_specific_language_governing_permissions_and">See the License for the specific language governing permissions and</h1><h1 id="limitations_under_the_License-">limitations under the License.</h1>#<br>LOCAL_PATH := $(call my-dir)</li>
+</ol>
+<p>include $(CLEAR_VARS)</p>
+<p>LOCAL_MODULE    := hello-jni<br>LOCAL_SRC_FILES := hello-jni.c</p>
+<p>include $(BUILD_SHARED_LIBRARY)<br>这个Androd.mk文件很短，下面我们来逐行解释下：<br>LOCAL_PATH := $(call my-dir)<br>一个Android.mk 文件首先必须定义好LOCAL_PATH变量。它用于在开发树中查找源文件。在这个例子中，宏函数’my-dir’, 由编译系统提供，用于返回当前路径（即包含Android.mk file文件的目录）。<br>include $( CLEAR_VARS)<br>CLEAR_VARS由编译系统提供，指定让GNU MAKEFILE为你清除许多LOCAL_XXX变量（例如 LOCAL_MODULE, LOCAL_SRC_FILES, LOCAL_STATIC_LIBRARIES, 等等…),<br>除LOCAL_PATH 。这是必要的，因为所有的编译控制文件都在同一个GNU MAKE执行环境中，所有的变量都是全局的。<br>LOCAL_MODULE := hello-jni<br>编译的目标对象，LOCAL_MODULE变量必须定义，以标识你在Android.mk文件中描述的每个模块。名称必须是唯一的，而且不包含任何空格。<br>注意：编译系统会自动产生合适的前缀和后缀，换句话说，一个被命名为’hello-jni’的共享库模块，将会生成’libhello-jni.so’文件。<br>重要注意事项：<br>如果你把库命名为‘libhello-jni’，编译系统将不会添加任何的lib前缀，也会生成 ‘libhello-jni.so’，这是为了支持来源于Android平台的源代码的Android.mk文件，如果你确实需要这么做的话。<br>LOCAL_SRC_FILES := hello-jni.c<br>LOCAL_SRC_FILES变量必须包含将要编译打包进模块中的C或C++源代码文件。注意，你不用在这里列出头文件和包含文件，因为编译系统将会自动为你找出依赖型的文件；仅仅列出直接传递给编译器的源代码文件就好。<br>注意，默认的C++源码文件的扩展名是’.cpp’. 指定一个不同的扩展名也是可能的，只要定义LOCAL_DEFAULT_CPP_EXTENSION变量，不要忘记开始的小圆点（也就是’.cxx’,而不是’cxx’）<br>include $(BUILD_SHARED_LIBRARY)<br>BUILD_SHARED_LIBRARY表示编译生成共享库，是编译系统提供的变量，指向一个GNU Makefile脚本，负责收集自从上次调用’include $(CLEAR_VARS)’以来，定义在LOCAL_XXX变量中的所有信息，并且决定编译什么，如何正确地去做。还有 BUILD_STATIC_LIBRARY变量表示生成静态库：lib$(LOCAL_MODULE).a， BUILD_EXECUTABLE 表示生成可执行文件。</p>
+<p>3.2 生成.so共享库文件<br>Andro文件已经编写好了，现在可以用android NDK开发包中的 ndk-build脚本生成对应的.so共享库了，方法如下：<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni/jni$ cd ..<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ ls<br>AndroidManifest.xml  assets  bin  default.properties  gen  jni  libs  obj  res  src<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ ndk-build<br>Gdbserver      : [arm-linux-androideabi-4.4.3] libs/armeabi/gdbserver<br>Gdbsetup       : libs/armeabi/gdb.setup<br>Install        : libhello-jni.so =&gt; libs/armeabi/libhello-jni.so </p>
+<p>可以看到已经正确的生成了libhello-jni.so共享库了， 我们去 libs/armeabi/ 目录下看看：<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni$ cd libs/<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni/libs$ ls<br>armeabi<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni/libs$ cd armeabi/<br>braincol@ubuntu:~/workspace/android/NDK/hello-jni/libs/armeabi$ ls<br>gdbserver  gdb.setup  libhello-jni.so</p>
+<ol>
+<li>在eclipse重新编译HelloJni工程，生成apk<br>eclipse中刷新下HelloJni工程，重新编译生成apk，libhello-jni.so共享库会一起打包在apk文件内。</li>
+</ol>
+<p>原文链接：<a href="http://www.cnblogs.com/hibraincol/archive/2011/05/30/2063847.html" target="_blank" rel="external">http://www.cnblogs.com/hibraincol/archive/2011/05/30/2063847.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>为何要用到NDK?<br>概括来说主要分为以下几种情况：</p>
+<ol>
+<li>代码的保护，由于apk的java层代码很容易被反编译，而C/C++库反汇难度较大。</li>
+<li>在NDK中调用第三方C/C++库，因为大部分的开源库都是用C/C++代码编写的。</li>
+<li>便于移植，用C/C++写得库可以方便在其他的嵌入式平台上再次使用。</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="NDK" scheme="http://mjiayou.com/tags/NDK/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.08.17_随笔，时光]]></title>
+    <link href="http://mjiayou.com/2014/08/17/note-time/"/>
+    <id>http://mjiayou.com/2014/08/17/note-time/</id>
+    <published>2014-08-17T07:33:09.000Z</published>
+    <updated>2014-08-22T07:42:17.000Z</updated>
+    <content type="html"><![CDATA[<p>荏苒，如梭。</p>
+<p>早上醒来微博各种刷EXO经纪人机场打人的新闻，对于艺人打人事件早已司空见惯，我只想问：EXO是干嘛的？手贱的我还是百度了一下：12人男子组合？这么多人能认的过来么，然后我就猜测是不是和十二生肖有半点关系。当打开图片一栏英姿的时候，看到的是洗剪吹和剪头手，再仔细观察清一色的白脸蛋儿、双眼皮、高鼻梁、小嘴巴、尖下巴，目测出自同一批次模板。。。</p>
+<a id="more"></a>
+<p>如果想吐槽还会有一大堆的话，不过关于EXO说到此为止，不是重点，不予置评。就像当前周杰伦刚正火的时候，叔叔说他唱的乱七八糟什么东西，而我总是能说出一大锥自以为“JAY音乐人生”得道理去反驳，估计EXO的粉更会长江后浪推前浪。</p>
+<p>想说的是：时光。有时候地铁上的电视会播xx音乐风云榜，才发现已经没有几个认识的“当红明星”，近几年流行的跨年晚会每上台一个帅哥美女就引起欢呼，而我只想问这是谁，就像年长的一辈很难接受周杰伦一样，已年长。想起小时候年长一辈喜欢听《萍聚》、《女人花》之类的老歌，再想起大街小巷都放周杰伦的歌的那个年代，原来《七里香》、《东风破》俨然已经成为“老歌”，这一前一后过了三个时代，时间都去哪儿了？</p>
+<p>时光荏苒，记得初中的时候最喜欢带着一个随身听，放学后跟着小伙伴去篮球场，一边看他们打篮球随时替补，一边听着随身听。那时候听的最多的是BEYOND、周杰伦、小刚，买的第一盘磁带是《寻找周杰伦》。而今BEYOND随着家驹早逝早已不复存在，周杰伦的音乐也貌似江郎才尽跨界去挖金，小刚貌似好久没了动静。但是音乐仍在继续，让我想起家驹的一句话：有音乐的地方就没有世界末日。</p>
+<p>岁月如梭，从16岁的好学生到18岁的叛逆期，辜负了所有人对我的期望。再从20岁的浪子回头到22岁的坚定梦想，努力的准备着。一路走到现在，前些天刚过了24岁的生日，不大不小的年纪，就算有说干就干的魄力，但是没了拿青春赌明天的资本。有时候看看身边的93年94年，哎，说年轻真好略显装B，但是，真好。</p>
+<p>本文毫无重点，睡了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>荏苒，如梭。</p>
+<p>早上醒来微博各种刷EXO经纪人机场打人的新闻，对于艺人打人事件早已司空见惯，我只想问：EXO是干嘛的？手贱的我还是百度了一下：12人男子组合？这么多人能认的过来么，然后我就猜测是不是和十二生肖有半点关系。当打开图片一栏英姿的时候，看到的是洗剪吹和剪头手，再仔细观察清一色的白脸蛋儿、双眼皮、高鼻梁、小嘴巴、尖下巴，目测出自同一批次模板。。。</p>]]>
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://mjiayou.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.08.03_黑]]></title>
+    <link href="http://mjiayou.com/2014/08/03/black/"/>
+    <id>http://mjiayou.com/2014/08/03/black/</id>
+    <published>2014-08-03T07:33:07.000Z</published>
+    <updated>2014-08-22T07:38:29.000Z</updated>
+    <content type="html"><![CDATA[<p>听过无数的道理，却仍旧过不好这一生。真逗。</p>
+<p>怎样过是过的好？腰缠万贯、香车美女，回家路上冥思苦想怎么对正宫解释？光芒四射、粉丝追捧，独自时也曾因为公司的安排而黯然皱起眉头？书香门第、满腹经纶，浑然不知砖头是泥巴做的？英俊潇洒、风流倜傥，坚持认为自己的感情对每个女人都是专一？文质彬彬、老实正派，闲暇之余对岛国文化研究的有理有据？甲对过的好的定义是：工作上努力拼搏实现自己的梦想达到人生的巅峰，生活上为人处事攒人品对得起良心底线，感情上用心去维护一段感情直到终老；乙对过的好的定义是：像风一样自由。每个人的定义是不同的，最无聊就是在一些感性的问题上力图把自己的想法强加给别人，一时间，他犹如漫步阳光沙滩，没错阳光沙滩。于是两个人厮打在一起，两败俱伤，打的毫无意义。围观者开始下注，最后赢得竟然是庄家，庄家微微一笑，去寻找另一个战场。倒不如微微一笑，过着自己的生活，从此别渴望能过的好，只要求别过的不好就足矣。标准来说是这么笑：呵呵（WQNMLGB）。</p>
+<a id="more"></a>
+<p>怎么可能过的好？生活就是各种坑，坑的理所当然。黑，不是因为派出所没朋友，不是因为工商局得工作需要七个工作日，不是因为各种“部门”踢皮球，不是因为社会风气不好，不是因为人心在变，而是因为他妈的停电了，所以黑。如果都过的好了让坑蒙拐骗的朋友怎么活。所以别活了，去死吧碧池。</p>
+<p>为什么要过的好？为什么不让你的心电图也一帆风顺呢。没有人是完美的，正如没有一段经历是不经波折的，正如没有一个人生是平淡无奇的，也正如没有毫无道理的横空出世。所以正确面对正在面临的不顺利，迎风跃起，直到翱翔。尽管你只是一只猪，那就去练习更高的跳跃，去寻找更强劲的风口。</p>
+<p>为什么听过无数的道理，却仍旧过不好这一生。因为你还没有过完这一生。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>听过无数的道理，却仍旧过不好这一生。真逗。</p>
+<p>怎样过是过的好？腰缠万贯、香车美女，回家路上冥思苦想怎么对正宫解释？光芒四射、粉丝追捧，独自时也曾因为公司的安排而黯然皱起眉头？书香门第、满腹经纶，浑然不知砖头是泥巴做的？英俊潇洒、风流倜傥，坚持认为自己的感情对每个女人都是专一？文质彬彬、老实正派，闲暇之余对岛国文化研究的有理有据？甲对过的好的定义是：工作上努力拼搏实现自己的梦想达到人生的巅峰，生活上为人处事攒人品对得起良心底线，感情上用心去维护一段感情直到终老；乙对过的好的定义是：像风一样自由。每个人的定义是不同的，最无聊就是在一些感性的问题上力图把自己的想法强加给别人，一时间，他犹如漫步阳光沙滩，没错阳光沙滩。于是两个人厮打在一起，两败俱伤，打的毫无意义。围观者开始下注，最后赢得竟然是庄家，庄家微微一笑，去寻找另一个战场。倒不如微微一笑，过着自己的生活，从此别渴望能过的好，只要求别过的不好就足矣。标准来说是这么笑：呵呵（WQNMLGB）。</p>]]>
+    
+    </summary>
+    
+      <category term="黑" scheme="http://mjiayou.com/tags/%E9%BB%91/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android-[转载]px与dp,sp换算公式]]></title>
+    <link href="http://mjiayou.com/2014/07/22/android-px-dp-sp/"/>
+    <id>http://mjiayou.com/2014/07/22/android-px-dp-sp/</id>
+    <published>2014-07-22T07:57:34.000Z</published>
+    <updated>2014-08-25T05:31:19.000Z</updated>
+    <content type="html"><![CDATA[<p>PPI = Pixels per inch，每英寸上的像素数,即 “像素密度”</p>
+<p>xhdpi: 2.0<br>hdpi: 1.5<br>mdpi: 1.0 (baseline)<br>ldpi: 0.75</p>
+<h2 id="图片">图片</h2><img src="/images/20140722-1.png" width="400" height="600" title="这是一张图片">
+<p>drawable-ldpi、drawable-mdpi、drawable-hdpi 精度分别为低、中（android默认）、高。<br>对应的图片大小为：36x36、48x48、72x72。</p>
+<a id="more"></a>
+<p>xxhdpi: 144<em>144<br>xhdpi:96</em>96<br>hdpi:72<em>72<br>mdpi:48</em>48<br>ldpi:36*36</p>
+<p>dp是虚拟像素，在不同的像素密度的设备上会自动适配，比如:<br>在320x480分辨率，像素密度为160,1dp=1px<br>在480x800分辨率，像素密度为240,1dp=1.5px<br>计算公式:1dp*像素密度/160 = 实际像素数</p>
+<p>drawable- hdpi、drawable- mdpi、drawable-ldpi的区别：<br>(1)drawable-hdpi里面存放高分辨率的图片,如WVGA (480x800),FWVGA (480x854)<br>(2)drawable-mdpi里面存放中等分辨率的图片,如HVGA (320x480)<br>(3)drawable-ldpi里面存放低分辨率的图片,如QVGA (240x320)<br>系统会根据机器的分辨率来分别到这几个文件夹里面去找对应的图片。</p>
+<p> ppi的运算方式是：</p>
+<p>PPI = √（长度像素数² + 宽度像素数²） / 屏幕对角线英寸数</p>
+<p>dp：Density-independent pixels，以160PPI屏幕为标准，则1dp=1px，</p>
+<p>dp和px的换算公式 ：<br>dp*ppi/160 = px。比如1dp x 320ppi/160 = 2px。</p>
+<p>sp：Scale-independent pixels，它是安卓的字体单位，以160PPI屏幕为标准，当字体大小为 100%时， 1sp=1px。</p>
+<p>sp 与 px 的换算公式：sp*ppi/160 = px</p>
+<p>总结得出：</p>
+<p>px = dp*ppi/160<br>dp = px / (ppi / 160)</p>
+<p>px = sp*ppi/160<br>sp = px / (ppi / 160)</p>
+<p>dp = sp? </p>
+<p>参考：</p>
+<p>[无线手册-4] dp、sp、px傻傻分不清楚[完整]<br><a href="http://zhuanlan.zhihu.com/zhezhexiong/19565895" target="_blank" rel="external">http://zhuanlan.zhihu.com/zhezhexiong/19565895</a></p>
+<p>Supporting Different Screens | Android Developers<br><a href="http://developer.android.com/training/basics/supporting-devices/screens.html#create-bitmaps" target="_blank" rel="external">http://developer.android.com/training/basics/supporting-devices/screens.html#create-bitmaps</a></p>
+<p>Iconography | Android Developers<br><a href="http://developer.android.com/design/style/iconography.html" target="_blank" rel="external">http://developer.android.com/design/style/iconography.html</a></p>
+<p>Devices and Displays | Android Developers<br><a href="http://developer.android.com/design/style/devices-displays.html" target="_blank" rel="external">http://developer.android.com/design/style/devices-displays.html</a></p>
+<p>原文链接：<a href="http://www.cnblogs.com/bluestorm/p/3640786.html" target="_blank" rel="external">http://www.cnblogs.com/bluestorm/p/3640786.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>PPI = Pixels per inch，每英寸上的像素数,即 “像素密度”</p>
+<p>xhdpi: 2.0<br>hdpi: 1.5<br>mdpi: 1.0 (baseline)<br>ldpi: 0.75</p>
+<h2 id="图片">图片</h2><img src="/images/20140722-1.png" width="400" height="600" title="这是一张图片">
+<p>drawable-ldpi、drawable-mdpi、drawable-hdpi 精度分别为低、中（android默认）、高。<br>对应的图片大小为：36x36、48x48、72x72。</p>]]>
+    
+    </summary>
+    
+      <category term="屏幕适配" scheme="http://mjiayou.com/tags/%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/"/>
+    
+      <category term="Android" scheme="http://mjiayou.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.07.19_生日快乐]]></title>
+    <link href="http://mjiayou.com/2014/07/19/happy-birthday/"/>
+    <id>http://mjiayou.com/2014/07/19/happy-birthday/</id>
+    <published>2014-07-19T07:33:05.000Z</published>
+    <updated>2014-08-22T07:48:43.000Z</updated>
+    <content type="html"><![CDATA[<p>要不是晚上火包打电话来发酒疯，真真记不得今天是我的生日，也罢，忙着生活。</p>
+<p>二十又四，这个纠结的年龄不大不小，小到初入社会空感叹工作经验不足，大到足可以不孝之名提及婚嫁，又合适到刚刚好开始自己的生活。感情被那四个字蹂躏的让我连声叫好；工作被现实情况蹂躏的激情渐无；生活用一首歌名概括，一个人的北京；除此之外，都好的很。</p>
+<a id="more"></a>
+<p>其实也没那么糟，在北京不知不觉呆了小半年，周六周天不上班，该逛的地方抽着周末也都逛了，朋友接待了一波又一波，上班同事扯扯皮，下班逛逛路边摊，晚上回来或者学学开发，或者看看新闻听听音乐，周末可以叫上好友逛个博物馆吃个烧烤看个电影，玩累了无论多晚有个可以睡觉的家。还好吧，有时候想了想无论在哪都不会一帆风顺的，凡事两面性，收获一些再付出一些也是理所当然的。好吧。<br>北京虽然地铁挤了点、空气霾了点、压力大了点，虽然被种种现实蹂躏的体无完肤，但是不后悔来这，只因这里遍地的机会和更有意义的挑战。其实北京有时候还是挺美的，喜欢晚上站在天桥上看车水马龙从脚底穿过的画面，视线变焦，只看得见车灯圆圈模糊得越来越大，慢慢抬头然后闭上眼睛，长呼一口气，嘴角上扬，然后轻声说：北京。</p>
+<p>始终记得刚来北京的那两个月，每天下班之后自己在公司自愿加班到九点十点，只为了多学点东西找个好点的工作，那段日子是我在北京最充实的一段。一直在说想找回那时的状态也未果，有时候会回头想想为什么会这样，因为那时候生活寄宿朋友那不用过问、感情还好不用揪心，唯一的问题就是为了工作而努力学习着，为了梦想而奋斗着。而现在呢，被感情工作生活各种不如意困扰，有时候真想喊一声老子不干了然后放下一切去旅行，最想去的还是海边，尽管在那生活了三年，看到大海会有种释怀的感觉，心随大海瞬间宽广了，据说离秦皇岛得海边挺近。。。</p>
+<p>这是在北京的第一个生日，不知道在这个城市还能再过多少个生日，既来之则安之。生活，同事走了旧人也来了新人，晚上帮朋友搬家路边烧烤小吃小喝挺好，明天童哥邀请去小聚见见旧友，这就是生活，还要继续；感情，依稀记得前几天那个冷雨夜；工作，虽然激情被磨灭的只剩火星，但是星星之火可以燎原气势应该还是有的，再次希望能找回刚来北京时候的状态，丰富自己的专业知识，多学点技术，这辈子应该就靠这个饭碗活着了，加油吧。只要有机会，只要肯付出，就能走到出头天。所以，会好的。</p>
+<p>早点睡，虽然已经晚了。</p>
+<h2 id="图片">图片</h2><img src="/images/20140719-1.jpg" width="400" height="600">
+<img src="/images/20140719-2.jpg" width="400" height="600">
+<img src="/images/20140719-3.jpg" width="400" height="600">
+<img src="/images/20140719-4.jpg" width="400" height="600">
+<img src="/images/20140719-5.jpg" width="400" height="600">]]></content>
+    <summary type="html">
+    <![CDATA[<p>要不是晚上火包打电话来发酒疯，真真记不得今天是我的生日，也罢，忙着生活。</p>
+<p>二十又四，这个纠结的年龄不大不小，小到初入社会空感叹工作经验不足，大到足可以不孝之名提及婚嫁，又合适到刚刚好开始自己的生活。感情被那四个字蹂躏的让我连声叫好；工作被现实情况蹂躏的激情渐无；生活用一首歌名概括，一个人的北京；除此之外，都好的很。</p>]]>
+    
+    </summary>
+    
+      <category term="生日" scheme="http://mjiayou.com/tags/%E7%94%9F%E6%97%A5/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.07.16_北京，冷雨夜]]></title>
+    <link href="http://mjiayou.com/2014/07/16/beijing-rain-night/"/>
+    <id>http://mjiayou.com/2014/07/16/beijing-rain-night/</id>
+    <published>2014-07-16T07:33:02.000Z</published>
+    <updated>2014-08-22T07:49:28.000Z</updated>
+    <content type="html"><![CDATA[<p>在雨中漫步<br>蓝色街灯渐露<br>相对望<br>无声紧拥抱着<br>为了找往日<br>寻温馨的往日<br>消失了</p>
+<a id="more"></a>
+<p>任雨洒我面<br>难分水点泪痕<br>心更乱<br>愁丝绕千百段<br>骤变的态度<br>无心伤她说话<br>收不了</p>
+<p>冷雨夜我在你身边<br>盼望你会知<br>可知道我的心<br>比当初已改变<br>只牵强地相处</p>
+<p>冷雨夜我不想归家<br>怕望你背影<br>只苦笑望雨点<br>须知要说清楚<br>可惜我没胆试</p>
+<p>在雨中漫步<br>尝水中的味道<br>仿似是<br>情此刻的尽时<br>未了解结合<br>留低思忆片段<br>不经意</p>
+<p>—BEYOND</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在雨中漫步<br>蓝色街灯渐露<br>相对望<br>无声紧拥抱着<br>为了找往日<br>寻温馨的往日<br>消失了</p>]]>
+    
+    </summary>
+    
+      <category term="北京" scheme="http://mjiayou.com/tags/%E5%8C%97%E4%BA%AC/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.06.25_随笔，火车上]]></title>
+    <link href="http://mjiayou.com/2014/06/25/note-on-the-train/"/>
+    <id>http://mjiayou.com/2014/06/25/note-on-the-train/</id>
+    <published>2014-06-25T07:22:06.000Z</published>
+    <updated>2014-08-22T07:49:31.000Z</updated>
+    <content type="html"><![CDATA[<p>火车上，坐到恶心，于是起身远眺，若有所思。人生路上也是。</p>
+<p>走到岔路口，面临选择，不免迷茫，有必要驻足沉思，然后扬起嘴角昂首启程。</p>
+<a id="more"></a>
+<p>远眺风景甚好，一路上始终没有离开视线的东西是绿色，大树从枣庄到北京一路跟随，生机盎然，纵然天空阴沉，它始终坚挺着，传递生命。</p>
+<p>路口几多，世界因为不同的人选择不同的道路而更美丽，如此结论是人生的选择没有对错，有的只是不同的梦想，但是无论怎样的梦想，需要一路跟随的是“坚持”，纵使路上有苦有痛，有挫折有磨难，它始终需要存在，传递着希望。</p>
+<p>一片小树林的主人肯定不曾想他的这片绿色能一路延伸到很远很远的地方，也不曾想这片绿色是作为生命的接力而存在着，因为微观的世界局限了许多视线。</p>
+<p>道路上的一个坚持不能左右人生，也很难说可以决定一个人的命运，但是宏观上，成功人士的每个坚持都是关键的。记得要坚持。</p>
+<p>贱人就是矫情。到站了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>火车上，坐到恶心，于是起身远眺，若有所思。人生路上也是。</p>
+<p>走到岔路口，面临选择，不免迷茫，有必要驻足沉思，然后扬起嘴角昂首启程。</p>]]>
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://mjiayou.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hexo-Mac下搭建hexo博客全过程]]></title>
+    <link href="http://mjiayou.com/2014/06/16/mac-hexo-log/"/>
+    <id>http://mjiayou.com/2014/06/16/mac-hexo-log/</id>
+    <published>2014-06-16T08:57:15.000Z</published>
+    <updated>2014-08-22T07:18:43.000Z</updated>
+    <content type="html"><![CDATA[<p>个人博客做了也小有三年了，从刚开始的emlog到后来的wordpress，后来朋友介绍hexo才开始接触这种轻量级的博客系统，于是在windows下用了几个月感觉良好。最近开发需要，入手mac，但是hexo不能停，又于是琢磨mac下的hexo搭建，相对于windows来说mac平台的一些资料还是略显不足，或者就是网上资源鱼龙混杂需要自己判断择优使用。诺在这里把自己搭建的过程和方法记录一下，如果不足或者错误的地方，恳请指正，共同进步才是目的，谢谢。</p>
+<h2 id="先屡一下思路">先屡一下思路</h2><p>1.首先hexo是基于nodejs的，所以必须安装nodejs<br>2.安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它<a id="more"></a><br>3.安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定<br>4.hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定<br>5.OK整理一下安装顺序：homebrew-nodejs-hexo-git</p>
+<h2 id="思路屡清楚了，下面安装方法整理一下">思路屡清楚了，下面安装方法整理一下</h2><p><strong>1.安装brewhome，一句话搞定</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &#34;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&#8221;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.0 安装nodejs</strong><br>2.1 第一种方式，brewhome安装，一句话搞定<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure></p>
+<p>2.2 第二种方式，前提是已经安装好Xcode和git，安装git方法在下面介绍<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/joyent/node.git&#10;cd node&#10;./configure&#10;make&#10;sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>2.3 第三种方式，下载<a href="http://nodejs.org/download/" target="_blank" rel="external">源码</a>，解压后编译执行同上</p>
+<p><strong>3.0 安装hexo</strong><br>3.1 第一种方式，用nodejs自带npm安装<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo&#10;hexo init&#10;npm install</span><br></pre></td></tr></table></figure></p>
+<p>3.2 第二种方式，下载<a href="http://www.nodejs.org/download/" target="_blank" rel="external">源码</a>，编译执行<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=~/nodejs &#38;&#38; make &#38;&#38; make install&#10;cp ~/nodejs/bin/node /usr/sbin/node&#10;~/nodejs/bin/npm install -g hexo</span><br></pre></td></tr></table></figure></p>
+<p><strong>4.0 安装git</strong><br>4.1 第一种方式，homebrew安装，一句话搞定<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo brew install git</span><br></pre></td></tr></table></figure></p>
+<p>4.2 第二种方式，前提是已经安装好Xcode<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -O http://kernel.org/pub/software/scm/git/git-1.7.5.tar.bz2&#10;tar xjvf git-1.7.4.1.tar.bz2&#10;cd git-1.7.4.1&#10;./configure --prefix=/usr/local&#10;make&#10;sudo make install&#10;which git</span><br></pre></td></tr></table></figure></p>
+<p>4.3 第三种方式，下载<a href="https://www.kernel.org/pub/software/scm/git/" target="_blank" rel="external">源码</a>，编译执行同上<br>4.4 第四种方式：图形界面安装<a href="https://code.google.com/p/git-osx-installer" target="_blank" rel="external">OpenInGitGui</a>，但是天朝被墙，理解万岁<br>4.5.0 配置<br>4.5.1 检查SSH key<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>4.5.2 备份已有的key，（如果有的话）<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir key_backup&#10;mv id_rsa* key_backup</span><br></pre></td></tr></table></figure></p>
+<p>4.5.3 生成SSH key<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &#34;xxxx@xxxx.com&#8221;</span><br></pre></td></tr></table></figure></p>
+<p>4.5.4 将SSH key添加到Github<br>登录到GitHub页面，Account Settings-&gt;SSH Public Keys-&gt;Add another key将生成的key(id_rsa.pub文件）内容copy到输入框中，save。<br>4.5.5 测试连接<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>4.5.6 设置个人信息<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &#34;xxx&#34;&#10;git config --global user.email xxx@xxx.com</span><br></pre></td></tr></table></figure></p>
+<p><strong>5 修改hexo根目录下_config.yml文件（xxx为你的github账户名称）</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deploy:&#10;  type: github&#10;  repo: git@github.com:xxx/xxx.github.io.git</span><br></pre></td></tr></table></figure></p>
+<p><strong>6 注册github账号，新建名为xxx.github.io的repository</strong></p>
+<p><strong>7 到这，Hexo博客搭建已经完成了，并且可以git提交到github上，通过访问xxx.github.io就可以访问本博客，关于hexo的一些操作以后有时间再整理吧</strong></p>
+<p>转载请注明出处，原文地址：<a href="http://mjiayou.com/2014/06/16/mac-hexo-log/">http://mjiayou.com/2014/06/16/mac-hexo-log/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>个人博客做了也小有三年了，从刚开始的emlog到后来的wordpress，后来朋友介绍hexo才开始接触这种轻量级的博客系统，于是在windows下用了几个月感觉良好。最近开发需要，入手mac，但是hexo不能停，又于是琢磨mac下的hexo搭建，相对于windows来说mac平台的一些资料还是略显不足，或者就是网上资源鱼龙混杂需要自己判断择优使用。诺在这里把自己搭建的过程和方法记录一下，如果不足或者错误的地方，恳请指正，共同进步才是目的，谢谢。</p>
+<h2 id="先屡一下思路">先屡一下思路</h2><p>1.首先hexo是基于nodejs的，所以必须安装nodejs<br>2.安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/tags/Hexo/"/>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/categories/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014.06.06_一览无遗]]></title>
+    <link href="http://mjiayou.com/2014/06/06/see-the-whole/"/>
+    <id>http://mjiayou.com/2014/06/06/see-the-whole/</id>
+    <published>2014-06-06T02:21:33.000Z</published>
+    <updated>2014-06-12T12:28:13.000Z</updated>
+    <content type="html"><![CDATA[<p>如题。</p>
+<p>正前方的清华大学附属小学，操场上小学生们在上体育课的样子，想起小时候各种理理由不想去上体育课，体育老师威武雄壮的汉子总是一副凶神恶煞的样子，但是，在前两年回家再次遇到他，也隐约看到白发，也隐约看到蹒跚，恍然大悟原来他不是坏人，见我不相识，猛然想起小学已经十多年。再见小学生，一脸天真，挺好，人之初性本善，没有什么是邪恶的，如果有的话，那就是时间。</p>
+<a id="more"></a>
+<h2 id="图片">图片</h2><img src="/images/20140606-1.jpg" width="400" height="600">
+<img src="/images/20140606-2.jpg" width="400" height="600">
+<p>身处潘石屹的成名作之中，白色楼群的确几分壮观，但仔细看的话，历经10年的风吹雨打，白已泛黄，也曾辉煌过，终究抵不过时间的推敲，所以没有什么是永恒的，如果有的话，那就是变化。</p>
+<p>楼群后面是标志性的央视大裤衩建筑，只有远观才能看出其雄伟气势，如果身处其中，也只是一栋楼，无他，不过这的的确确就是一栋楼而已，却被威武雄壮诠释着，没有什么是真实的，如果有的话，那就是其本身。</p>
+<p>国贸地铁站昨天的事件略有耳闻，如果我在场估计我也会跑，丢了鞋我也会跑，这个社会，这个世界，只有生命才是自己的，再没有别的了。</p>
+<p>呵呵雾霾，或者是阴天，天气预报下午暴风雨，压抑了太久是该释放一下了，心情也是如此，让暴风雨来的更猛烈一些吧。</p>
+<p>恩心情略好。回去继续敲代码，虽苦逼，却充实。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>如题。</p>
+<p>正前方的清华大学附属小学，操场上小学生们在上体育课的样子，想起小时候各种理理由不想去上体育课，体育老师威武雄壮的汉子总是一副凶神恶煞的样子，但是，在前两年回家再次遇到他，也隐约看到白发，也隐约看到蹒跚，恍然大悟原来他不是坏人，见我不相识，猛然想起小学已经十多年。再见小学生，一脸天真，挺好，人之初性本善，没有什么是邪恶的，如果有的话，那就是时间。</p>]]>
+    
+    </summary>
+    
+      <category term="一览无遗" scheme="http://mjiayou.com/tags/%E4%B8%80%E8%A7%88%E6%97%A0%E9%81%97/"/>
+    
+      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+</feed>
