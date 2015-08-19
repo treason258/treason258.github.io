@@ -4,7 +4,7 @@
   <subtitle><![CDATA[贪玩就像落叶，看似飞翔，却在堕落！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://mjiayou.com/"/>
-  <updated>2015-08-15T12:40:27.000Z</updated>
+  <updated>2015-08-19T08:21:17.000Z</updated>
   <id>http://mjiayou.com/</id>
   
   <author>
@@ -13,6 +13,322 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hexo-基于hexo-theme-light的主题修改]]></title>
+    <link href="http://mjiayou.com/2015/08/18/hexo-theme-modify-based-light/"/>
+    <id>http://mjiayou.com/2015/08/18/hexo-theme-modify-based-light/</id>
+    <published>2015-08-18T11:55:15.000Z</published>
+    <updated>2015-08-19T08:21:17.000Z</updated>
+    <content type="html"><![CDATA[<p>一贯喜欢简约的风格，看到官方hexo-theme-light差不多能到碗里来，但是一旦“差不多”就说明还差一点，尤其是一些天朝内使用不便的链接或者功能，不改用起来就有种水土不服的感觉。也有一些国内开发者基于light主题的二次开发主题，但是本着自己动手丰衣足食的口号，决定为自己量身定做一份，记录如下：</p>
+<h2 id="1-更换googleapis相关的链接；">1.更换googleapis相关的链接；</h2><p>这是水土不服表现之一，如果不改这个页面加载起来有种生不如死的感觉，所以先改它。</p>
+<a id="more"></a>
+<h4 id="1-1_文件_layout/_partial/after_footer-ejs">1.1 文件 layout/_partial/after_footer.ejs</h4><p>找到<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.googleapis</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.useso</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2_文件_source/css/_base/variable-styl">1.2 文件 source/css/_base/variable.styl</h4><p>找到<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fonts.googleapis.com/css?family=Lato:<span class="number">400</span>,<span class="number">400</span>italic</span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fonts.useso.com/css?family=Lato:<span class="number">400</span>,<span class="number">400</span>italic</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h4 id="附：landscape正房主题的googleapis相关的链接修改">附：landscape正房主题的googleapis相关的链接修改</h4><h4 id="1_文件_layout/_partial/after_footer-ejs">1 文件 layout/_partial/after_footer.ejs</h4><p>找到<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.googleapis</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.useso</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2_文件_layout/_partial/head-ejs">2 文件 layout/_partial/head.ejs</h4><p>找到<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">fonts.googleapis.com</span>/css?family<span class="label">=Source</span>+<span class="preprocessor">Code</span>+Pro</span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">fonts.useso.com</span>/css?family<span class="label">=Source</span>+<span class="preprocessor">Code</span>+Pro</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="2-分享">2.分享</h2><p>这是水土不服表现之二，默认自带的是AddThis，这再国外好像是相当火（反正我没用过），进文章一看便发现都是分享到facebook、twitter等之类的网站，显然是不符合国情的，于是决定换成百度分享。</p>
+<h4 id="2-1_文件_layout/_partial/post/share-ejs">2.1 文件 layout/_partial/post/share.ejs</h4><p>内容全部替换为<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bdsharebuttonbox"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_more"</span> <span class="attribute">data-cmd</span>=<span class="value">"more"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_qzone"</span> <span class="attribute">data-cmd</span>=<span class="value">"qzone"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_tsina"</span> <span class="attribute">data-cmd</span>=<span class="value">"tsina"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_tqq"</span> <span class="attribute">data-cmd</span>=<span class="value">"tqq"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_renren"</span> <span class="attribute">data-cmd</span>=<span class="value">"renren"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_weixin"</span> <span class="attribute">data-cmd</span>=<span class="value">"weixin"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="built_in">window</span>._bd_share_config = </span></span><span class="expression">&#123;</span><br><span class="line">        <span class="string">"common"</span>: &#123;</span><br><span class="line">            <span class="string">"bdSnsKey"</span>: &#123;&#125;</span><span class="xml"><span class="actionscript">,</span><br><span class="line">            <span class="string">"bdText"</span>: <span class="string">""</span>,</span><br><span class="line">            <span class="string">"bdMini"</span>: <span class="string">"2"</span>,</span><br><span class="line">            <span class="string">"bdPic"</span>: <span class="string">""</span>,</span><br><span class="line">            <span class="string">"bdStyle"</span>: <span class="string">"0"</span>,</span><br><span class="line">            <span class="string">"bdSize"</span>: <span class="string">"16"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"share"</span>: </span></span><span class="expression">&#123;&#125;</span><span class="xml"><span class="actionscript">,</span><br><span class="line">        <span class="string">"image"</span>: </span></span><span class="expression">&#123;</span><br><span class="line">            <span class="string">"viewList"</span>: [<span class="string">"qzone"</span>, <span class="string">"tsina"</span>, <span class="string">"tqq"</span>, <span class="string">"renren"</span>, <span class="string">"weixin"</span>],</span><br><span class="line">            <span class="string">"viewText"</span>: “分享到<span class="string">",</span><br><span class="line">            "</span><span class="variable">viewSize</span><span class="string">": "</span>16<span class="string">"</span><br><span class="line">        &#125;,</span><br><span class="line">        "</span><span class="variable">selectShare</span><span class="string">": &#123;</span><br><span class="line">            "</span><span class="variable">bdContainerClass</span><span class="string">": null,</span><br><span class="line">            "</span><span class="variable">bdSelectMiniList</span><span class="string">": ["</span><span class="variable">qzone</span><span class="string">", "</span><span class="variable">tsina</span><span class="string">", "</span><span class="variable">tqq</span><span class="string">", "</span><span class="variable">renren</span><span class="string">", "</span><span class="variable">weixin</span><span class="string">"]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</span><br><span class="line">&lt;/script&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="3-评论">3.评论</h2><p>这是水土不服表现之三，默认自带的是disqus，就评论它再国外是火不火的无聊问题了，反正在国内用起来比较费劲，果断换成多说。</p>
+<h4 id="3-1_文件_hexo/_config-yml">3.1 文件 hexo/_config.yml</h4><p>添加<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">duoshuo_shortname</span>: <span class="string">xxx</span></span><br></pre></td></tr></table></figure></p>
+<p>注：其实xxx是你在多说系统注册的一个shortname，这方面自行科普。</p>
+<h4 id="3-2_全局载入多说的js，在layout/_partial/after_footer-ejs尾部中加入如下代码">3.2 全局载入多说的js，在layout/_partial/after_footer.ejs尾部中加入如下代码</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> duoshuo_shortname = <span class="string">'&lt;%= config.duoshuo_shortname %&gt;'</span>;</span><br><span class="line"><span class="keyword">var</span> duoshuoQuery = &#123;short_name:duoshuo_shortname&#125;;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</span><br><span class="line">        ds.src = <span class="string">'http://static.duoshuo.com/embed.js'</span>;</span><br><span class="line">        ds.charset = <span class="string">'UTF-8'</span>;</span><br><span class="line">        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</span><br><span class="line">    &#125;)();</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-3_显示正文评论，文件_layout/_partial/comment-ejs">3.3 显示正文评论，文件 layout/_partial/comment.ejs</h4><p>全文替换为<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (page.comments)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    <span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comment"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">h1</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span></span>&lt;%=<span class="ruby"> _<span class="number">_</span>(<span class="string">'comment'</span>) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> item.path </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure></p>
+<h4 id="3-4_显示列表评论数，文件_layout/_partial/article-ejs">3.4 显示列表评论数，文件 layout/_partial/article.ejs</h4><p>找到<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (item.comment &amp;&amp; config.disqus_shortname)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"alignright"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> item.permalink </span>%&gt;<span class="xml"><span class="tag"><span class="value">#disqus_thread"</span> <span class="attribute">class</span>=<span class="value">"comment-link"</span>&gt;</span>Comments<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (!item.comment)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value"></span></span></span>&lt;%-<span class="ruby"> item.path </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span> <span class="attribute">class</span>=<span class="value">"ds-thread-count comment-link alignright"</span> <span class="attribute">data-thread-key</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> item.path </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span> <span class="attribute">data-count-type</span>=<span class="value">"comments"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4-百度站内搜索">4.百度站内搜索</h2><p>这是水土不服表现之四，默认使用的是google搜索，就不解释了，换成百度吧。</p>
+<h4 id="4-1_文件_layout/_widget/search-ejs">4.1 文件 layout/_widget/search.ejs</h4><p>全文替换为<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">SCRIPT</span> <span class="attribute">language</span>=<span class="value">javascript</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span>(<span class="params">formname</span>) </span>&#123;</span><br><span class="line">    formname.method = <span class="string">"get"</span>;</span><br><span class="line">    formname.action = <span class="string">"http://www.baidu.com/baidu"</span>;</span><br><span class="line">    <span class="built_in">document</span>.search_form.word.value = <span class="built_in">document</span>.search_form.word.value + <span class="string">" site:mjiayou.com"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">SCRIPT</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"search"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">form</span> <span class="attribute">name</span>=<span class="value">"search_form"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span> <span class="attribute">onsubmit</span>=<span class="value">"search(this)"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"search"</span> <span class="attribute">name</span>=<span class="value">"word"</span> <span class="attribute">results</span>=<span class="value">"0"</span> <span class="attribute">placeholder</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> _<span class="number">_</span>(<span class="string">'百度站内搜索'</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span> <span class="attribute">onblur</span>=<span class="value">"this.value=''"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;input type="submit" value="搜索"&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>注：其实搜索框的操作是有bug的，待解决</p>
+<h2 id="以上基本是必修内容，确保博客系统能全功能运转，以下为选修内容">以上基本是必修内容，确保博客系统能全功能运转，以下为选修内容</h2><h2 id="5-添加footer备案号">5.添加footer备案号</h2><p>域名11年注册，用了小四年，终于在前段时间给备案了，也体验以下当合法站长的感觉，得拿出来嘚瑟嘚瑟。</p>
+<h4 id="5-1_文件_layout/_partial/footer-ejs">5.1 文件 layout/_partial/footer.ejs</h4><p>找到<br><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (config.author)&#123; <span class="variable">%&gt;</span></span><br><span class="line">  &amp;copy; &lt;<span class="variable">%=</span> new Date().getFullYear() <span class="variable">%&gt;</span> &lt;<span class="variable">%=</span> config.author <span class="variable">%&gt;</span></span><br><span class="line">  &lt;% &#125; <span class="keyword">else</span> &#123; <span class="variable">%&gt;</span></span><br><span class="line">  &amp;copy; &lt;<span class="variable">%=</span> new Date().getFullYear() <span class="variable">%&gt;</span> &lt;<span class="variable">%=</span> config.title <span class="variable">%&gt;</span></span><br><span class="line">  &lt;% &#125; <span class="variable">%&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">&amp;copy; 2011-</span><span class="vbscript">&lt;%= <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() %&gt;</span><span class="xml"> </span><span class="vbscript">&lt;%= config.author %&gt;</span><span class="xml"></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.miitbeian.gov.cn/"</span>&gt;</span>京ICP备15042793号<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="6-添加常用widget">6.添加常用widget</h2><h4 id="6-1_新浪微博，新建文件_layout/_widget/weibo-ejs">6.1 新浪微博，新建文件 layout/_widget/weibo.ejs</h4><p>内容如下（代码请自行去自己微博索取）<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">iframe</span> <span class="attribute">width</span>=<span class="string">"100%"</span> <span class="attribute">height</span>=<span class="string">"550"</span> class=<span class="string">"share_self"</span> frameborder=<span class="string">"0"</span> scrolling=<span class="string">"no"</span> </span><br><span class="line">src=<span class="string">"http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=1&amp;ptype=1&amp;speed=0&amp;skin=9&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=1734508991&amp;verifier=faa09416&amp;dpc=1"</span>&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="6-2_友链，新建文件_layout/_widget/blogroll-ejs">6.2 友链，新建文件 layout/_widget/blogroll.ejs</h4><p>内容如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"widget tag"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h3</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span>友情链接<span class="tag">&lt;/<span class="title">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"entry"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.cnblogs.com/"</span> <span class="attribute">title</span>=<span class="value">"博客园"</span>&gt;</span>博客园<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://capegf.im/"</span> <span class="attribute">title</span>=<span class="value">"Capegf's blog"</span>&gt;</span>Capegf's blog<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="6-x_添加widget，文件_light/_config-yml">6.x 添加widget，文件 light/_config.yml</h4><p>在widgets:位置添加<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">widgets:</span><br><span class="line">-<span class="ruby"></span><br><span class="line"></span>-<span class="ruby"> weibo</span><br><span class="line"></span>-<span class="ruby"> blogroll</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-修改widget">7.修改widget</h2><p>主要因为这个theme没有默认的archive widget，于是手动添加，又想和category、tag的widget保持一致，于是还得修改下styl。</p>
+<h4 id="7-1_新建文件_layout/_widget/archive-ejs">7.1 新建文件 layout/_widget/archive.ejs</h4><p>内容如下<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(site.posts.length)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">"widget tag"</span>&gt;</span><br><span class="line">         &lt;h<span class="number">3</span> class=<span class="string">"title"</span>&gt;&lt;<span class="preprocessor">%</span>= __<span class="comment">('archive_a')</span> <span class="preprocessor">%</span>&gt;&lt;/h<span class="number">3</span>&gt;</span><br><span class="line">            &lt;<span class="preprocessor">%</span>- list_archives<span class="comment">()</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="7-2_文件_layout/_widget/category-ejs">7.2 文件 layout/_widget/category.ejs</h4><p>全文替换为<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(site.categories.length)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;div class=<span class="string">"widget tag"</span>&gt;</span><br><span class="line">  &lt;h<span class="number">3</span> class=<span class="string">"title"</span>&gt;&lt;<span class="preprocessor">%</span>= __<span class="comment">('categories')</span> <span class="preprocessor">%</span>&gt;&lt;/h<span class="number">3</span>&gt;</span><br><span class="line">    &lt;<span class="preprocessor">%</span>- list_categories<span class="comment">()</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="7-3_文件_layout/_widget/_widget/tag-ejs">7.3 文件 layout/_widget/_widget/tag.ejs</h4><p>全文替换为<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(site.tags.length)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;div class=<span class="string">"widget tag"</span>&gt;</span><br><span class="line">  &lt;h<span class="number">3</span> class=<span class="string">"title"</span>&gt;&lt;<span class="preprocessor">%</span>= __<span class="comment">('tags')</span> <span class="preprocessor">%</span>&gt;&lt;/h<span class="number">3</span>&gt;</span><br><span class="line">    &lt;<span class="preprocessor">%</span>- list_tags<span class="comment">()</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="7-4_文件_source/css/_partial/sidebar-styl">7.4 文件 source/css/_partial/sidebar.styl</h4><p>添加<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.category-list-count</span></span><br><span class="line"><span class="class">.tag-list-count</span></span><br><span class="line"><span class="class">.archive-list-count</span></span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">15px</span></span><br><span class="line">  <span class="attribute">color</span> <span class="attribute">color</span>-meta</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.85em</span></span><br><span class="line">  <span class="pseudo">&amp;:before</span><br><span class="line"></span>    <span class="attribute">content</span>: <span class="string">"("</span></span><br><span class="line">  <span class="pseudo">&amp;:after</span><br><span class="line"></span>    <span class="attribute">content</span>: <span class="string">")"</span></span><br><span class="line"></span><br><span class="line"><span class="class">.category-list</span></span><br><span class="line"><span class="class">.tag-list</span></span><br><span class="line"><span class="class">.archive-list</span></span><br><span class="line">  <span class="attribute">font-size</span> <span class="number">0.9em</span></span><br><span class="line">  <span class="attribute">padding</span> <span class="number">15px</span> <span class="number">20px</span></span><br><span class="line">  <span class="tag">ul</span>, <span class="tag">ol</span>, <span class="tag">dl</span></span><br><span class="line">    <span class="attribute">list-style</span> <span class="attribute">none</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-Fork_me_on_Github">7.Fork me on Github</h2><p>主要就是左上角fork me on github的图片展示，方便跳转github，一定的装x成分。</p>
+<h4 id="7-1_新建文件_layout/_widget/forkme-ejs">7.1 新建文件 layout/_widget/forkme.ejs</h4><p>内容如下<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"><span class="keyword">if</span>(page.layout !== <span class="string">'false'</span>)&#123;</span>%&gt;<span class="xml"></span><br><span class="line"></span>&lt;%<span class="ruby">&#125;<span class="keyword">else</span>&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    </span>&lt;%-<span class="ruby"> page.content </span>%&gt;<span class="xml"></span><br><span class="line"></span>&lt;%<span class="ruby">&#125;;</span>%&gt;<span class="xml"></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"https://github.com/treason258"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">style</span>=<span class="value">"position: absolute; top: 0; left: 0; border: 0;"</span> <span class="attribute">src</span>=<span class="value">"http://mjiayou.com/trefiles/image/forkme_left_white_ffffff.png"</span> <span class="attribute">alt</span>=<span class="value">"Fork me on GitHub"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h4 id="7-2_文件_layout/layout-ejs">7.2 文件 layout/layout.ejs</h4><p>添加<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span>- partial<span class="comment">('_widget/forkme')</span> <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="8-关于页面、RSS页面">8.关于页面、RSS页面</h2><h4 id="8-1_文件_layout/_partial/header-ejs">8.1 文件 layout/_partial/header.ejs</h4><p>添加<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value">about-impress.html"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span>&gt;</span>关于<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value">atom.xml"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span>&gt;</span>RSS<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="持续更新…">持续更新…</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<p>一贯喜欢简约的风格，看到官方hexo-theme-light差不多能到碗里来，但是一旦“差不多”就说明还差一点，尤其是一些天朝内使用不便的链接或者功能，不改用起来就有种水土不服的感觉。也有一些国内开发者基于light主题的二次开发主题，但是本着自己动手丰衣足食的口号，决定为自己量身定做一份，记录如下：</p>
+<h2 id="1-更换googleapis相关的链接；">1.更换googleapis相关的链接；</h2><p>这是水土不服表现之一，如果不改这个页面加载起来有种生不如死的感觉，所以先改它。</p>]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/tags/Hexo/"/>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/categories/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hexo-Mac下再次搭建hexo，版本升级的坑]]></title>
+    <link href="http://mjiayou.com/2015/08/17/mac-hexo-log-again/"/>
+    <id>http://mjiayou.com/2015/08/17/mac-hexo-log-again/</id>
+    <published>2015-08-17T10:57:15.000Z</published>
+    <updated>2015-08-19T08:03:27.000Z</updated>
+    <content type="html"><![CDATA[<p>去年开始接触hexo搭建个站，刚开始的时候各种修改theme、添加widget，过了那个新鲜劲也就一路写文了，无它。</p>
+<p>进来逛论坛发现hexo已经升级到3.x版本了，我还停留在2.x的时代，于是乎更愿意体验更新的东西，开始升级，也怪手贱，就像顺便吧node也升级了吧，从之前的0.10.x升到最新的0.12.x，node升级一帆风顺，然后再安装hexo就遇坑了，好像是node-gyp缓存啥的本地路径，每次安装hexo还去寻找旧的版本，就这么坑了好会儿。</p>
+<p>最终决定全部推翻重来，把node和hexo完全卸载，这次使用nvm的形式安装node，这样方便以后的版本升级管理，流程整理如下：</p>
+<a id="more"></a>
+<h2 id="0-卸载node">0.卸载node</h2><p>新建如uninstall_node.sh文件，内容修改如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line">lsbom <span class="operator">-f</span> <span class="operator">-l</span> <span class="operator">-s</span> -pf /var/db/receipts/org.nodejs.pkg.bom \</span><br><span class="line">| <span class="keyword">while</span> <span class="built_in">read</span> i; <span class="keyword">do</span></span><br><span class="line">  sudo rm /usr/<span class="built_in">local</span>/<span class="variable">$&#123;i&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">sudo rm -rf /usr/<span class="built_in">local</span>/lib/node \</span><br><span class="line">     /usr/<span class="built_in">local</span>/lib/node_modules \</span><br><span class="line">     /var/db/receipts/org.nodejs.*</span><br></pre></td></tr></table></figure></p>
+<p>赋予权限<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod <span class="number">777</span> uninstall_node.sh</span><br></pre></td></tr></table></figure></p>
+<p>然后拖到终端执行，等一会儿大概一分钟左右，卸载完成</p>
+<h2 id="1-安装nvm">1.安装nvm</h2><p>nvm（Node Version Manager）作为node版本管理，可以更方便的进行版本更新，保持环境清洁。<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- http<span class="variable">s:</span>//raw.github.<span class="keyword">com</span>/creationix/nvm/master/install.<span class="keyword">sh</span> | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-安装node">2.安装node</h2><p>使用nvm安装node，这里安装的是0.12版本。<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="keyword">install</span> <span class="number">0.12</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="3-安装hexo">3.安装hexo</h2><p>npm全称Node Package Manager，如果你熟悉ruby的gem，Python的PyPL、setuptools，PHP的pear，那么你就知道npm的作用是什么了。没错，它就是Nodejs的包管理器。<br>使用npm安装hexo3.x版本，一句话搞定。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo-cli</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="常见问题1：">常见问题1：</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; [<span class="string">Error:</span> Cannot find module <span class="string">'./build/Release/DTraceProviderBindings'</span>] <span class="string">code:</span> <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">&#123; [<span class="string">Error:</span> Cannot find module <span class="string">'./build/default/DTraceProviderBindings'</span>] <span class="string">code:</span> <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">&#123; [<span class="string">Error:</span> Cannot find module <span class="string">'./build/Debug/DTraceProviderBindings'</span>] <span class="string">code:</span> <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>当hexo s或一些列操作，可能会出现以上这种提示，虽然不耽误服务器运行，但是作为轻度强迫症患者，这忍不了。</p>
+<h4 id="解决方案如下：">解决方案如下：</h4><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">npm</span> install hexo --<span class="literal">no</span>-optional</span><br></pre></td></tr></table></figure>
+<h2 id="常见问题2：">常见问题2：</h2><p>安装完node和hexo之后，当时终端运行很成功，但是关掉一次之后再次node，竟然提示command not found，这找谁说理去。</p>
+<p>每次启动terminal都能找到node呢？现在每次我都需要手动nvm use 0.12？</p>
+<h4 id="解决方案如下：-1">解决方案如下：</h4><p>如下只是暂时解决问题，下载再打开终端又not found了。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>nvm <span class="keyword">use</span> <span class="number">0</span>.<span class="number">12</span></span><br></pre></td></tr></table></figure></p>
+<p>这才是终极解决方案。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm alias <span class="keyword">default</span> <span class="number">0.12</span></span><br></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="keyword">alias</span> <span class="keyword">default</span> stable</span><br></pre></td></tr></table></figure></p>
+<h2 id="持续更新…">持续更新…</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<p>去年开始接触hexo搭建个站，刚开始的时候各种修改theme、添加widget，过了那个新鲜劲也就一路写文了，无它。</p>
+<p>进来逛论坛发现hexo已经升级到3.x版本了，我还停留在2.x的时代，于是乎更愿意体验更新的东西，开始升级，也怪手贱，就像顺便吧node也升级了吧，从之前的0.10.x升到最新的0.12.x，node升级一帆风顺，然后再安装hexo就遇坑了，好像是node-gyp缓存啥的本地路径，每次安装hexo还去寻找旧的版本，就这么坑了好会儿。</p>
+<p>最终决定全部推翻重来，把node和hexo完全卸载，这次使用nvm的形式安装node，这样方便以后的版本升级管理，流程整理如下：</p>]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/tags/Hexo/"/>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/categories/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hexo-欢迎使用马克飞象]]></title>
+    <link href="http://mjiayou.com/2015/08/15/hexo-maxiang/"/>
+    <id>http://mjiayou.com/2015/08/15/hexo-maxiang/</id>
+    <published>2015-08-15T04:53:54.000Z</published>
+    <updated>2015-08-15T09:00:00.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="欢迎使用马克飞象">欢迎使用马克飞象</h1><p>@(示例笔记本)[马克飞象|帮助|Markdown]</p>
+<p><strong>马克飞象</strong>是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述：</p>
+<ul>
+<li><strong>功能丰富</strong> ：支持高亮代码块、<em>LaTeX</em> 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；</li>
+<li><strong>得心应手</strong> ：简洁高效的编辑器，提供桌面<a href="https://chrome.google.com/webstore/detail/kidnkfckhbdkfgbicccmdggmpgogehop" target="_blank" rel="external">离线客户端</a>，支持移动端 Web；</li>
+<li><strong>深度整合</strong> ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。</li>
+</ul>
+<a id="more"></a>
+<hr>
+<p>[TOC]</p>
+<h2 id="Markdown简介">Markdown简介</h2><blockquote>
+<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。    —— <a href="https://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="external">维基百科</a></p>
+</blockquote>
+<p>正如您在阅读的这份文档，它使用简单的符号标识不同的标题，将某些文字标记为<strong>粗体</strong>或者<em>斜体</em>，创建一个<a href="http://www.example.com" target="_blank" rel="external">链接</a>或一个脚注[^demo]。下面列举了几个高级功能，更多语法请按<code>Ctrl + /</code>查看帮助。 </p>
+<h3 id="代码块">代码块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="decorator">@requires_authorization</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">somefunc</span><span class="params">(param1=<span class="string">''</span>, param2=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''A docstring'''</span></span><br><span class="line">    <span class="keyword">if</span> param1 &gt; param2: <span class="comment"># interesting</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Greater'</span></span><br><span class="line">    <span class="keyword">return</span> (param2 - param1 + <span class="number">1</span>) <span class="keyword">or</span> <span class="keyword">None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>message = <span class="string">'''interpreter</span><br><span class="line"><span class="prompt">... </span>prompt'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="LaTeX_公式">LaTeX 公式</h3><p>可以创建行内公式，例如 $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$。或者块级公式：</p>
+<p>$$  x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$</p>
+<h3 id="表格">表格</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">Item</th>
+<th style="text-align:right">Value</th>
+<th style="text-align:center">Qty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Computer</td>
+<td style="text-align:right">1600 USD</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:left">Phone</td>
+<td style="text-align:right">12 USD</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:left">Pipe</td>
+<td style="text-align:right">1 USD</td>
+<td style="text-align:center">234</td>
+</tr>
+</tbody>
+</table>
+<h3 id="流程图">流程图</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st=&#62;start: Start&#10;e=&#62;end&#10;op=&#62;operation: My Operation&#10;cond=&#62;condition: Yes or No?&#10;&#10;st-&#62;op-&#62;cond&#10;cond(yes)-&#62;e&#10;cond(no)-&#62;op</span><br></pre></td></tr></table></figure>
+<p>以及时序图:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alice-&#62;Bob: Hello Bob, how are you?&#10;Note right of Bob: Bob thinks&#10;Bob--&#62;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>提示：</strong>想了解更多，请查看<strong>流程图</strong><a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">语法</a>以及<strong>时序图</strong><a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">语法</a>。</p>
+</blockquote>
+<h3 id="复选框">复选框</h3><p>使用 <code>- [ ]</code> 和 <code>- [x]</code> 语法可以创建复选框，实现 todo-list 等功能。例如：</p>
+<ul>
+<li>[x] 已完成事项</li>
+<li>[ ] 待办事项1</li>
+<li>[ ] 待办事项2</li>
+</ul>
+<blockquote>
+<p><strong>注意：</strong>目前支持尚不完全，在印象笔记中勾选复选框是无效、不能同步的，所以必须在<strong>马克飞象</strong>中修改 Markdown 原文才可生效。下个版本将会全面支持。</p>
+</blockquote>
+<h2 id="印象笔记相关">印象笔记相关</h2><h3 id="笔记本和标签">笔记本和标签</h3><p><strong>马克飞象</strong>增加了<code>@(笔记本)[标签A|标签B]</code>语法, 以选择笔记本和添加标签。 <strong>绑定账号后</strong>， 输入<code>(</code>自动会出现笔记本列表，请从中选择。</p>
+<h3 id="笔记标题">笔记标题</h3><p><strong>马克飞象</strong>会自动使用文档内出现的第一个标题作为笔记标题。例如本文，就是第一行的 <code>欢迎使用马克飞象</code>。</p>
+<h3 id="快捷编辑">快捷编辑</h3><p>保存在印象笔记中的笔记，右上角会有一个红色的编辑按钮，点击后会回到<strong>马克飞象</strong>中打开并编辑该笔记。</p>
+<blockquote>
+<p><strong>注意：</strong>目前用户在印象笔记中单方面做的任何修改，马克飞象是无法自动感知和更新的。所以请务必回到马克飞象编辑。</p>
+</blockquote>
+<h3 id="数据同步">数据同步</h3><p><strong>马克飞象</strong>通过<strong>将Markdown原文以隐藏内容保存在笔记中</strong>的精妙设计，实现了对Markdown的存储和再次编辑。既解决了其他产品只是单向导出HTML的单薄，又规避了服务端存储Markdown带来的隐私安全问题。这样，服务端仅作为对印象笔记 API调用和数据转换之用。</p>
+<blockquote>
+<p><strong>隐私声明：用户所有的笔记数据，均保存在印象笔记中。马克飞象不存储用户的任何笔记数据。</strong></p>
+</blockquote>
+<h3 id="离线存储">离线存储</h3><p><strong>马克飞象</strong>使用浏览器离线存储将内容实时保存在本地，不必担心网络断掉或浏览器崩溃。为了节省空间和避免冲突，已同步至印象笔记并且不再修改的笔记将删除部分本地缓存，不过依然可以随时通过<code>文档管理</code>打开。</p>
+<blockquote>
+<p><strong>注意：</strong>虽然浏览器存储大部分时候都比较可靠，但印象笔记作为专业云存储，更值得信赖。以防万一，<strong>请务必经常及时同步到印象笔记</strong>。</p>
+</blockquote>
+<h2 id="编辑器相关">编辑器相关</h2><h3 id="设置">设置</h3><p>右侧系统菜单（快捷键<code>Ctrl + M</code>）的<code>设置</code>中，提供了界面字体、字号、自定义CSS、vim/emacs 键盘模式等高级选项。</p>
+<h3 id="快捷键">快捷键</h3><p>帮助    <code>Ctrl + /</code><br>同步文档    <code>Ctrl + S</code><br>创建文档    <code>Ctrl + Alt + N</code><br>最大化编辑器    <code>Ctrl + Enter</code><br>预览文档 <code>Ctrl + Alt + Enter</code><br>文档管理    <code>Ctrl + O</code><br>系统菜单    <code>Ctrl + M</code> </p>
+<p>加粗    <code>Ctrl + B</code><br>插入图片    <code>Ctrl + G</code><br>插入链接    <code>Ctrl + L</code><br>提升标题    <code>Ctrl + H</code></p>
+<h2 id="关于收费">关于收费</h2><p><strong>马克飞象</strong>为新用户提供 10 天的试用期，试用期过后需要<a href="maxiang.info/vip.html">续费</a>才能继续使用。未购买或者未及时续费，将不能同步新的笔记。之前保存过的笔记依然可以编辑。</p>
+<h2 id="反馈与建议">反馈与建议</h2><ul>
+<li>微博：<a href="http://weibo.com/u/2788354117" target="_blank" rel="external">@马克飞象</a>，<a href="http://weibo.com/ggock" title="开发者个人账号" target="_blank" rel="external">@GGock</a></li>
+<li>邮箱：<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x68;&#x75;&#115;&#x74;&#x67;&#111;&#x63;&#x6b;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#x68;&#x75;&#115;&#x74;&#x67;&#111;&#x63;&#x6b;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a></li>
+</ul>
+<hr>
+<p>感谢阅读这份帮助文档。请点击右上角，绑定印象笔记账号，开启全新的记录与分享体验吧。</p>
+<p>[^demo]: 这是一个示例脚注。请查阅 <a href="https://github.com/fletcher/MultiMarkdown/wiki/MultiMarkdown-Syntax-Guide#footnotes" target="_blank" rel="external">MultiMarkdown 文档</a> 关于脚注的说明。 <strong>限制：</strong> 印象笔记的笔记内容使用 <a href="https://dev.yinxiang.com/doc/articles/enml.php" target="_blank" rel="external">ENML</a> 格式，基于 HTML，但是不支持某些标签和属性，例如id，这就导致<code>脚注</code>和<code>TOC</code>无法正常点击。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="欢迎使用马克飞象">欢迎使用马克飞象</h1><p>@(示例笔记本)[马克飞象|帮助|Markdown]</p>
+<p><strong>马克飞象</strong>是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述：</p>
+<ul>
+<li><strong>功能丰富</strong> ：支持高亮代码块、<em>LaTeX</em> 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；</li>
+<li><strong>得心应手</strong> ：简洁高效的编辑器，提供桌面<a href="https://chrome.google.com/webstore/detail/kidnkfckhbdkfgbicccmdggmpgogehop">离线客户端</a>，支持移动端 Web；</li>
+<li><strong>深度整合</strong> ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。</li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/tags/Hexo/"/>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/categories/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hexo-欢迎使用Cmd Markdown编辑阅读器]]></title>
+    <link href="http://mjiayou.com/2015/08/14/hexo-zybuluo-mdeditor/"/>
+    <id>http://mjiayou.com/2015/08/14/hexo-zybuluo-mdeditor/</id>
+    <published>2015-08-14T04:53:54.000Z</published>
+    <updated>2015-08-15T09:00:00.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="欢迎使用_Cmd_Markdown_编辑阅读器">欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
+<p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
+<blockquote>
+<ul>
+<li>整理知识，学习笔记</li>
+<li>发布日记，杂文，所见所想</li>
+<li>撰写发布技术文稿（代码支持）</li>
+<li>撰写发布学术论文（LaTeX 公式支持）</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<p>除了您现在看到的这个 Cmd Markdown 在线版本，您还可以前往以下网址下载：</p>
+<h3 id="Windows/Mac/Linux_全平台客户端"><a href="https://www.zybuluo.com/cmd/" target="_blank" rel="external">Windows/Mac/Linux 全平台客户端</a></h3><blockquote>
+<p>请保留此份 Cmd Markdown 的欢迎稿兼使用说明，如需撰写新稿件，点击顶部工具栏右侧的 <i class="icon-file"></i> <strong>新文稿</strong> 或者使用快捷键 <code>Ctrl+Alt+N</code>。</p>
+</blockquote>
+<hr>
+<h2 id="什么是_Markdown">什么是 Markdown</h2><p>Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong> 或者 <em>斜体</em> 某些文字，更棒的是，它还可以</p>
+<h3 id="1-_制作一份待办事宜_Todo_列表">1. 制作一份待办事宜 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#13-待办事宜-todo-列表" target="_blank" rel="external">Todo 列表</a></h3><ul>
+<li>[ ] 支持以 PDF 格式导出文稿</li>
+<li>[ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率</li>
+<li>[x] 新增 Todo 列表功能</li>
+<li>[x] 修复 LaTex 公式渲染问题</li>
+<li>[x] 新增 LaTex 公式编号功能</li>
+</ul>
+<h3 id="2-_书写一个质能守恒公式[^LaTeX]">2. 书写一个质能守恒公式[^LaTeX]</h3><p>$$E=mc^2$$</p>
+<h3 id="3-_高亮一段代码[^code]">3. 高亮一段代码[^code]</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="decorator">@requires_authorization</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># A comment</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'hello world'</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-_高效绘制_流程图">4. 高效绘制 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#7-流程图" target="_blank" rel="external">流程图</a></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st=&#62;start: Start&#10;op=&#62;operation: Your Operation&#10;cond=&#62;condition: Yes or No?&#10;e=&#62;end&#10;&#10;st-&#62;op-&#62;cond&#10;cond(yes)-&#62;e&#10;cond(no)-&#62;op</span><br></pre></td></tr></table></figure>
+<h3 id="5-_高效绘制_序列图">5. 高效绘制 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#8-序列图" target="_blank" rel="external">序列图</a></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alice-&#62;Bob: Hello Bob, how are you?&#10;Note right of Bob: Bob thinks&#10;Bob--&#62;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
+<h3 id="6-_绘制表格">6. 绘制表格</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align:right">价格</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算机</td>
+<td style="text-align:right">\$1600</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>手机</td>
+<td style="text-align:right">\$12</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td>管线</td>
+<td style="text-align:right">\$1</td>
+<td style="text-align:center">234</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-_更详细语法说明">7. 更详细语法说明</h3><p>想要查看更详细的语法说明，可以参考我们准备的 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank" rel="external">Cmd Markdown 简明语法手册</a>，进阶用户可以参考 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#cmd-markdown-高阶语法手册" target="_blank" rel="external">Cmd Markdown 高阶语法手册</a> 了解更多高级功能。</p>
+<p>总而言之，不同于其它 <em>所见即所得</em> 的编辑器：你只需使用键盘专注于书写文本内容，就可以生成印刷级的排版格式，省却在键盘和工具栏之间来回切换，调整内容和格式的麻烦。<strong>Markdown 在流畅的书写和印刷级的阅读体验之间找到了平衡。</strong> 目前它已经成为世界上最大的技术分享网站 GitHub 和 技术问答网站 StackOverFlow 的御用书写格式。</p>
+<hr>
+<h2 id="什么是_Cmd_Markdown">什么是 Cmd Markdown</h2><p>您可以使用很多工具书写 Markdown，但是 Cmd Markdown 是这个星球上我们已知的、最好的 Markdown 工具——没有之一 ：）因为深信文字的力量，所以我们和你一样，对流畅书写，分享思想和知识，以及阅读体验有极致的追求，我们把对于这些诉求的回应整合在 Cmd Markdown，并且一次，两次，三次，乃至无数次地提升这个工具的体验，最终将它演化成一个 <strong>编辑/发布/阅读</strong> Markdown 的在线平台——您可以在任何地方，任何系统/设备上管理这里的文字。</p>
+<h3 id="1-_实时同步预览">1. 实时同步预览</h3><p>我们将 Cmd Markdown 的主界面一分为二，左边为<strong>编辑区</strong>，右边为<strong>预览区</strong>，在编辑区的操作会实时地渲染到预览区方便查看最终的版面效果，并且如果你在其中一个区拖动滚动条，我们有一个巧妙的算法把另一个区的滚动条同步到等价的位置，超酷！</p>
+<h3 id="2-_编辑工具栏">2. 编辑工具栏</h3><p>也许您还是一个 Markdown 语法的新手，在您完全熟悉它之前，我们在 <strong>编辑区</strong> 的顶部放置了一个如下图所示的工具栏，您可以使用鼠标在工具栏上调整格式，不过我们仍旧鼓励你使用键盘标记格式，提高书写的流畅度。</p>
+<p><img src="https://www.zybuluo.com/static/img/toolbar-editor.png" alt="tool-editor"></p>
+<h3 id="3-_编辑模式">3. 编辑模式</h3><p>完全心无旁骛的方式编辑文字：点击 <strong>编辑工具栏</strong> 最右测的拉伸按钮或者按下 <code>Ctrl + M</code>，将 Cmd Markdown 切换到独立的编辑模式，这是一个极度简洁的写作环境，所有可能会引起分心的元素都已经被挪除，超清爽！</p>
+<h3 id="4-_实时的云端文稿">4. 实时的云端文稿</h3><p>为了保障数据安全，Cmd Markdown 会将您每一次击键的内容保存至云端，同时在 <strong>编辑工具栏</strong> 的最右侧提示 <code>已保存</code> 的字样。无需担心浏览器崩溃，机器掉电或者地震，海啸——在编辑的过程中随时关闭浏览器或者机器，下一次回到 Cmd Markdown 的时候继续写作。</p>
+<h3 id="5-_离线模式">5. 离线模式</h3><p>在网络环境不稳定的情况下记录文字一样很安全！在您写作的时候，如果电脑突然失去网络连接，Cmd Markdown 会智能切换至离线模式，将您后续键入的文字保存在本地，直到网络恢复再将他们传送至云端，即使在网络恢复前关闭浏览器或者电脑，一样没有问题，等到下次开启 Cmd Markdown 的时候，她会提醒您将离线保存的文字传送至云端。简而言之，我们尽最大的努力保障您文字的安全。</p>
+<h3 id="6-_管理工具栏">6. 管理工具栏</h3><p>为了便于管理您的文稿，在 <strong>预览区</strong> 的顶部放置了如下所示的 <strong>管理工具栏</strong>：</p>
+<p><img src="https://www.zybuluo.com/static/img/toolbar-manager.jpg" alt="tool-manager"></p>
+<p>通过管理工具栏可以：</p>
+<p><i class="icon-share"></i> 发布：将当前的文稿生成固定链接，在网络上发布，分享<br><i class="icon-file"></i> 新建：开始撰写一篇新的文稿<br><i class="icon-trash"></i> 删除：删除当前的文稿<br><i class="icon-cloud"></i> 导出：将当前的文稿转化为 Markdown 文本或者 Html 格式，并导出到本地<br><i class="icon-reorder"></i> 列表：所有新增和过往的文稿都可以在这里查看、操作<br><i class="icon-pencil"></i> 模式：切换 普通/Vim/Emacs 编辑模式</p>
+<h3 id="7-_阅读工具栏">7. 阅读工具栏</h3><p><img src="https://www.zybuluo.com/static/img/toolbar-reader.jpg" alt="tool-manager"></p>
+<p>通过 <strong>预览区</strong> 右上角的 <strong>阅读工具栏</strong>，可以查看当前文稿的目录并增强阅读体验。</p>
+<p>工具栏上的五个图标依次为：</p>
+<p><i class="icon-list"></i> 目录：快速导航当前文稿的目录结构以跳转到感兴趣的段落<br><i class="icon-chevron-sign-left"></i> 视图：互换左边编辑区和右边预览区的位置<br><i class="icon-adjust"></i> 主题：内置了黑白两种模式的主题，试试 <strong>黑色主题</strong>，超炫！<br><i class="icon-desktop"></i> 阅读：心无旁骛的阅读模式提供超一流的阅读体验<br><i class="icon-fullscreen"></i> 全屏：简洁，简洁，再简洁，一个完全沉浸式的写作和阅读环境</p>
+<h3 id="8-_阅读模式">8. 阅读模式</h3><p>在 <strong>阅读工具栏</strong> 点击 <i class="icon-desktop"></i> 或者按下 <code>Ctrl+Alt+M</code> 随即进入独立的阅读模式界面，我们在版面渲染上的每一个细节：字体，字号，行间距，前背景色都倾注了大量的时间，努力提升阅读的体验和品质。</p>
+<h3 id="9-_标签、分类和搜索">9. 标签、分类和搜索</h3><p>在编辑区任意行首位置输入以下格式的文字可以标签当前文档：</p>
+<p>标签： 未分类</p>
+<p>标签以后的文稿在【文件列表】（Ctrl+Alt+F）里会按照标签分类，用户可以同时使用键盘或者鼠标浏览查看，或者在【文件列表】的搜索文本框内搜索标题关键字过滤文稿，如下图所示：</p>
+<p><img src="https://www.zybuluo.com/static/img/file-list.png" alt="file-list"></p>
+<h3 id="10-_文稿发布和分享">10. 文稿发布和分享</h3><p>在您使用 Cmd Markdown 记录，创作，整理，阅读文稿的同时，我们不仅希望它是一个有力的工具，更希望您的思想和知识通过这个平台，连同优质的阅读体验，将他们分享给有相同志趣的人，进而鼓励更多的人来到这里记录分享他们的思想和知识，尝试点击 <i class="icon-share"></i> (Ctrl+Alt+P) 发布这份文档给好友吧！</p>
+<hr>
+<p>再一次感谢您花费时间阅读这份欢迎稿，点击 <i class="icon-file"></i> (Ctrl+Alt+N) 开始撰写新的文稿吧！祝您在这里记录、阅读、分享愉快！</p>
+<p>作者 <a href="http://weibo.com/ghosert" target="_blank" rel="external">@ghosert</a><br>2015 年 06月 15日    </p>
+<p>[^LaTeX]: 支持 <strong>LaTeX</strong> 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$， 访问 <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax</a> 参考更多使用方法。</p>
+<p>[^code]: 代码高亮功能支持包括 Java, Python, JavaScript 在内的，<strong>四十一</strong>种主流编程语言。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="欢迎使用_Cmd_Markdown_编辑阅读器">欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
+<p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
+<blockquote>
+<ul>
+<li>整理知识，学习笔记</li>
+<li>发布日记，杂文，所见所想</li>
+<li>撰写发布技术文稿（代码支持）</li>
+<li>撰写发布学术论文（LaTeX 公式支持）</li>
+</ul>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/tags/Hexo/"/>
+    
+      <category term="Hexo" scheme="http://mjiayou.com/categories/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Android-Android Studio打包APK生成mapping文件位置]]></title>
@@ -998,125 +1314,6 @@ public native <span class="type">String</span>  unimplementedStringFromJNI();
     </summary>
     
       <category term="生日" scheme="http://mjiayou.com/tags/%E7%94%9F%E6%97%A5/"/>
-    
-      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2014.07.16_北京，冷雨夜]]></title>
-    <link href="http://mjiayou.com/2014/07/16/beijing-rain-night/"/>
-    <id>http://mjiayou.com/2014/07/16/beijing-rain-night/</id>
-    <published>2014-07-16T07:33:02.000Z</published>
-    <updated>2014-08-22T07:49:28.000Z</updated>
-    <content type="html"><![CDATA[<p>在雨中漫步<br>蓝色街灯渐露<br>相对望<br>无声紧拥抱着<br>为了找往日<br>寻温馨的往日<br>消失了</p>
-<a id="more"></a>
-<p>任雨洒我面<br>难分水点泪痕<br>心更乱<br>愁丝绕千百段<br>骤变的态度<br>无心伤她说话<br>收不了</p>
-<p>冷雨夜我在你身边<br>盼望你会知<br>可知道我的心<br>比当初已改变<br>只牵强地相处</p>
-<p>冷雨夜我不想归家<br>怕望你背影<br>只苦笑望雨点<br>须知要说清楚<br>可惜我没胆试</p>
-<p>在雨中漫步<br>尝水中的味道<br>仿似是<br>情此刻的尽时<br>未了解结合<br>留低思忆片段<br>不经意</p>
-<p>—BEYOND</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在雨中漫步<br>蓝色街灯渐露<br>相对望<br>无声紧拥抱着<br>为了找往日<br>寻温馨的往日<br>消失了</p>]]>
-    
-    </summary>
-    
-      <category term="北京" scheme="http://mjiayou.com/tags/%E5%8C%97%E4%BA%AC/"/>
-    
-      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2014.06.25_随笔，火车上]]></title>
-    <link href="http://mjiayou.com/2014/06/25/note-on-the-train/"/>
-    <id>http://mjiayou.com/2014/06/25/note-on-the-train/</id>
-    <published>2014-06-25T07:22:06.000Z</published>
-    <updated>2014-08-22T07:49:31.000Z</updated>
-    <content type="html"><![CDATA[<p>火车上，坐到恶心，于是起身远眺，若有所思。人生路上也是。</p>
-<p>走到岔路口，面临选择，不免迷茫，有必要驻足沉思，然后扬起嘴角昂首启程。</p>
-<a id="more"></a>
-<p>远眺风景甚好，一路上始终没有离开视线的东西是绿色，大树从枣庄到北京一路跟随，生机盎然，纵然天空阴沉，它始终坚挺着，传递生命。</p>
-<p>路口几多，世界因为不同的人选择不同的道路而更美丽，如此结论是人生的选择没有对错，有的只是不同的梦想，但是无论怎样的梦想，需要一路跟随的是“坚持”，纵使路上有苦有痛，有挫折有磨难，它始终需要存在，传递着希望。</p>
-<p>一片小树林的主人肯定不曾想他的这片绿色能一路延伸到很远很远的地方，也不曾想这片绿色是作为生命的接力而存在着，因为微观的世界局限了许多视线。</p>
-<p>道路上的一个坚持不能左右人生，也很难说可以决定一个人的命运，但是宏观上，成功人士的每个坚持都是关键的。记得要坚持。</p>
-<p>贱人就是矫情。到站了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>火车上，坐到恶心，于是起身远眺，若有所思。人生路上也是。</p>
-<p>走到岔路口，面临选择，不免迷茫，有必要驻足沉思，然后扬起嘴角昂首启程。</p>]]>
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://mjiayou.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hexo-Mac下搭建hexo博客全过程]]></title>
-    <link href="http://mjiayou.com/2014/06/16/mac-hexo-log/"/>
-    <id>http://mjiayou.com/2014/06/16/mac-hexo-log/</id>
-    <published>2014-06-16T08:57:15.000Z</published>
-    <updated>2014-08-22T07:18:43.000Z</updated>
-    <content type="html"><![CDATA[<p>个人博客做了也小有三年了，从刚开始的emlog到后来的wordpress，后来朋友介绍hexo才开始接触这种轻量级的博客系统，于是在windows下用了几个月感觉良好。最近开发需要，入手mac，但是hexo不能停，又于是琢磨mac下的hexo搭建，相对于windows来说mac平台的一些资料还是略显不足，或者就是网上资源鱼龙混杂需要自己判断择优使用。诺在这里把自己搭建的过程和方法记录一下，如果不足或者错误的地方，恳请指正，共同进步才是目的，谢谢。</p>
-<h2 id="先屡一下思路">先屡一下思路</h2><p>1.首先hexo是基于nodejs的，所以必须安装nodejs<br>2.安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它<a id="more"></a><br>3.安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定<br>4.hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定<br>5.OK整理一下安装顺序：homebrew-nodejs-hexo-git</p>
-<h2 id="思路屡清楚了，下面安装方法整理一下">思路屡清楚了，下面安装方法整理一下</h2><p><strong>1.安装brewhome，一句话搞定</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &#34;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&#8221;</span><br></pre></td></tr></table></figure></p>
-<p><strong>2.0 安装nodejs</strong><br>2.1 第一种方式，brewhome安装，一句话搞定<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure></p>
-<p>2.2 第二种方式，前提是已经安装好Xcode和git，安装git方法在下面介绍<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/joyent/node.git&#10;cd node&#10;./configure&#10;make&#10;sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>2.3 第三种方式，下载<a href="http://nodejs.org/download/" target="_blank" rel="external">源码</a>，解压后编译执行同上</p>
-<p><strong>3.0 安装hexo</strong><br>3.1 第一种方式，用nodejs自带npm安装<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo&#10;hexo init&#10;npm install</span><br></pre></td></tr></table></figure></p>
-<p>3.2 第二种方式，下载<a href="http://www.nodejs.org/download/" target="_blank" rel="external">源码</a>，编译执行<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=~/nodejs &#38;&#38; make &#38;&#38; make install&#10;cp ~/nodejs/bin/node /usr/sbin/node&#10;~/nodejs/bin/npm install -g hexo</span><br></pre></td></tr></table></figure></p>
-<p><strong>4.0 安装git</strong><br>4.1 第一种方式，homebrew安装，一句话搞定<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo brew install git</span><br></pre></td></tr></table></figure></p>
-<p>4.2 第二种方式，前提是已经安装好Xcode<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -O http://kernel.org/pub/software/scm/git/git-1.7.5.tar.bz2&#10;tar xjvf git-1.7.4.1.tar.bz2&#10;cd git-1.7.4.1&#10;./configure --prefix=/usr/local&#10;make&#10;sudo make install&#10;which git</span><br></pre></td></tr></table></figure></p>
-<p>4.3 第三种方式，下载<a href="https://www.kernel.org/pub/software/scm/git/" target="_blank" rel="external">源码</a>，编译执行同上<br>4.4 第四种方式：图形界面安装<a href="https://code.google.com/p/git-osx-installer" target="_blank" rel="external">OpenInGitGui</a>，但是天朝被墙，理解万岁<br>4.5.0 配置<br>4.5.1 检查SSH key<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br></pre></td></tr></table></figure></p>
-<p>4.5.2 备份已有的key，（如果有的话）<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir key_backup&#10;mv id_rsa* key_backup</span><br></pre></td></tr></table></figure></p>
-<p>4.5.3 生成SSH key<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &#34;xxxx@xxxx.com&#8221;</span><br></pre></td></tr></table></figure></p>
-<p>4.5.4 将SSH key添加到Github<br>登录到GitHub页面，Account Settings-&gt;SSH Public Keys-&gt;Add another key将生成的key(id_rsa.pub文件）内容copy到输入框中，save。<br>4.5.5 测试连接<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure></p>
-<p>4.5.6 设置个人信息<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &#34;xxx&#34;&#10;git config --global user.email xxx@xxx.com</span><br></pre></td></tr></table></figure></p>
-<p><strong>5 修改hexo根目录下_config.yml文件（xxx为你的github账户名称）</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deploy:&#10;  type: github&#10;  repo: git@github.com:xxx/xxx.github.io.git</span><br></pre></td></tr></table></figure></p>
-<p><strong>6 注册github账号，新建名为xxx.github.io的repository</strong></p>
-<p><strong>7 到这，Hexo博客搭建已经完成了，并且可以git提交到github上，通过访问xxx.github.io就可以访问本博客，关于hexo的一些操作以后有时间再整理吧</strong></p>
-<p>转载请注明出处，原文地址：<a href="http://mjiayou.com/2014/06/16/mac-hexo-log/">http://mjiayou.com/2014/06/16/mac-hexo-log/</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>个人博客做了也小有三年了，从刚开始的emlog到后来的wordpress，后来朋友介绍hexo才开始接触这种轻量级的博客系统，于是在windows下用了几个月感觉良好。最近开发需要，入手mac，但是hexo不能停，又于是琢磨mac下的hexo搭建，相对于windows来说mac平台的一些资料还是略显不足，或者就是网上资源鱼龙混杂需要自己判断择优使用。诺在这里把自己搭建的过程和方法记录一下，如果不足或者错误的地方，恳请指正，共同进步才是目的，谢谢。</p>
-<h2 id="先屡一下思路">先屡一下思路</h2><p>1.首先hexo是基于nodejs的，所以必须安装nodejs<br>2.安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它]]>
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://mjiayou.com/tags/Hexo/"/>
-    
-      <category term="Hexo" scheme="http://mjiayou.com/categories/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2014.06.06_一览无遗]]></title>
-    <link href="http://mjiayou.com/2014/06/06/see-the-whole/"/>
-    <id>http://mjiayou.com/2014/06/06/see-the-whole/</id>
-    <published>2014-06-06T02:21:33.000Z</published>
-    <updated>2014-06-12T12:28:13.000Z</updated>
-    <content type="html"><![CDATA[<p>如题。</p>
-<p>正前方的清华大学附属小学，操场上小学生们在上体育课的样子，想起小时候各种理理由不想去上体育课，体育老师威武雄壮的汉子总是一副凶神恶煞的样子，但是，在前两年回家再次遇到他，也隐约看到白发，也隐约看到蹒跚，恍然大悟原来他不是坏人，见我不相识，猛然想起小学已经十多年。再见小学生，一脸天真，挺好，人之初性本善，没有什么是邪恶的，如果有的话，那就是时间。</p>
-<a id="more"></a>
-<h2 id="图片">图片</h2><img src="/images/20140606-1.jpg" width="400" height="600">
-<img src="/images/20140606-2.jpg" width="400" height="600">
-<p>身处潘石屹的成名作之中，白色楼群的确几分壮观，但仔细看的话，历经10年的风吹雨打，白已泛黄，也曾辉煌过，终究抵不过时间的推敲，所以没有什么是永恒的，如果有的话，那就是变化。</p>
-<p>楼群后面是标志性的央视大裤衩建筑，只有远观才能看出其雄伟气势，如果身处其中，也只是一栋楼，无他，不过这的的确确就是一栋楼而已，却被威武雄壮诠释着，没有什么是真实的，如果有的话，那就是其本身。</p>
-<p>国贸地铁站昨天的事件略有耳闻，如果我在场估计我也会跑，丢了鞋我也会跑，这个社会，这个世界，只有生命才是自己的，再没有别的了。</p>
-<p>呵呵雾霾，或者是阴天，天气预报下午暴风雨，压抑了太久是该释放一下了，心情也是如此，让暴风雨来的更猛烈一些吧。</p>
-<p>恩心情略好。回去继续敲代码，虽苦逼，却充实。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>如题。</p>
-<p>正前方的清华大学附属小学，操场上小学生们在上体育课的样子，想起小时候各种理理由不想去上体育课，体育老师威武雄壮的汉子总是一副凶神恶煞的样子，但是，在前两年回家再次遇到他，也隐约看到白发，也隐约看到蹒跚，恍然大悟原来他不是坏人，见我不相识，猛然想起小学已经十多年。再见小学生，一脸天真，挺好，人之初性本善，没有什么是邪恶的，如果有的话，那就是时间。</p>]]>
-    
-    </summary>
-    
-      <category term="一览无遗" scheme="http://mjiayou.com/tags/%E4%B8%80%E8%A7%88%E6%97%A0%E9%81%97/"/>
     
       <category term="生活" scheme="http://mjiayou.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
