@@ -198,8 +198,7 @@
     </header>
     <div class="entry">
       
-        <p>转载自：<a href="http://blog.csdn.net/qiujuer/article/details/42430269">http://blog.csdn.net/qiujuer/article/details/42430269</a></p>
-<h2 id="序">序</h2><p>一个好的动画一定是用心做出来的，何为用心？其中一点我认为定义适当的 Interpolator 就是一种用心的表现；这点在 google material design 中尤为明显。<br>一个好的动画一定要符合实际，一句老的话就是：石头下落一定要受重力才优雅，不然一颗石头像羽毛一样在风中还飘啊飘的那就不行了。</p>
+        <h2 id="序">序</h2><p>一个好的动画一定是用心做出来的，何为用心？其中一点我认为定义适当的 Interpolator 就是一种用心的表现；这点在 google material design 中尤为明显。<br>一个好的动画一定要符合实际，一句老的话就是：石头下落一定要受重力才优雅，不然一颗石头像羽毛一样在风中还飘啊飘的那就不行了。</p>
       
     </div>
     <footer>
@@ -274,6 +273,135 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-07-22T03:55:15.000Z"><a href="/2015/07/22/exception-gson-internal-cannot-be-cast-to/">2015-07-22</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/07/22/exception-gson-internal-cannot-be-cast-to/">Android-Exception整理之com.google.gson.internal.xxx cannot be cast to xxx</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h4 id="问题描述：">问题描述：</h4><p>项目用到了Google的Gson库，不混淆情况下一切正常，当代码混淆打包时会遇到这种异常<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassCastException: com.google.gson.internal.StringMap cannot be cast to xxx</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassCastException: com.google.gson.internal.LinkedTreeMap cannot be cast to xxx</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+              <a href="/2015/07/22/exception-gson-internal-cannot-be-cast-to/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        <!-- treason@20150818 -->
+        <!-- 文章列表显示评论数目 -->
+        
+            <a href="/2015/07/22/exception-gson-internal-cannot-be-cast-to/" class="ds-thread-count comment-link alignright" data-thread-key="2015/07/22/exception-gson-internal-cannot-be-cast-to/" data-count-type="comments"></a>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+<!-- treason@20150818 -->
+<!-- 正文评论 -->
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-06-24T05:28:10.000Z"><a href="/2015/06/24/third-proguard-rules/">2015-06-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/06/24/third-proguard-rules/">Android-常用第三方库proguard-rules配置</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>本文内容均是本人在开发过程中整理的：</p>
+<h2 id="butterknife">butterknife</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">butterknife</span>.** &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">dontwarn butterknife.internal.**</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> **$$<span class="title">ViewInjector</span> &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keepclasseswithmembernames <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line"></span>    @butterknife.* &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-<span class="ruby">keepclasseswithmembernames <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line"></span>    @butterknife.* &lt;methods&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+              <a href="/2015/06/24/third-proguard-rules/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        <!-- treason@20150818 -->
+        <!-- 文章列表显示评论数目 -->
+        
+            <a href="/2015/06/24/third-proguard-rules/" class="ds-thread-count comment-link alignright" data-thread-key="2015/06/24/third-proguard-rules/" data-count-type="comments"></a>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+<!-- treason@20150818 -->
+<!-- 正文评论 -->
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-24T15:08:15.000Z"><a href="/2015/04/24/exception-multiple-dex-files-define/">2015-04-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/04/24/exception-multiple-dex-files-define/">Android-Exception整理之Multiple dex files define</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="问题描述：">问题描述：</h2><p>手动编译Android工程时出现异常如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UNEXPECTED TOP-LEVEL EXCEPTION:</span><br><span class="line">    com<span class="class">.android</span><span class="class">.dex</span><span class="class">.DexException</span>: Multiple dex files define Lcom/xxx/xxx/xxx</span><br></pre></td></tr></table></figure></p>
+<p>这个问题出现的原因是类的重复定义，即包的重复引用，意思就是项目的引用的某个包，而被作为library的项目也引用了同一个包。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+              <a href="/2015/04/24/exception-multiple-dex-files-define/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        <!-- treason@20150818 -->
+        <!-- 文章列表显示评论数目 -->
+        
+            <a href="/2015/04/24/exception-multiple-dex-files-define/" class="ds-thread-count comment-link alignright" data-thread-key="2015/04/24/exception-multiple-dex-files-define/" data-count-type="comments"></a>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+<!-- treason@20150818 -->
+<!-- 正文评论 -->
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-08-25T05:29:43.000Z"><a href="/2014/08/25/android-shape-selector/">2014-08-25</a></time>
       
       
@@ -326,7 +454,7 @@
     </header>
     <div class="entry">
       
-        <p>solution:<br>在AndroidManifest.xml中对应的Activity中找到“android:excludeFromRecents”，把值改为false，或直接去掉该项。<br>Develop Reference<br>android:excludeFromRecents</p>
+        <p>solution:<br>在AndroidManifest.xml中对应的Activity中找到“android:excludeFromRecents”，把值改为false，或直接去掉该项。</p>
       
     </div>
     <footer>
@@ -340,137 +468,6 @@
         <!-- 文章列表显示评论数目 -->
         
             <a href="/2014/08/25/android-recent-list/" class="ds-thread-count comment-link alignright" data-thread-key="2014/08/25/android-recent-list/" data-count-type="comments"></a>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-<!-- treason@20150818 -->
-<!-- 正文评论 -->
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-25T05:29:39.000Z"><a href="/2014/08/25/android-mainfest/">2014-08-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/25/android-mainfest/">Android-[转载]mainfest文件android属性汇总</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>&lt; activity android:allowTaskReparenting=[“true” | “false”]</p>
-<p>android:alwaysRetainTaskState=[“true” | “false”]</p>
-<p>android:clearTaskOnLaunch=[“true” | “false”]</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-              <a href="/2014/08/25/android-mainfest/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        <!-- treason@20150818 -->
-        <!-- 文章列表显示评论数目 -->
-        
-            <a href="/2014/08/25/android-mainfest/" class="ds-thread-count comment-link alignright" data-thread-key="2014/08/25/android-mainfest/" data-count-type="comments"></a>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-<!-- treason@20150818 -->
-<!-- 正文评论 -->
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-25T05:29:37.000Z"><a href="/2014/08/25/android-adb-shell/">2014-08-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/25/android-adb-shell/">Android-[转载]adb shell am/pm使用</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>adb shell am instrument [options] <COMPONENT><br>作用：启动对instrument实例的监视。<br>参数[options]：<br>-e <key> <value> // -e选项需要放在-w选项之前<br>作用：提供了以键值对形式存在的测试选项。Android中提供了多种键值对，具体参见下表。<br>举例：-e class com.android.phone.FIncomingCallTests#testRejectCall</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-              <a href="/2014/08/25/android-adb-shell/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        <!-- treason@20150818 -->
-        <!-- 文章列表显示评论数目 -->
-        
-            <a href="/2014/08/25/android-adb-shell/" class="ds-thread-count comment-link alignright" data-thread-key="2014/08/25/android-adb-shell/" data-count-type="comments"></a>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-<!-- treason@20150818 -->
-<!-- 正文评论 -->
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-25T05:29:36.000Z"><a href="/2014/08/25/android-frame/">2014-08-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/25/android-frame/">Android-[转载]收藏的Android非常好用的组件或者框架</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>收藏的Android非常好用的组件或者框架。<br>android框架<br>先说两个网站： <a href="http://www.androidviews.net/">http://www.androidviews.net/</a> 很好的国外开源代码站，就是访问速度有点慢啊<br><a href="http://www.23code.com">http://www.23code.com</a>  挺不错的国人开源代码库，几乎每天都有更新(推荐)<br><a href="http://www.theultimateandroidlibrary.com/">http://www.theultimateandroidlibrary.com/</a>  以前可以访问的，好像现在不行了</p>
-<ol>
-<li>ImageLoader   异步加载图片，缓存，生成缩略图， 基本上每个应用都会需要这个lib。</li>
-</ol>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-              <a href="/2014/08/25/android-frame/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        <!-- treason@20150818 -->
-        <!-- 文章列表显示评论数目 -->
-        
-            <a href="/2014/08/25/android-frame/" class="ds-thread-count comment-link alignright" data-thread-key="2014/08/25/android-frame/" data-count-type="comments"></a>
         
       
       <div class="clearfix"></div>
@@ -516,7 +513,7 @@ function search(formname) {
 <div class="widget tag">
   <h3 class="title">分类</h3>
   	<!-- treason@20150818 -->
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WP/">WP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">21</span></li></ul>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WP/">WP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">21</span></li></ul>
 </div>
 
 
@@ -531,7 +528,7 @@ src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fa
 
 	<div class="widget tag">
 	 	<h3 class="title">归档</h3>
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">三月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/05/">五月 2000</a><span class="archive-list-count">3</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">三月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/05/">五月 2000</a><span class="archive-list-count">3</span></li></ul>
 	</div>
 
 
@@ -552,23 +549,23 @@ src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fa
   <ul class="entry">
     
       <li>
-        <a href="/2015/08/18/hexo-theme-modify-based-light/">Hexo-基于hexo-theme-light的主题修改</a>
-      </li>
-    
-      <li>
         <a href="/2015/08/17/mac-hexo-log-again/">Hexo-Mac下再次搭建hexo，版本升级的坑</a>
       </li>
     
       <li>
-        <a href="/2015/08/15/hexo-maxiang/">Hexo-欢迎使用马克飞象</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/14/hexo-zybuluo-mdeditor/">Hexo-欢迎使用Cmd Markdown编辑阅读器</a>
-      </li>
-    
-      <li>
         <a href="/2015/08/06/android-studio-mapping/">Android-Android Studio打包APK生成mapping文件位置</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/04/android-textview-spannable/">Android-[转载]通过Spannable对象设置textview的样式</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/03/android-child-view-get-focusable/">Android-子控件获得父控件的点击事件</a>
+      </li>
+    
+      <li>
+        <a href="/2015/07/30/android-animation-interpolator/">Android-[转载]渗透理解Animation时间插值Interpolator类</a>
       </li>
     
   </ul>
@@ -579,7 +576,7 @@ src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fa
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Android/" style="font-size: 18px;">Android</a> <a href="/tags/BingMaps/" style="font-size: 10px;">BingMaps</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/mainfest/" style="font-size: 10px;">mainfest</a> <a href="/tags/shape/" style="font-size: 12px;">shape</a> <a href="/tags/一览无遗/" style="font-size: 10px;">一览无遗</a> <a href="/tags/加油/" style="font-size: 12px;">加油</a> <a href="/tags/北京/" style="font-size: 16px;">北京</a> <a href="/tags/屏幕适配/" style="font-size: 10px;">屏幕适配</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/晴朗/" style="font-size: 10px;">晴朗</a> <a href="/tags/最后/" style="font-size: 10px;">最后</a> <a href="/tags/梦想/" style="font-size: 12px;">梦想</a> <a href="/tags/测试/" style="font-size: 12px;">测试</a> <a href="/tags/济南/" style="font-size: 10px;">济南</a> <a href="/tags/烦躁/" style="font-size: 10px;">烦躁</a> <a href="/tags/生日/" style="font-size: 12px;">生日</a> <a href="/tags/组件/" style="font-size: 10px;">组件</a> <a href="/tags/运动场/" style="font-size: 10px;">运动场</a> <a href="/tags/近期任务/" style="font-size: 10px;">近期任务</a> <a href="/tags/随笔/" style="font-size: 14px;">随笔</a> <a href="/tags/顺其自然/" style="font-size: 10px;">顺其自然</a> <a href="/tags/黑/" style="font-size: 10px;">黑</a>
+    <a href="/tags/Android组件/" style="font-size: 10px;">Android组件</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/BingMaps/" style="font-size: 10px;">BingMaps</a> <a href="/tags/Cmd-Markdown/" style="font-size: 10px;">Cmd Markdown</a> <a href="/tags/Exception整理/" style="font-size: 13.33px;">Exception整理</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo3-0/" style="font-size: 10px;">Hexo3.0</a> <a href="/tags/Hexo主题/" style="font-size: 10px;">Hexo主题</a> <a href="/tags/Hexo搭建/" style="font-size: 13.33px;">Hexo搭建</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Spannable/" style="font-size: 10px;">Spannable</a> <a href="/tags/TypedValue/" style="font-size: 10px;">TypedValue</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/gson/" style="font-size: 10px;">gson</a> <a href="/tags/mainfest/" style="font-size: 10px;">mainfest</a> <a href="/tags/mapping/" style="font-size: 10px;">mapping</a> <a href="/tags/proguard/" style="font-size: 10px;">proguard</a> <a href="/tags/selector/" style="font-size: 13.33px;">selector</a> <a href="/tags/shape/" style="font-size: 13.33px;">shape</a> <a href="/tags/一览无遗/" style="font-size: 10px;">一览无遗</a> <a href="/tags/加油/" style="font-size: 13.33px;">加油</a> <a href="/tags/北京/" style="font-size: 20px;">北京</a> <a href="/tags/屏幕适配/" style="font-size: 10px;">屏幕适配</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/控件/" style="font-size: 10px;">控件</a> <a href="/tags/晴朗/" style="font-size: 10px;">晴朗</a> <a href="/tags/最后/" style="font-size: 10px;">最后</a> <a href="/tags/梦想/" style="font-size: 13.33px;">梦想</a> <a href="/tags/测试/" style="font-size: 13.33px;">测试</a> <a href="/tags/济南/" style="font-size: 10px;">济南</a> <a href="/tags/烦躁/" style="font-size: 10px;">烦躁</a> <a href="/tags/生日/" style="font-size: 13.33px;">生日</a> <a href="/tags/运动场/" style="font-size: 10px;">运动场</a> <a href="/tags/近期任务/" style="font-size: 10px;">近期任务</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a> <a href="/tags/顺其自然/" style="font-size: 10px;">顺其自然</a> <a href="/tags/马克飞象/" style="font-size: 10px;">马克飞象</a> <a href="/tags/黑/" style="font-size: 10px;">黑</a>
   </div>
 </div>
 

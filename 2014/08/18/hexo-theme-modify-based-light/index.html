@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo-基于hexo-theme-light的主题修改 | 青春不再 | 马加油DE博客</title>
+  <meta name="author" content="马加油">
+  
+  <meta name="description" content="青春不再 | 马加油 | mjiayou.com">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Hexo-基于hexo-theme-light的主题修改"/>
+  <meta property="og:site_name" content="青春不再 | 马加油DE博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="青春不再 | 马加油DE博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">青春不再 | 马加油DE博客</a></h1>
+  <h2><a href="/">贪玩就像落叶，看似飞翔，却在堕落！</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/messages">留言板</a></li>
+    
+    <!-- treason@20150819 -->
+    <li><a href="/about-impress.html" target="_blank">关于</a></li>
+    <li><a href="/atom.xml" target="_blank">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-18T11:55:15.000Z"><a href="/2014/08/18/hexo-theme-modify-based-light/">2014-08-18</a></time>
+      
+      
+  
+    <h1 class="title">Hexo-基于hexo-theme-light的主题修改</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>一贯喜欢简约的风格，看到官方hexo-theme-light差不多能到碗里来，但是一旦“差不多”就说明还差一点，尤其是一些天朝内使用不便的链接或者功能，不改用起来就有种水土不服的感觉。也有一些国内开发者基于light主题的二次开发主题，但是本着自己动手丰衣足食的口号，决定为自己量身定做一份，记录如下：</p>
+<h2 id="1-更换googleapis相关的链接；">1.更换googleapis相关的链接；</h2><p>这是水土不服表现之一，如果不改这个页面加载起来有种生不如死的感觉，所以先改它。</p>
+<a id="more"></a>
+<h4 id="1-1_文件_layout/_partial/after_footer-ejs">1.1 文件 layout/_partial/after_footer.ejs</h4><p>找到<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.googleapis</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.useso</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2_文件_source/css/_base/variable-styl">1.2 文件 source/css/_base/variable.styl</h4><p>找到<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fonts.googleapis.com/css?family=Lato:<span class="number">400</span>,<span class="number">400</span>italic</span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fonts.useso.com/css?family=Lato:<span class="number">400</span>,<span class="number">400</span>italic</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h4 id="附：landscape正房主题的googleapis相关的链接修改">附：landscape正房主题的googleapis相关的链接修改</h4><h4 id="1_文件_layout/_partial/after_footer-ejs">1 文件 layout/_partial/after_footer.ejs</h4><p>找到<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.googleapis</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax<span class="class">.useso</span><span class="class">.com</span>/ajax/libs/jquery/<span class="number">2.0</span>.<span class="number">3</span>/jquery<span class="class">.min</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2_文件_layout/_partial/head-ejs">2 文件 layout/_partial/head.ejs</h4><p>找到<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">fonts.googleapis.com</span>/css?family<span class="label">=Source</span>+<span class="preprocessor">Code</span>+Pro</span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">fonts.useso.com</span>/css?family<span class="label">=Source</span>+<span class="preprocessor">Code</span>+Pro</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="2-分享">2.分享</h2><p>这是水土不服表现之二，默认自带的是AddThis，这再国外好像是相当火（反正我没用过），进文章一看便发现都是分享到facebook、twitter等之类的网站，显然是不符合国情的，于是决定换成百度分享。</p>
+<h4 id="2-1_文件_layout/_partial/post/share-ejs">2.1 文件 layout/_partial/post/share.ejs</h4><p>内容全部替换为<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bdsharebuttonbox"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_more"</span> <span class="attribute">data-cmd</span>=<span class="value">"more"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_qzone"</span> <span class="attribute">data-cmd</span>=<span class="value">"qzone"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_tsina"</span> <span class="attribute">data-cmd</span>=<span class="value">"tsina"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_tqq"</span> <span class="attribute">data-cmd</span>=<span class="value">"tqq"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_renren"</span> <span class="attribute">data-cmd</span>=<span class="value">"renren"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">class</span>=<span class="value">"bds_weixin"</span> <span class="attribute">data-cmd</span>=<span class="value">"weixin"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="built_in">window</span>._bd_share_config = </span></span><span class="expression">&#123;</span><br><span class="line">        <span class="string">"common"</span>: &#123;</span><br><span class="line">            <span class="string">"bdSnsKey"</span>: &#123;&#125;</span><span class="xml"><span class="actionscript">,</span><br><span class="line">            <span class="string">"bdText"</span>: <span class="string">""</span>,</span><br><span class="line">            <span class="string">"bdMini"</span>: <span class="string">"2"</span>,</span><br><span class="line">            <span class="string">"bdPic"</span>: <span class="string">""</span>,</span><br><span class="line">            <span class="string">"bdStyle"</span>: <span class="string">"0"</span>,</span><br><span class="line">            <span class="string">"bdSize"</span>: <span class="string">"16"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"share"</span>: </span></span><span class="expression">&#123;&#125;</span><span class="xml"><span class="actionscript">,</span><br><span class="line">        <span class="string">"image"</span>: </span></span><span class="expression">&#123;</span><br><span class="line">            <span class="string">"viewList"</span>: [<span class="string">"qzone"</span>, <span class="string">"tsina"</span>, <span class="string">"tqq"</span>, <span class="string">"renren"</span>, <span class="string">"weixin"</span>],</span><br><span class="line">            <span class="string">"viewText"</span>: “分享到<span class="string">",</span><br><span class="line">            "</span><span class="variable">viewSize</span><span class="string">": "</span>16<span class="string">"</span><br><span class="line">        &#125;,</span><br><span class="line">        "</span><span class="variable">selectShare</span><span class="string">": &#123;</span><br><span class="line">            "</span><span class="variable">bdContainerClass</span><span class="string">": null,</span><br><span class="line">            "</span><span class="variable">bdSelectMiniList</span><span class="string">": ["</span><span class="variable">qzone</span><span class="string">", "</span><span class="variable">tsina</span><span class="string">", "</span><span class="variable">tqq</span><span class="string">", "</span><span class="variable">renren</span><span class="string">", "</span><span class="variable">weixin</span><span class="string">"]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</span><br><span class="line">&lt;/script&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="3-评论">3.评论</h2><p>这是水土不服表现之三，默认自带的是disqus，就评论它再国外是火不火的无聊问题了，反正在国内用起来比较费劲，果断换成多说。</p>
+<h4 id="3-1_文件_hexo/_config-yml">3.1 文件 hexo/_config.yml</h4><p>添加<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">duoshuo_shortname</span>: <span class="string">xxx</span></span><br></pre></td></tr></table></figure></p>
+<p>注：其实xxx是你在多说系统注册的一个shortname，这方面自行科普。</p>
+<h4 id="3-2_全局载入多说的js，在layout/_partial/after_footer-ejs尾部中加入如下代码">3.2 全局载入多说的js，在layout/_partial/after_footer.ejs尾部中加入如下代码</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> duoshuo_shortname = <span class="string">'&lt;%= config.duoshuo_shortname %&gt;'</span>;</span><br><span class="line"><span class="keyword">var</span> duoshuoQuery = &#123;short_name:duoshuo_shortname&#125;;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</span><br><span class="line">        ds.src = <span class="string">'http://static.duoshuo.com/embed.js'</span>;</span><br><span class="line">        ds.charset = <span class="string">'UTF-8'</span>;</span><br><span class="line">        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</span><br><span class="line">    &#125;)();</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-3_显示正文评论，文件_layout/_partial/comment-ejs">3.3 显示正文评论，文件 layout/_partial/comment.ejs</h4><p>全文替换为<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (page.comments)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    <span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comment"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">h1</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span></span>&lt;%=<span class="ruby"> _<span class="number">_</span>(<span class="string">'comment'</span>) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> item.path </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure></p>
+<h4 id="3-4_显示列表评论数，文件_layout/_partial/article-ejs">3.4 显示列表评论数，文件 layout/_partial/article.ejs</h4><p>找到<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (item.comment &amp;&amp; config.disqus_shortname)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"alignright"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> item.permalink </span>%&gt;<span class="xml"><span class="tag"><span class="value">#disqus_thread"</span> <span class="attribute">class</span>=<span class="value">"comment-link"</span>&gt;</span>Comments<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (!item.comment)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value"></span></span></span>&lt;%-<span class="ruby"> item.path </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span> <span class="attribute">class</span>=<span class="value">"ds-thread-count comment-link alignright"</span> <span class="attribute">data-thread-key</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> item.path </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span> <span class="attribute">data-count-type</span>=<span class="value">"comments"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4-百度站内搜索">4.百度站内搜索</h2><p>这是水土不服表现之四，默认使用的是google搜索，就不解释了，换成百度吧。</p>
+<h4 id="4-1_文件_layout/_widget/search-ejs">4.1 文件 layout/_widget/search.ejs</h4><p>全文替换为<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">SCRIPT</span> <span class="attribute">language</span>=<span class="value">javascript</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span>(<span class="params">formname</span>) </span>&#123;</span><br><span class="line">    formname.method = <span class="string">"get"</span>;</span><br><span class="line">    formname.action = <span class="string">"http://www.baidu.com/baidu"</span>;</span><br><span class="line">    <span class="built_in">document</span>.search_form.word.value = <span class="built_in">document</span>.search_form.word.value + <span class="string">" site:mjiayou.com"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">SCRIPT</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"search"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">form</span> <span class="attribute">name</span>=<span class="value">"search_form"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span> <span class="attribute">onsubmit</span>=<span class="value">"search(this)"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"search"</span> <span class="attribute">name</span>=<span class="value">"word"</span> <span class="attribute">results</span>=<span class="value">"0"</span> <span class="attribute">placeholder</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> _<span class="number">_</span>(<span class="string">'百度站内搜索'</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span> <span class="attribute">onblur</span>=<span class="value">"this.value=''"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;input type="submit" value="搜索"&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>注：其实搜索框的操作是有bug的，待解决</p>
+<h2 id="以上基本是必修内容，确保博客系统能全功能运转，以下为选修内容">以上基本是必修内容，确保博客系统能全功能运转，以下为选修内容</h2><h2 id="5-添加footer备案号">5.添加footer备案号</h2><p>域名11年注册，用了小四年，终于在前段时间给备案了，也体验以下当合法站长的感觉，得拿出来嘚瑟嘚瑟。</p>
+<h4 id="5-1_文件_layout/_partial/footer-ejs">5.1 文件 layout/_partial/footer.ejs</h4><p>找到<br><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (config.author)&#123; <span class="variable">%&gt;</span></span><br><span class="line">  &amp;copy; &lt;<span class="variable">%=</span> new Date().getFullYear() <span class="variable">%&gt;</span> &lt;<span class="variable">%=</span> config.author <span class="variable">%&gt;</span></span><br><span class="line">  &lt;% &#125; <span class="keyword">else</span> &#123; <span class="variable">%&gt;</span></span><br><span class="line">  &amp;copy; &lt;<span class="variable">%=</span> new Date().getFullYear() <span class="variable">%&gt;</span> &lt;<span class="variable">%=</span> config.title <span class="variable">%&gt;</span></span><br><span class="line">  &lt;% &#125; <span class="variable">%&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">&amp;copy; 2011-</span><span class="vbscript">&lt;%= <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() %&gt;</span><span class="xml"> </span><span class="vbscript">&lt;%= config.author %&gt;</span><span class="xml"></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.miitbeian.gov.cn/"</span>&gt;</span>京ICP备15042793号<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="6-添加常用widget">6.添加常用widget</h2><h4 id="6-1_新浪微博，新建文件_layout/_widget/weibo-ejs">6.1 新浪微博，新建文件 layout/_widget/weibo.ejs</h4><p>内容如下（代码请自行去自己微博索取）<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">iframe</span> <span class="attribute">width</span>=<span class="string">"100%"</span> <span class="attribute">height</span>=<span class="string">"550"</span> class=<span class="string">"share_self"</span> frameborder=<span class="string">"0"</span> scrolling=<span class="string">"no"</span> </span><br><span class="line">src=<span class="string">"http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=1&amp;ptype=1&amp;speed=0&amp;skin=9&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=1734508991&amp;verifier=faa09416&amp;dpc=1"</span>&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="6-2_友链，新建文件_layout/_widget/blogroll-ejs">6.2 友链，新建文件 layout/_widget/blogroll.ejs</h4><p>内容如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"widget tag"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h3</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span>友情链接<span class="tag">&lt;/<span class="title">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"entry"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.cnblogs.com/"</span> <span class="attribute">title</span>=<span class="value">"博客园"</span>&gt;</span>博客园<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://capegf.im/"</span> <span class="attribute">title</span>=<span class="value">"Capegf's blog"</span>&gt;</span>Capegf's blog<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="6-x_添加widget，文件_light/_config-yml">6.x 添加widget，文件 light/_config.yml</h4><p>在widgets:位置添加<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">widgets:</span><br><span class="line">-<span class="ruby"></span><br><span class="line"></span>-<span class="ruby"> weibo</span><br><span class="line"></span>-<span class="ruby"> blogroll</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-修改widget">7.修改widget</h2><p>主要因为这个theme没有默认的archive widget，于是手动添加，又想和category、tag的widget保持一致，于是还得修改下styl。</p>
+<h4 id="7-1_新建文件_layout/_widget/archive-ejs">7.1 新建文件 layout/_widget/archive.ejs</h4><p>内容如下<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(site.posts.length)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">"widget tag"</span>&gt;</span><br><span class="line">         &lt;h<span class="number">3</span> class=<span class="string">"title"</span>&gt;&lt;<span class="preprocessor">%</span>= __<span class="comment">('archive_a')</span> <span class="preprocessor">%</span>&gt;&lt;/h<span class="number">3</span>&gt;</span><br><span class="line">            &lt;<span class="preprocessor">%</span>- list_archives<span class="comment">()</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="7-2_文件_layout/_widget/category-ejs">7.2 文件 layout/_widget/category.ejs</h4><p>全文替换为<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(site.categories.length)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;div class=<span class="string">"widget tag"</span>&gt;</span><br><span class="line">  &lt;h<span class="number">3</span> class=<span class="string">"title"</span>&gt;&lt;<span class="preprocessor">%</span>= __<span class="comment">('categories')</span> <span class="preprocessor">%</span>&gt;&lt;/h<span class="number">3</span>&gt;</span><br><span class="line">    &lt;<span class="preprocessor">%</span>- list_categories<span class="comment">()</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="7-3_文件_layout/_widget/_widget/tag-ejs">7.3 文件 layout/_widget/_widget/tag.ejs</h4><p>全文替换为<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(site.tags.length)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;div class=<span class="string">"widget tag"</span>&gt;</span><br><span class="line">  &lt;h<span class="number">3</span> class=<span class="string">"title"</span>&gt;&lt;<span class="preprocessor">%</span>= __<span class="comment">('tags')</span> <span class="preprocessor">%</span>&gt;&lt;/h<span class="number">3</span>&gt;</span><br><span class="line">    &lt;<span class="preprocessor">%</span>- list_tags<span class="comment">()</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="7-4_文件_source/css/_partial/sidebar-styl">7.4 文件 source/css/_partial/sidebar.styl</h4><p>添加<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.category-list-count</span></span><br><span class="line"><span class="class">.tag-list-count</span></span><br><span class="line"><span class="class">.archive-list-count</span></span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">15px</span></span><br><span class="line">  <span class="attribute">color</span> <span class="attribute">color</span>-meta</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.85em</span></span><br><span class="line">  <span class="pseudo">&amp;:before</span><br><span class="line"></span>    <span class="attribute">content</span>: <span class="string">"("</span></span><br><span class="line">  <span class="pseudo">&amp;:after</span><br><span class="line"></span>    <span class="attribute">content</span>: <span class="string">")"</span></span><br><span class="line"></span><br><span class="line"><span class="class">.category-list</span></span><br><span class="line"><span class="class">.tag-list</span></span><br><span class="line"><span class="class">.archive-list</span></span><br><span class="line">  <span class="attribute">font-size</span> <span class="number">0.9em</span></span><br><span class="line">  <span class="attribute">padding</span> <span class="number">15px</span> <span class="number">20px</span></span><br><span class="line">  <span class="tag">ul</span>, <span class="tag">ol</span>, <span class="tag">dl</span></span><br><span class="line">    <span class="attribute">list-style</span> <span class="attribute">none</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-Fork_me_on_Github">7.Fork me on Github</h2><p>主要就是左上角fork me on github的图片展示，方便跳转github，一定的装x成分。</p>
+<h4 id="7-1_新建文件_layout/_widget/forkme-ejs">7.1 新建文件 layout/_widget/forkme.ejs</h4><p>内容如下<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"><span class="keyword">if</span>(page.layout !== <span class="string">'false'</span>)&#123;</span>%&gt;<span class="xml"></span><br><span class="line"></span>&lt;%<span class="ruby">&#125;<span class="keyword">else</span>&#123; </span>%&gt;<span class="xml"></span><br><span class="line">    </span>&lt;%-<span class="ruby"> page.content </span>%&gt;<span class="xml"></span><br><span class="line"></span>&lt;%<span class="ruby">&#125;;</span>%&gt;<span class="xml"></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"https://github.com/treason258"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">style</span>=<span class="value">"position: absolute; top: 0; left: 0; border: 0;"</span> <span class="attribute">src</span>=<span class="value">"http://mjiayou.com/trefiles/image/forkme_left_white_ffffff.png"</span> <span class="attribute">alt</span>=<span class="value">"Fork me on GitHub"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h4 id="7-2_文件_layout/layout-ejs">7.2 文件 layout/layout.ejs</h4><p>添加<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span>- partial<span class="comment">('_widget/forkme')</span> <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="8-关于页面、RSS页面">8.关于页面、RSS页面</h2><h4 id="8-1_文件_layout/_partial/header-ejs">8.1 文件 layout/_partial/header.ejs</h4><p>添加<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value">about-impress.html"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span>&gt;</span>关于<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value">atom.xml"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span>&gt;</span>RSS<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="持续更新…">持续更新…</h2>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Hexo/">Hexo</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Hexo主题/">Hexo主题</a>
+  </div>
+
+        <!-- treason@20150818 -->
+<!-- 百度分享 -->
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+<!-- treason@20150818 -->
+<!-- 正文评论 -->
+
+	<section id="comment">
+		<h1 class="title">留言</h1>
+	    <div class="ds-thread" data-thread-key="2014/08/18/hexo-theme-modify-based-light/"></div>
+    </section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <!-- treason@20150818 -->
+<!-- 百度站内搜索 -->
+<SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  	<!-- treason@20150818 -->
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WP/">WP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">21</span></li></ul>
+</div>
+
+
+  <!-- treason@20150818 -->
+<!-- 新浪微博 -->
+<iframe width="100%" height="550" class="share_self" frameborder="0" scrolling="no" 
+src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1734508991&verifier=faa09416&dpc=1">
+</iframe>
+
+  <!-- treason@20150818 -->
+<!-- 归档列表 -->
+
+	<div class="widget tag">
+	 	<h3 class="title">归档</h3>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">三月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/05/">五月 2000</a><span class="archive-list-count">3</span></li></ul>
+	</div>
+
+
+  <!-- treason@20150818 -->
+<!-- 友情链接 -->
+<div class="widget tag">
+	<h3 class="title">友情链接</h3>
+	<ul class="entry">
+		<li><a href="http://www.cnblogs.com/" target="_blank" title="博客园">博客园</a></li>
+		<li><a href="http://capegf.im/" target="_blank" title="Capegf's blog">Capegf's blog</a></li>
+		<li><a href="http://www.4848438.com"  target="_blank"title="小胖博客">小胖博客</a></li>
+	</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/08/17/mac-hexo-log-again/">Hexo-Mac下再次搭建hexo，版本升级的坑</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/06/android-studio-mapping/">Android-Android Studio打包APK生成mapping文件位置</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/04/android-textview-spannable/">Android-[转载]通过Spannable对象设置textview的样式</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/03/android-child-view-get-focusable/">Android-子控件获得父控件的点击事件</a>
+      </li>
+    
+      <li>
+        <a href="/2015/07/30/android-animation-interpolator/">Android-[转载]渗透理解Animation时间插值Interpolator类</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android组件/" style="font-size: 10px;">Android组件</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/BingMaps/" style="font-size: 10px;">BingMaps</a> <a href="/tags/Cmd-Markdown/" style="font-size: 10px;">Cmd Markdown</a> <a href="/tags/Exception整理/" style="font-size: 13.33px;">Exception整理</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo3-0/" style="font-size: 10px;">Hexo3.0</a> <a href="/tags/Hexo主题/" style="font-size: 10px;">Hexo主题</a> <a href="/tags/Hexo搭建/" style="font-size: 13.33px;">Hexo搭建</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Spannable/" style="font-size: 10px;">Spannable</a> <a href="/tags/TypedValue/" style="font-size: 10px;">TypedValue</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/gson/" style="font-size: 10px;">gson</a> <a href="/tags/mainfest/" style="font-size: 10px;">mainfest</a> <a href="/tags/mapping/" style="font-size: 10px;">mapping</a> <a href="/tags/proguard/" style="font-size: 10px;">proguard</a> <a href="/tags/selector/" style="font-size: 13.33px;">selector</a> <a href="/tags/shape/" style="font-size: 13.33px;">shape</a> <a href="/tags/一览无遗/" style="font-size: 10px;">一览无遗</a> <a href="/tags/加油/" style="font-size: 13.33px;">加油</a> <a href="/tags/北京/" style="font-size: 20px;">北京</a> <a href="/tags/屏幕适配/" style="font-size: 10px;">屏幕适配</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/控件/" style="font-size: 10px;">控件</a> <a href="/tags/晴朗/" style="font-size: 10px;">晴朗</a> <a href="/tags/最后/" style="font-size: 10px;">最后</a> <a href="/tags/梦想/" style="font-size: 13.33px;">梦想</a> <a href="/tags/测试/" style="font-size: 13.33px;">测试</a> <a href="/tags/济南/" style="font-size: 10px;">济南</a> <a href="/tags/烦躁/" style="font-size: 10px;">烦躁</a> <a href="/tags/生日/" style="font-size: 13.33px;">生日</a> <a href="/tags/运动场/" style="font-size: 10px;">运动场</a> <a href="/tags/近期任务/" style="font-size: 10px;">近期任务</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a> <a href="/tags/顺其自然/" style="font-size: 10px;">顺其自然</a> <a href="/tags/马克飞象/" style="font-size: 10px;">马克飞象</a> <a href="/tags/黑/" style="font-size: 10px;">黑</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <!-- treason@20150818 -->
+  &copy; 2011-2015 马加油
+  <a href="http://www.miitbeian.gov.cn/">京ICP备15042793号</a>
+</div>
+<div class="clearfix"></div></footer>
+  <!-- treason@20150818 -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- treason@20150818 -->
+<!-- 多说评论-全局声明 -->
+<script type="text/javascript">
+var duoshuo_shortname = 'mjiayou';
+var duoshuoQuery = {short_name:duoshuo_shortname};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+</body>
+</html>
+
+<!-- treason@20150818 -->

@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android-常用第三方库proguard-rules配置 | 青春不再 | 马加油DE博客</title>
+  <meta name="author" content="马加油">
+  
+  <meta name="description" content="青春不再 | 马加油 | mjiayou.com">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android-常用第三方库proguard-rules配置"/>
+  <meta property="og:site_name" content="青春不再 | 马加油DE博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="青春不再 | 马加油DE博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">青春不再 | 马加油DE博客</a></h1>
+  <h2><a href="/">贪玩就像落叶，看似飞翔，却在堕落！</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/messages">留言板</a></li>
+    
+    <!-- treason@20150819 -->
+    <li><a href="/about-impress.html" target="_blank">关于</a></li>
+    <li><a href="/atom.xml" target="_blank">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-06-24T05:28:10.000Z"><a href="/2015/06/24/third-proguard-rules/">2015-06-24</a></time>
+      
+      
+  
+    <h1 class="title">Android-常用第三方库proguard-rules配置</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>本文内容均是本人在开发过程中整理的：</p>
+<h2 id="butterknife">butterknife</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">butterknife</span>.** &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">dontwarn butterknife.internal.**</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> **$$<span class="title">ViewInjector</span> &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keepclasseswithmembernames <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line"></span>    @butterknife.* &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-<span class="ruby">keepclasseswithmembernames <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line"></span>    @butterknife.* &lt;methods&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="dart">dart</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">dontwarn com.f2prateek.dart.internal.**</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> **$$<span class="title">ExtraInjector</span> &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keepnames <span class="class"><span class="keyword">class</span> * &#123; @<span class="title">com</span>.<span class="title">f2prateek</span>.<span class="title">dart</span>.<span class="title">InjectExtra</span> *;</span>&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="eventbus">eventbus</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-keepclassmembers class <span class="keyword">*</span><span class="keyword">*</span> &#123;</span><br><span class="line">    public void onEvent<span class="keyword">*</span>(<span class="keyword">*</span><span class="keyword">*</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="volley">volley</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">android</span>.<span class="title">volley</span>.**  &#123;* ;</span>&#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">http</span>.**  &#123;* ;</span>&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Gson">Gson</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keepattributes <span class="constant">Signature</span></span><br><span class="line"></span>-<span class="ruby">keepattributes *<span class="constant">Annotation</span>*</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">sun</span>.<span class="title">misc</span>.<span class="title">Unsafe</span> &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">google</span>.<span class="title">gson</span>.<span class="title">examples</span>.<span class="title">android</span>.<span class="title">model</span>.** &#123; *;</span> &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="picasso">picasso</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-dontwarn com<span class="class">.squareup</span><span class="class">.okhttp</span>.**</span><br></pre></td></tr></table></figure>
+<h1 id="umeng_analytics_友盟统计分析">umeng_analytics 友盟统计分析</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-keepclassmembers <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line">    <span class="keyword">public</span> &lt;init&gt;(org.json.JSONObject);</span><br><span class="line">&#125;</span><br><span class="line">-keep <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">aijifu</span>.<span class="title">mmbj</span>.<span class="title">R</span>$*&#123;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="typename">int</span> *;</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers <span class="class"><span class="keyword">enum</span> * &#123;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> **[] values();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> ** valueOf(java.lang.String);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="umeng_params_友盟在线参数">umeng_params 友盟在线参数</h1><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-keepclassmembers <span class="class"><span class="keyword">class</span> * </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> &lt;init&gt;(org.json.JSONObject);</span><br><span class="line">&#125;</span><br><span class="line">-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">onlineconfig</span>.<span class="title">OnlineConfigAgent</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> &lt;fields&gt;;</span><br><span class="line">        <span class="keyword">public</span> &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">onlineconfig</span>.<span class="title">OnlineConfigLog</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> &lt;fields&gt;;</span><br><span class="line">        <span class="keyword">public</span> &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-keep <span class="class"><span class="keyword">interface</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">onlineconfig</span>.<span class="title">UmengOnlineConfigureListener</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> &lt;methods&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="umeng_update_友盟自动更新">umeng_update 友盟自动更新</h1><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-keepclassmembers <span class="class"><span class="keyword">class</span> <span class="title">*</span> &#123;</span></span><br><span class="line">   public &lt;init&gt;(org.json.<span class="type">JSONObject</span>);</span><br><span class="line">&#125;</span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">aijifu</span>.<span class="title">mmbj</span>.<span class="title">R$*</span>&#123;</span></span><br><span class="line">    public static <span class="keyword">final</span> int *;</span><br><span class="line">&#125;</span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">fb</span>.<span class="title">ui</span>.<span class="title">ThreadView</span> &#123;</span></span><br><span class="line">&#125;</span><br><span class="line">#-libraryjars libs/umeng-sdk.jar</span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> <span class="title">*</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">**</span></span><br><span class="line"></span>-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">**</span> &#123;</span> *; &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="umeng_feedback_友盟意见反馈">umeng_feedback 友盟意见反馈</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-keepclassmembers <span class="class"><span class="keyword">class</span> * </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> &lt;init&gt;(org.json.JSONObject);</span><br><span class="line">&#125;</span><br><span class="line">-keep <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">aijifu</span>.<span class="title">mmbj</span>.<span class="title">R</span>$*</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> *;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="umeng_social_友盟社会化分享">umeng_social 友盟社会化分享</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">dontshrink</span><br><span class="line"></span>-<span class="ruby">dontoptimize</span><br><span class="line"></span>-<span class="ruby">dontwarn com.google.android.maps.**</span><br><span class="line"></span>-<span class="ruby">dontwarn android.webkit.<span class="constant">WebView</span></span><br><span class="line"></span>-<span class="ruby">dontwarn com.umeng.**</span><br><span class="line"></span>-<span class="ruby">dontwarn com.tencent.weibo.sdk.**</span><br><span class="line"></span>-<span class="ruby">dontwarn com.facebook.**</span><br><span class="line"></span>#-libraryjars libs/SocialSDK_QQZone_2.jar</span><br><span class="line">-<span class="ruby">keep enum com.facebook.**</span><br><span class="line"></span>-<span class="ruby">keepattributes <span class="constant">Exceptions</span>,<span class="constant">InnerClasses</span>,<span class="constant">Signature</span></span><br><span class="line"></span>-<span class="ruby">keepattributes *<span class="constant">Annotation</span>*</span><br><span class="line"></span>-<span class="ruby">keepattributes <span class="constant">SourceFile</span>,<span class="constant">LineNumberTable</span></span><br><span class="line"></span>-<span class="ruby">keep public interface com.facebook.**</span><br><span class="line"></span>-<span class="ruby">keep public interface com.tencent.**</span><br><span class="line"></span>-<span class="ruby">keep public interface com.umeng.socialize.**</span><br><span class="line"></span>-<span class="ruby">keep public interface com.umeng.socialize.sensor.**</span><br><span class="line"></span>-<span class="ruby">keep public interface com.umeng.scrshot.**</span><br><span class="line"></span>-<span class="ruby">keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">socialize</span>.* &#123;*;</span>&#125;</span><br><span class="line"></span>-<span class="ruby">keep public <span class="class"><span class="keyword">class</span> <span class="title">javax</span>.**</span></span><br><span class="line"></span>-<span class="ruby">keep public <span class="class"><span class="keyword">class</span> <span class="title">android</span>.<span class="title">webkit</span>.**</span></span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">facebook</span>.**</span></span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">scrshot</span>.**</span></span><br><span class="line"></span>-<span class="ruby">keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">tencent</span>.** &#123;*;</span>&#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">umeng</span>.<span class="title">socialize</span>.<span class="title">sensor</span>.**</span></span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">tencent</span>.<span class="title">mm</span>.<span class="title">sdk</span>.<span class="title">modelmsg</span>.<span class="title">WXMediaMessage</span> &#123;*;</span>&#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">tencent</span>.<span class="title">mm</span>.<span class="title">sdk</span>.<span class="title">modelmsg</span>.** <span class="title">implements</span> <span class="title">com</span>.<span class="title">tencent</span>.<span class="title">mm</span>.<span class="title">sdk</span>.<span class="title">modelmsg</span>.<span class="title">WXMediaMessage</span>$<span class="title">IMediaObject</span> &#123;*;</span>&#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">im</span>.<span class="title">yixin</span>.<span class="title">sdk</span>.<span class="title">api</span>.<span class="title">YXMessage</span> &#123;*;</span>&#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">im</span>.<span class="title">yixin</span>.<span class="title">sdk</span>.<span class="title">api</span>.** <span class="title">implements</span> <span class="title">im</span>.<span class="title">yixin</span>.<span class="title">sdk</span>.<span class="title">api</span>.<span class="title">YXMessage</span>$<span class="title">YXMessageData</span>&#123;*;</span>&#125;</span><br><span class="line"></span>-<span class="ruby">keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">aijifu</span>.<span class="title">mmbj</span>.<span class="title">R</span>$*&#123;</span></span><br><span class="line"></span>    public static final int *;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="xgpush_信鸽推送">xgpush 信鸽推送</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-keep public <span class="class"><span class="keyword">class</span> <span class="title">*</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">android</span>.<span class="title">app</span>.<span class="title">Service</span></span><br><span class="line"></span>-keep public <span class="class"><span class="keyword">class</span> <span class="title">*</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">android</span>.<span class="title">content</span>.<span class="title">BroadcastReceiver</span></span><br><span class="line"></span>-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">tencent</span>.<span class="title">android</span>.<span class="title">tpush</span>.<span class="title">**</span>  &#123;</span>*;&#125;</span><br><span class="line">-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">tencent</span>.<span class="title">mid</span>.<span class="title">**</span>  &#123;</span>*;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="附1-这是屏蔽项目自定义bean、entitiy和R，防止被混淆：">附1.这是屏蔽项目自定义bean、entitiy和R，防止被混淆：</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">name</span>.<span class="title">bean</span>.** &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">name</span>.<span class="title">bean</span>.<span class="title">entity</span>.** &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">name</span>.<span class="title">R</span>$*&#123;</span></span><br><span class="line"></span>    public static final int *;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：com.package.name是你项目包名</p>
+<h2 id="附2-这是屏蔽系统的一些类，防止被混淆">附2.这是屏蔽系统的一些类，防止被混淆</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##---------------Begin: proguard configuration common for all Android apps ----------</span></span><br><span class="line">-optimizationpasses <span class="number">5</span></span><br><span class="line">-dontusemixedcaseclassnames</span><br><span class="line">-dontskipnonpubliclibraryclasses</span><br><span class="line">-dontskipnonpubliclibraryclassmembers</span><br><span class="line">-dontpreverify</span><br><span class="line">-verbose</span><br><span class="line"><span class="comment">#-dump class_files.txt</span></span><br><span class="line"><span class="comment">#-printseeds seeds.txt</span></span><br><span class="line"><span class="comment">#-printusage unused.txt</span></span><br><span class="line"><span class="comment">#-printmapping mapping.txt</span></span><br><span class="line">-optimizations !code/simplification/arithmetic,!field/*,!<span class="class"><span class="keyword">class</span>/<span class="title">merging</span>/*</span></span><br><span class="line"></span><br><span class="line">-allowaccessmodification</span><br><span class="line">-keepattributes *<span class="constant">Annotation</span>*</span><br><span class="line">-renamesourcefileattribute <span class="constant">SourceFile</span></span><br><span class="line">-keepattributes <span class="constant">SourceFile</span>,<span class="constant">LineNumberTable</span></span><br><span class="line">-repackageclasses <span class="string">''</span></span><br><span class="line"></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * <span class="title">extends</span> <span class="title">android</span>.<span class="title">app</span>.<span class="title">Activity</span></span></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * <span class="title">extends</span> <span class="title">android</span>.<span class="title">app</span>.<span class="title">Application</span></span></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * <span class="title">extends</span> <span class="title">android</span>.<span class="title">app</span>.<span class="title">Service</span></span></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * <span class="title">extends</span> <span class="title">android</span>.<span class="title">content</span>.<span class="title">BroadcastReceiver</span></span></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * <span class="title">extends</span> <span class="title">android</span>.<span class="title">content</span>.<span class="title">ContentProvider</span></span></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * <span class="title">extends</span> <span class="title">android</span>.<span class="title">app</span>.<span class="title">backup</span>.<span class="title">BackupAgentHelper</span></span></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * <span class="title">extends</span> <span class="title">android</span>.<span class="title">preference</span>.<span class="title">Preference</span></span></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">android</span>.<span class="title">vending</span>.<span class="title">licensing</span>.<span class="title">ILicensingService</span></span></span><br><span class="line">-dontnote com.android.vending.licensing.<span class="constant">ILicensingService</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Explicitly preserve all serialization members. The Serializable interface</span></span><br><span class="line"><span class="comment"># is only a marker interface, so it wouldn't save them.</span></span><br><span class="line">-keepclassmembers <span class="class"><span class="keyword">class</span> * <span class="title">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> &#123;</span></span><br><span class="line">    static final long serialVersionUID;</span><br><span class="line">    private static final java.io.<span class="constant">ObjectStreamField</span>[] serialPersistentFields;</span><br><span class="line">    private void writeObject(java.io.<span class="constant">ObjectOutputStream</span>);</span><br><span class="line">    private void readObject(java.io.<span class="constant">ObjectInputStream</span>);</span><br><span class="line">    java.lang.<span class="constant">Object</span> writeReplace();</span><br><span class="line">    java.lang.<span class="constant">Object</span> readResolve();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Preserve all native method names and the names of their classes.</span></span><br><span class="line">-keepclasseswithmembernames <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line">    native &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclasseswithmembernames <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line">    public &lt;init&gt;(android.content.<span class="constant">Context</span>, android.util.<span class="constant">AttributeSet</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclasseswithmembernames <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line">    public &lt;init&gt;(android.content.<span class="constant">Context</span>, android.util.<span class="constant">AttributeSet</span>, int);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Preserve static fields of inner classes of R classes that might be accessed</span></span><br><span class="line"><span class="comment"># through introspection.</span></span><br><span class="line">-keepclassmembers <span class="class"><span class="keyword">class</span> **.<span class="title">R</span>$* &#123;</span></span><br><span class="line">  public static &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Preserve the special static methods that are required in all enumeration classes.</span></span><br><span class="line">-keepclassmembers enum * &#123;</span><br><span class="line">    public static **[] values();</span><br><span class="line">    public static ** valueOf(java.lang.<span class="constant">String</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keep public <span class="class"><span class="keyword">class</span> * &#123;</span></span><br><span class="line">    public protected *;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keep <span class="class"><span class="keyword">class</span> * <span class="title">implements</span> <span class="title">android</span>.<span class="title">os</span>.<span class="title">Parcelable</span> &#123;</span></span><br><span class="line">  public static final android.os.<span class="constant">Parcelable</span><span class="variable">$Creator</span> *;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">##---------------End: proguard configuration common for all Android apps ----------</span></span><br></pre></td></tr></table></figure>
+<h2 id="持续更新…">持续更新…</h2>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Android/">Android</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/proguard/">proguard</a>
+  </div>
+
+        <!-- treason@20150818 -->
+<!-- 百度分享 -->
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+<!-- treason@20150818 -->
+<!-- 正文评论 -->
+
+	<section id="comment">
+		<h1 class="title">留言</h1>
+	    <div class="ds-thread" data-thread-key="2015/06/24/third-proguard-rules/"></div>
+    </section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <!-- treason@20150818 -->
+<!-- 百度站内搜索 -->
+<SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  	<!-- treason@20150818 -->
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WP/">WP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">21</span></li></ul>
+</div>
+
+
+  <!-- treason@20150818 -->
+<!-- 新浪微博 -->
+<iframe width="100%" height="550" class="share_self" frameborder="0" scrolling="no" 
+src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1734508991&verifier=faa09416&dpc=1">
+</iframe>
+
+  <!-- treason@20150818 -->
+<!-- 归档列表 -->
+
+	<div class="widget tag">
+	 	<h3 class="title">归档</h3>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">三月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/05/">五月 2000</a><span class="archive-list-count">3</span></li></ul>
+	</div>
+
+
+  <!-- treason@20150818 -->
+<!-- 友情链接 -->
+<div class="widget tag">
+	<h3 class="title">友情链接</h3>
+	<ul class="entry">
+		<li><a href="http://www.cnblogs.com/" target="_blank" title="博客园">博客园</a></li>
+		<li><a href="http://capegf.im/" target="_blank" title="Capegf's blog">Capegf's blog</a></li>
+		<li><a href="http://www.4848438.com"  target="_blank"title="小胖博客">小胖博客</a></li>
+	</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/08/17/mac-hexo-log-again/">Hexo-Mac下再次搭建hexo，版本升级的坑</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/06/android-studio-mapping/">Android-Android Studio打包APK生成mapping文件位置</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/04/android-textview-spannable/">Android-[转载]通过Spannable对象设置textview的样式</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/03/android-child-view-get-focusable/">Android-子控件获得父控件的点击事件</a>
+      </li>
+    
+      <li>
+        <a href="/2015/07/30/android-animation-interpolator/">Android-[转载]渗透理解Animation时间插值Interpolator类</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android组件/" style="font-size: 10px;">Android组件</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/BingMaps/" style="font-size: 10px;">BingMaps</a> <a href="/tags/Cmd-Markdown/" style="font-size: 10px;">Cmd Markdown</a> <a href="/tags/Exception整理/" style="font-size: 13.33px;">Exception整理</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo3-0/" style="font-size: 10px;">Hexo3.0</a> <a href="/tags/Hexo主题/" style="font-size: 10px;">Hexo主题</a> <a href="/tags/Hexo搭建/" style="font-size: 13.33px;">Hexo搭建</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Spannable/" style="font-size: 10px;">Spannable</a> <a href="/tags/TypedValue/" style="font-size: 10px;">TypedValue</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/gson/" style="font-size: 10px;">gson</a> <a href="/tags/mainfest/" style="font-size: 10px;">mainfest</a> <a href="/tags/mapping/" style="font-size: 10px;">mapping</a> <a href="/tags/proguard/" style="font-size: 10px;">proguard</a> <a href="/tags/selector/" style="font-size: 13.33px;">selector</a> <a href="/tags/shape/" style="font-size: 13.33px;">shape</a> <a href="/tags/一览无遗/" style="font-size: 10px;">一览无遗</a> <a href="/tags/加油/" style="font-size: 13.33px;">加油</a> <a href="/tags/北京/" style="font-size: 20px;">北京</a> <a href="/tags/屏幕适配/" style="font-size: 10px;">屏幕适配</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/控件/" style="font-size: 10px;">控件</a> <a href="/tags/晴朗/" style="font-size: 10px;">晴朗</a> <a href="/tags/最后/" style="font-size: 10px;">最后</a> <a href="/tags/梦想/" style="font-size: 13.33px;">梦想</a> <a href="/tags/测试/" style="font-size: 13.33px;">测试</a> <a href="/tags/济南/" style="font-size: 10px;">济南</a> <a href="/tags/烦躁/" style="font-size: 10px;">烦躁</a> <a href="/tags/生日/" style="font-size: 13.33px;">生日</a> <a href="/tags/运动场/" style="font-size: 10px;">运动场</a> <a href="/tags/近期任务/" style="font-size: 10px;">近期任务</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a> <a href="/tags/顺其自然/" style="font-size: 10px;">顺其自然</a> <a href="/tags/马克飞象/" style="font-size: 10px;">马克飞象</a> <a href="/tags/黑/" style="font-size: 10px;">黑</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <!-- treason@20150818 -->
+  &copy; 2011-2015 马加油
+  <a href="http://www.miitbeian.gov.cn/">京ICP备15042793号</a>
+</div>
+<div class="clearfix"></div></footer>
+  <!-- treason@20150818 -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- treason@20150818 -->
+<!-- 多说评论-全局声明 -->
+<script type="text/javascript">
+var duoshuo_shortname = 'mjiayou';
+var duoshuoQuery = {short_name:duoshuo_shortname};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+</body>
+</html>
+
+<!-- treason@20150818 -->

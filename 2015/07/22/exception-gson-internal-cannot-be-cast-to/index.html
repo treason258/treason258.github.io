@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android-Exception整理之com.google.gson.internal.xxx cannot be cast to xxx | 青春不再 | 马加油DE博客</title>
+  <meta name="author" content="马加油">
+  
+  <meta name="description" content="青春不再 | 马加油 | mjiayou.com">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android-Exception整理之com.google.gson.internal.xxx cannot be cast to xxx"/>
+  <meta property="og:site_name" content="青春不再 | 马加油DE博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="青春不再 | 马加油DE博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">青春不再 | 马加油DE博客</a></h1>
+  <h2><a href="/">贪玩就像落叶，看似飞翔，却在堕落！</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/messages">留言板</a></li>
+    
+    <!-- treason@20150819 -->
+    <li><a href="/about-impress.html" target="_blank">关于</a></li>
+    <li><a href="/atom.xml" target="_blank">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-07-22T03:55:15.000Z"><a href="/2015/07/22/exception-gson-internal-cannot-be-cast-to/">2015-07-22</a></time>
+      
+      
+  
+    <h1 class="title">Android-Exception整理之com.google.gson.internal.xxx cannot be cast to xxx</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h4 id="问题描述：">问题描述：</h4><p>项目用到了Google的Gson库，不混淆情况下一切正常，当代码混淆打包时会遇到这种异常<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassCastException: com.google.gson.internal.StringMap cannot be cast to xxx</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassCastException: com.google.gson.internal.LinkedTreeMap cannot be cast to xxx</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h4 id="解决方案：">解决方案：</h4><h4 id="1-首先确保有正确的在混淆文件proguard-rules-pro有这么几行：">1.首先确保有正确的在混淆文件proguard-rules.pro有这么几行：</h4><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keepattributes <span class="constant">Signature</span></span><br><span class="line"></span>-<span class="ruby">keepattributes *<span class="constant">Annotation</span>*</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">sun</span>.<span class="title">misc</span>.<span class="title">Unsafe</span> &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">google</span>.<span class="title">gson</span>.<span class="title">examples</span>.<span class="title">android</span>.<span class="title">model</span>.** &#123; *;</span> &#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-确保自己项目内用到的model类或者bean类（总之就是和Gson解析相关的模型类）有在proguard-rules-pro内keep声明：">2.确保自己项目内用到的model类或者bean类（总之就是和Gson解析相关的模型类）有在proguard-rules.pro内keep声明：</h4><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">name</span>.<span class="title">bean</span>.** &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">name</span>.<span class="title">bean</span>.<span class="title">entity</span>.** &#123; *;</span> &#125;</span><br><span class="line"></span>-<span class="ruby">keep public <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">name</span>.<span class="title">R</span>$*&#123;</span></span><br><span class="line"></span>    public static final int *;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：com.package.name是你项目包名</p>
+<h4 id="3-JSON串转成自定义类的List对象时，要使用正确的方式：">3.JSON串转成自定义类的List对象时，要使用正确的方式：</h4><p>首先习惯使用的错误方式是<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;T&gt; list = gson.fromJson(jsonString, type);</span><br></pre></td></tr></table></figure></p>
+<p>正确的方法应该是这样的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Type type = <span class="keyword">new</span> TypeToken&lt;List&lt;T&gt;&gt;()&#123;&#125;.getType();</span><br><span class="line">List&lt;T&gt; list = gson.fromJson(jsonString, type)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Android/">Android</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Exception整理/">Exception整理</a>, <a href="/tags/gson/">gson</a>
+  </div>
+
+        <!-- treason@20150818 -->
+<!-- 百度分享 -->
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+<!-- treason@20150818 -->
+<!-- 正文评论 -->
+
+	<section id="comment">
+		<h1 class="title">留言</h1>
+	    <div class="ds-thread" data-thread-key="2015/07/22/exception-gson-internal-cannot-be-cast-to/"></div>
+    </section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <!-- treason@20150818 -->
+<!-- 百度站内搜索 -->
+<SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  	<!-- treason@20150818 -->
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WP/">WP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">21</span></li></ul>
+</div>
+
+
+  <!-- treason@20150818 -->
+<!-- 新浪微博 -->
+<iframe width="100%" height="550" class="share_self" frameborder="0" scrolling="no" 
+src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1734508991&verifier=faa09416&dpc=1">
+</iframe>
+
+  <!-- treason@20150818 -->
+<!-- 归档列表 -->
+
+	<div class="widget tag">
+	 	<h3 class="title">归档</h3>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">三月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/05/">五月 2000</a><span class="archive-list-count">3</span></li></ul>
+	</div>
+
+
+  <!-- treason@20150818 -->
+<!-- 友情链接 -->
+<div class="widget tag">
+	<h3 class="title">友情链接</h3>
+	<ul class="entry">
+		<li><a href="http://www.cnblogs.com/" target="_blank" title="博客园">博客园</a></li>
+		<li><a href="http://capegf.im/" target="_blank" title="Capegf's blog">Capegf's blog</a></li>
+		<li><a href="http://www.4848438.com"  target="_blank"title="小胖博客">小胖博客</a></li>
+	</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/08/17/mac-hexo-log-again/">Hexo-Mac下再次搭建hexo，版本升级的坑</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/06/android-studio-mapping/">Android-Android Studio打包APK生成mapping文件位置</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/04/android-textview-spannable/">Android-[转载]通过Spannable对象设置textview的样式</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/03/android-child-view-get-focusable/">Android-子控件获得父控件的点击事件</a>
+      </li>
+    
+      <li>
+        <a href="/2015/07/30/android-animation-interpolator/">Android-[转载]渗透理解Animation时间插值Interpolator类</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android组件/" style="font-size: 10px;">Android组件</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/BingMaps/" style="font-size: 10px;">BingMaps</a> <a href="/tags/Cmd-Markdown/" style="font-size: 10px;">Cmd Markdown</a> <a href="/tags/Exception整理/" style="font-size: 13.33px;">Exception整理</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo3-0/" style="font-size: 10px;">Hexo3.0</a> <a href="/tags/Hexo主题/" style="font-size: 10px;">Hexo主题</a> <a href="/tags/Hexo搭建/" style="font-size: 13.33px;">Hexo搭建</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Spannable/" style="font-size: 10px;">Spannable</a> <a href="/tags/TypedValue/" style="font-size: 10px;">TypedValue</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/gson/" style="font-size: 10px;">gson</a> <a href="/tags/mainfest/" style="font-size: 10px;">mainfest</a> <a href="/tags/mapping/" style="font-size: 10px;">mapping</a> <a href="/tags/proguard/" style="font-size: 10px;">proguard</a> <a href="/tags/selector/" style="font-size: 13.33px;">selector</a> <a href="/tags/shape/" style="font-size: 13.33px;">shape</a> <a href="/tags/一览无遗/" style="font-size: 10px;">一览无遗</a> <a href="/tags/加油/" style="font-size: 13.33px;">加油</a> <a href="/tags/北京/" style="font-size: 20px;">北京</a> <a href="/tags/屏幕适配/" style="font-size: 10px;">屏幕适配</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/控件/" style="font-size: 10px;">控件</a> <a href="/tags/晴朗/" style="font-size: 10px;">晴朗</a> <a href="/tags/最后/" style="font-size: 10px;">最后</a> <a href="/tags/梦想/" style="font-size: 13.33px;">梦想</a> <a href="/tags/测试/" style="font-size: 13.33px;">测试</a> <a href="/tags/济南/" style="font-size: 10px;">济南</a> <a href="/tags/烦躁/" style="font-size: 10px;">烦躁</a> <a href="/tags/生日/" style="font-size: 13.33px;">生日</a> <a href="/tags/运动场/" style="font-size: 10px;">运动场</a> <a href="/tags/近期任务/" style="font-size: 10px;">近期任务</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a> <a href="/tags/顺其自然/" style="font-size: 10px;">顺其自然</a> <a href="/tags/马克飞象/" style="font-size: 10px;">马克飞象</a> <a href="/tags/黑/" style="font-size: 10px;">黑</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <!-- treason@20150818 -->
+  &copy; 2011-2015 马加油
+  <a href="http://www.miitbeian.gov.cn/">京ICP备15042793号</a>
+</div>
+<div class="clearfix"></div></footer>
+  <!-- treason@20150818 -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- treason@20150818 -->
+<!-- 多说评论-全局声明 -->
+<script type="text/javascript">
+var duoshuo_shortname = 'mjiayou';
+var duoshuoQuery = {short_name:duoshuo_shortname};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+</body>
+</html>
+
+<!-- treason@20150818 -->
